@@ -1,0 +1,173 @@
+[gd_scene load_steps=7 format=3 uid="uid://biuf1lvkmlw73"]
+
+[ext_resource type="FontFile" uid="uid://bhrsnv41q3q6b" path="res://assets/PixelifySans-VariableFont_wght.ttf" id="1_3er1b"]
+[ext_resource type="Script" uid="uid://c7v6k4n862std" path="res://scene/main_menu.gd" id="1_14wem"]
+[ext_resource type="StyleBox" uid="uid://d2o6wwoxyfopu" path="res://scene/hover.tres" id="2_2fwvj"]
+[ext_resource type="StyleBox" uid="uid://d3novq08x414j" path="res://scene/normal_button.tres" id="2_hxu56"]
+[ext_resource type="StyleBox" uid="uid://bjnotoy1may1s" path="res://scene/pressed.tres" id="3_0iwki"]
+[ext_resource type="Texture2D" uid="uid://d0am718jpcsn2" path="res://assets/Main Menu-Sheet.png" id="5_sepwh"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_14wem")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_sepwh")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -135.5
+offset_top = -115.0
+offset_right = 135.5
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 14
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.164706, 0.0823529, 0.176471, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_3er1b")
+theme_override_font_sizes/font_size = 39
+theme_override_styles/focus = ExtResource("2_hxu56")
+theme_override_styles/disabled_mirrored = ExtResource("2_hxu56")
+theme_override_styles/disabled = ExtResource("2_hxu56")
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_0iwki")
+theme_override_styles/hover_pressed = ExtResource("3_0iwki")
+theme_override_styles/hover_mirrored = ExtResource("2_2fwvj")
+theme_override_styles/hover = ExtResource("2_2fwvj")
+theme_override_styles/pressed_mirrored = ExtResource("2_hxu56")
+theme_override_styles/pressed = ExtResource("3_0iwki")
+theme_override_styles/normal_mirrored = ExtResource("2_hxu56")
+theme_override_styles/normal = ExtResource("2_hxu56")
+text = "New Game"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.164706, 0.0823529, 0.176471, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_3er1b")
+theme_override_font_sizes/font_size = 39
+theme_override_styles/focus = ExtResource("2_hxu56")
+theme_override_styles/disabled_mirrored = ExtResource("2_hxu56")
+theme_override_styles/disabled = ExtResource("2_hxu56")
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_0iwki")
+theme_override_styles/hover_pressed = ExtResource("3_0iwki")
+theme_override_styles/hover_mirrored = ExtResource("2_2fwvj")
+theme_override_styles/hover = ExtResource("2_2fwvj")
+theme_override_styles/pressed_mirrored = ExtResource("2_hxu56")
+theme_override_styles/pressed = ExtResource("3_0iwki")
+theme_override_styles/normal_mirrored = ExtResource("2_hxu56")
+theme_override_styles/normal = ExtResource("2_hxu56")
+text = "Continue"
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.164706, 0.0823529, 0.176471, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_3er1b")
+theme_override_font_sizes/font_size = 39
+theme_override_styles/focus = ExtResource("2_hxu56")
+theme_override_styles/disabled_mirrored = ExtResource("2_hxu56")
+theme_override_styles/disabled = ExtResource("2_hxu56")
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_0iwki")
+theme_override_styles/hover_pressed = ExtResource("3_0iwki")
+theme_override_styles/hover_mirrored = ExtResource("2_2fwvj")
+theme_override_styles/hover = ExtResource("2_2fwvj")
+theme_override_styles/pressed_mirrored = ExtResource("2_hxu56")
+theme_override_styles/pressed = ExtResource("3_0iwki")
+theme_override_styles/normal_mirrored = ExtResource("2_hxu56")
+theme_override_styles/normal = ExtResource("2_hxu56")
+text = "Settings
+"
+
+[node name="Button4" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.164706, 0.0823529, 0.176471, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_3er1b")
+theme_override_font_sizes/font_size = 39
+theme_override_styles/focus = ExtResource("2_hxu56")
+theme_override_styles/disabled_mirrored = ExtResource("2_hxu56")
+theme_override_styles/disabled = ExtResource("2_hxu56")
+theme_override_styles/hover_pressed_mirrored = ExtResource("3_0iwki")
+theme_override_styles/hover_pressed = ExtResource("3_0iwki")
+theme_override_styles/hover_mirrored = ExtResource("2_2fwvj")
+theme_override_styles/hover = ExtResource("2_2fwvj")
+theme_override_styles/pressed_mirrored = ExtResource("2_hxu56")
+theme_override_styles/pressed = ExtResource("3_0iwki")
+theme_override_styles/normal_mirrored = ExtResource("2_hxu56")
+theme_override_styles/normal = ExtResource("2_hxu56")
+text = "Exit
+"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
