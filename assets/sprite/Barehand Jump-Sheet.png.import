@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0qgkiaqdxjcc"
-path="res://.godot/imported/Walking-Sheet.png-8475316eecf5cd17e8f6378d42530252.ctex"
+uid="uid://cgqy1ys87f4qj"
+path="res://.godot/imported/Barehand Jump-Sheet.png-f243820c974beb5841f1dac720f7e9c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprite/Walking-Sheet.png"
-dest_files=["res://.godot/imported/Walking-Sheet.png-8475316eecf5cd17e8f6378d42530252.ctex"]
+source_file="res://assets/sprite/Barehand Jump-Sheet.png"
+dest_files=["res://.godot/imported/Barehand Jump-Sheet.png-f243820c974beb5841f1dac720f7e9c7.ctex"]
 
 [params]
 

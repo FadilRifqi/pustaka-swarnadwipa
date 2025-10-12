@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0qgkiaqdxjcc"
-path="res://.godot/imported/Walking-Sheet.png-8475316eecf5cd17e8f6378d42530252.ctex"
+uid="uid://bhdxq8n346vw1"
+path="res://.godot/imported/heart-Sheet.png-ed8195e91f8f8eb4e1d87447317b0ea5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprite/Walking-Sheet.png"
-dest_files=["res://.godot/imported/Walking-Sheet.png-8475316eecf5cd17e8f6378d42530252.ctex"]
+source_file="res://assets/sprite/heart-Sheet.png"
+dest_files=["res://.godot/imported/heart-Sheet.png-ed8195e91f8f8eb4e1d87447317b0ea5.ctex"]
 
 [params]
 

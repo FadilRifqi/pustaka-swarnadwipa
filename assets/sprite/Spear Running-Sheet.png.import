@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0qgkiaqdxjcc"
-path="res://.godot/imported/Walking-Sheet.png-8475316eecf5cd17e8f6378d42530252.ctex"
+uid="uid://bhigrj7q8o3vc"
+path="res://.godot/imported/Spear Running-Sheet.png-dbe3c7a1efc83221c198242575ab3849.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprite/Walking-Sheet.png"
-dest_files=["res://.godot/imported/Walking-Sheet.png-8475316eecf5cd17e8f6378d42530252.ctex"]
+source_file="res://assets/sprite/Spear Running-Sheet.png"
+dest_files=["res://.godot/imported/Spear Running-Sheet.png-dbe3c7a1efc83221c198242575ab3849.ctex"]
 
 [params]
 
