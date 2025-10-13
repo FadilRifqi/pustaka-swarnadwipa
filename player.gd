@@ -25,6 +25,14 @@ var apex_threshold: float = 120.0
 var coyote_timer: float = 0.0
 var jump_buffer_timer: float = 0.0
 
+# Air dash
+var is_dashing: bool = false
+var can_air_dash: bool = true
+var dash_dir_x: int = 1
+var dash_duration: float = 0.18
+var dash_timer: float = 0.0
+var dash_speed: float = 900.0
+
 @onready var animation_player:AnimationPlayer = $AnimationPlayer
 @onready var spear_walking:Sprite2D = $Spear_Walking
 @onready var spear_idle:Sprite2D = $Spear_Idle
@@ -45,13 +53,25 @@ func _ready() -> void:
 		heart_list.append(child)
 	
 
+func _start_air_dash() -> void:
+	is_dashing = true
+	can_air_dash = false
+	dash_timer = dash_duration
+	dash_dir_x = -1 if cardinal_direction == Vector2.LEFT else 1
+	velocity.y = 0.0
+	# pakai animasi lompat saat dash
+	state = "spear_jumping" if weapon == "spear" else "barehand_jumping"
+	UpdateAnimation()
 
 func _process(delta: float) -> void:
 	direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	
 	# set jump buffer saat tombol jump ditekan (diproses di physics nanti)
 	if Input.is_action_just_pressed("jump"):
-		jump_buffer_timer = jump_buffer_time
+		if is_on_floor():
+			jump_buffer_timer = jump_buffer_time
+		elif not is_attacking and not is_dashing and can_air_dash:
+			_start_air_dash()
 
 	# tetap panggil SetDirection / SetState untuk update visual state (tetapi
 	# jangan ubah velocity di SetState)
@@ -111,17 +131,22 @@ func _physics_process(delta: float) -> void:
 	# GRAVITY (with multipliers)
 	if not is_on_floor():
 		# Keep falling even while attacking in air (no freeze)
-		var g := gravity
-		if velocity.y < 0.0:
-			# going up
-			if Input.is_action_just_released("jump"):
-				g *= jump_cut_multiplier
-			elif absf(velocity.y) <= apex_threshold:
-				g *= apex_gravity_multiplier
+		if is_dashing:
+			# selama dash di udara, jangan jatuh
+			velocity.y = 0.0
 		else:
-			# falling
-			g *= fall_gravity_multiplier
-		velocity.y = min(velocity.y + g * delta, 3000)
+			
+			var g := gravity
+			if velocity.y < 0.0:
+				# going up
+				if Input.is_action_just_released("jump"):
+					g *= jump_cut_multiplier
+				elif absf(velocity.y) <= apex_threshold:
+					g *= apex_gravity_multiplier
+			else:
+				# falling
+				g *= fall_gravity_multiplier
+			velocity.y = min(velocity.y + g * delta, 3000)
 	else:
 		# landing
 		if is_jumping:
@@ -132,10 +157,20 @@ func _physics_process(delta: float) -> void:
 				else:
 					state = "barehand_idle" if direction == Vector2.ZERO else ("barehand_running" if Input.is_action_pressed("run") else "barehand_walking")
 				UpdateAnimation()
+				is_dashing = false
+				can_air_dash = true
 		#velocity.y = 0.0
 
 	# HORIZONTAL movement
-	if is_attacking:
+	if is_dashing:
+		dash_timer -= delta
+		if dash_timer <= 0.0:
+			is_dashing = false
+
+	# HORIZONTAL movement
+	if is_dashing:
+		velocity.x = float(dash_dir_x) * dash_speed
+	elif is_attacking:
 		if is_on_floor():
 			velocity.x = 0.0
 		else:
@@ -176,6 +211,9 @@ func SetDirection () -> bool:
 
 func SetState() -> bool:
 	var new_state : String = state
+	
+	if is_dashing:
+		return false
 	
 	# Udara: pertahankan animasi lompat saat tidak menyerang
 	if not is_on_floor() and not is_attacking:

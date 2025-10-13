@@ -15,8 +15,9 @@
 [ext_resource type="Script" uid="uid://y7m1k6gfkgsi" path="res://camera_2d.gd" id="13_bwjto"]
 [ext_resource type="Texture2D" uid="uid://bhdxq8n346vw1" path="res://assets/sprite/heart-Sheet.png" id="13_urp6f"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3invt"]
-radius = 23.0217
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bwjto"]
+radius = 28.0
+height = 94.0
 
 [sub_resource type="Animation" id="Animation_onrkg"]
 length = 0.001
@@ -392,8 +393,8 @@ _data = {
 script = ExtResource("1_hqtel")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4, 23)
-shape = SubResource("CircleShape2D_3invt")
+position = Vector2(-5, -7)
+shape = SubResource("CapsuleShape2D_bwjto")
 
 [node name="Spear_Walking" type="Sprite2D" parent="."]
 position = Vector2(14, -6)
@@ -406,22 +407,22 @@ libraries = {
 }
 
 [node name="Spear_Idle" type="Sprite2D" parent="."]
-position = Vector2(14, -6)
+position = Vector2(10, -6)
 texture = ExtResource("2_onrkg")
 hframes = 7
 
 [node name="Spear_Attack_1" type="Sprite2D" parent="."]
-position = Vector2(38, -6)
+position = Vector2(10, -8)
 texture = ExtResource("3_i3pqv")
 hframes = 8
 
 [node name="Spear_Attack_2" type="Sprite2D" parent="."]
-position = Vector2(39, -4)
+position = Vector2(9, -8)
 texture = ExtResource("5_sweqy")
 hframes = 6
 
 [node name="Spear_Attack_3" type="Sprite2D" parent="."]
-position = Vector2(7, -7)
+position = Vector2(2, -5)
 texture = ExtResource("6_2hs0m")
 hframes = 7
 
@@ -460,6 +461,8 @@ offset = Vector2(0, -200)
 limit_left = 0
 limit_smoothed = true
 position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+editor_draw_limits = true
 script = ExtResource("13_bwjto")
 
 [node name="HealthLayer" type="CanvasLayer" parent="."]
