@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://db16skm158cs2"]
+[gd_scene load_steps=14 format=3 uid="uid://db16skm158cs2"]
 
 [ext_resource type="Script" uid="uid://w8lh4sgv5fls" path="res://scene/MainMenu.gd" id="1_85i58"]
-[ext_resource type="Texture2D" uid="uid://b8t6eawx4l8ej" path="res://assets/Image.png" id="2_q4ih2"]
+[ext_resource type="Texture2D" uid="uid://d1quhceu2mi7l" path="res://assets/bg/bg.png" id="2_581fk"]
+[ext_resource type="Texture2D" uid="uid://68fbpradrnng" path="res://assets/bg/Background_0.png" id="3_ee4am"]
 [ext_resource type="FontFile" uid="uid://d3easpuo6ebkl" path="res://assets/TrajanPro-Regular.ttf" id="4_581fk"]
 [ext_resource type="FontFile" uid="uid://c1v035gxx5dwl" path="res://assets/TrajanPro-Bold.otf" id="6_ee4am"]
 [ext_resource type="Script" uid="uid://rgsk8dsmect7" path="res://scene/button.gd" id="8_ee4am"]
@@ -25,11 +26,28 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 3.0
-offset_right = 1149.0
-offset_bottom = 647.0
+offset_right = 1156.0
+offset_bottom = 659.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_q4ih2")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="TextureRect"]
+follow_viewport_enabled = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="TextureRect/ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="TextureRect/ParallaxBackground/ParallaxLayer"]
+z_index = 1
+position = Vector2(577.625, 329.625)
+scale = Vector2(1.67113, 1.81371)
+texture = ExtResource("2_581fk")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="TextureRect/ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="TextureRect/ParallaxBackground/ParallaxLayer2"]
+position = Vector2(580, 326.5)
+scale = Vector2(1.49219, 1.55048)
+texture = ExtResource("3_ee4am")
 
 [node name="GameTitle2" type="Label" parent="."]
 offset_top = 119.0

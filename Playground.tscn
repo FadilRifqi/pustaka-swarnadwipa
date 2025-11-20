@@ -1,16 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://tifin6apg3ri"]
+[gd_scene load_steps=7 format=3 uid="uid://tifin6apg3ri"]
 
 [ext_resource type="PackedScene" uid="uid://c11o6et3g00y1" path="res://player.tscn" id="1_80c3a"]
-[ext_resource type="Texture2D" uid="uid://btlcyocddhw31" path="res://assets/sprite/Tiles Stage 1-Sheet.png" id="2_d17em"]
-[ext_resource type="Texture2D" uid="uid://djecib8mcm42y" path="res://assets/sprite/background_layer_1.png" id="3_threo"]
-[ext_resource type="Texture2D" uid="uid://cx25jyf0ca46n" path="res://assets/sprite/background_layer_2.png" id="4_s2wwn"]
-[ext_resource type="Texture2D" uid="uid://dt5d7a0t14w2j" path="res://assets/sprite/background_layer_3.png" id="5_bia53"]
+[ext_resource type="Texture2D" uid="uid://d1quhceu2mi7l" path="res://assets/bg/bg.png" id="4_threo"]
+[ext_resource type="Texture2D" uid="uid://68fbpradrnng" path="res://assets/bg/Background_0.png" id="5_s2wwn"]
 [ext_resource type="PackedScene" uid="uid://cfqtwyeb6aokb" path="res://orangpendek.tscn" id="6_s2wwn"]
+[ext_resource type="PackedScene" uid="uid://b8i3dt45bkb22" path="res://skeletonlvl1.tscn" id="7_bia53"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80c3a"]
 size = Vector2(1154, 121)
 
-[node name="Playground" type="Node2D"]
+[node name="Level1" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_80c3a")]
 z_index = 12
@@ -22,73 +21,30 @@ position = Vector2(63, 494)
 position = Vector2(582, 633.5)
 shape = SubResource("RectangleShape2D_80c3a")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
-position = Vector2(-437, -9.5)
-texture = ExtResource("2_d17em")
-
-[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
-position = Vector2(-149, -9.5)
-texture = ExtResource("2_d17em")
-
-[node name="Sprite2D3" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
-position = Vector2(137, -9.5)
-texture = ExtResource("2_d17em")
-
-[node name="Sprite2D4" type="Sprite2D" parent="StaticBody2D/CollisionShape2D"]
-position = Vector2(425, -9.5)
-texture = ExtResource("2_d17em")
-
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(1731, 634)
 shape = SubResource("RectangleShape2D_80c3a")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/CollisionShape2D2"]
-position = Vector2(-437, -9.5)
-texture = ExtResource("2_d17em")
-
-[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D/CollisionShape2D2"]
-position = Vector2(-149, -9.5)
-texture = ExtResource("2_d17em")
-
-[node name="Sprite2D3" type="Sprite2D" parent="StaticBody2D/CollisionShape2D2"]
-position = Vector2(137, -9.5)
-texture = ExtResource("2_d17em")
-
-[node name="Sprite2D4" type="Sprite2D" parent="StaticBody2D/CollisionShape2D2"]
-position = Vector2(425, -9.5)
-texture = ExtResource("2_d17em")
-
-[node name="Background" type="ParallaxBackground" parent="."]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
-position = Vector2(5, -57)
-motion_scale = Vector2(0.1, 0.1)
-motion_mirroring = Vector2(1152, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxLayer"]
-position = Vector2(577.5, 241.5)
-scale = Vector2(3.60313, 4.46111)
-texture = ExtResource("3_threo")
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="Background"]
-position = Vector2(5, -57)
-motion_scale = Vector2(0.3, 0.3)
-motion_mirroring = Vector2(1152, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxLayer2"]
-position = Vector2(576, 243)
-scale = Vector2(3.6, 4.44445)
-texture = ExtResource("4_s2wwn")
-
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="Background"]
-position = Vector2(5, -57)
-motion_scale = Vector2(0.7, 0.7)
-motion_mirroring = Vector2(1152, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxLayer3"]
-position = Vector2(576, 244)
-scale = Vector2(3.6125, 4.47778)
-texture = ExtResource("5_bia53")
-
 [node name="Orang Pendek" parent="." instance=ExtResource("6_s2wwn")]
 position = Vector2(1043, 476)
+
+[node name="Skeleton" parent="." instance=ExtResource("7_bia53")]
+position = Vector2(1280, 493)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+follow_viewport_enabled = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+z_index = 1
+position = Vector2(577.625, 329.625)
+scale = Vector2(1.67113, 1.81371)
+texture = ExtResource("4_threo")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(580, 326.5)
+scale = Vector2(1.49219, 1.55048)
+texture = ExtResource("5_s2wwn")

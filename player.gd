@@ -6,18 +6,25 @@ var health : int = 3
 var cardinal_direction : Vector2 = Vector2.RIGHT
 var direction : Vector2 = Vector2.ZERO
 @export var move_speed : float = 150.0
+@onready var attack_area: Area2D = $AttackArea
+
+# PENTING: Pastikan node "Attack_Range" di Scene adalah "Area2D", bukan CollisionShape2D saja!
+
+# State & Weapon
 var state : String = "pedang_idle"
 var weapon : String = "pedang"
 var last_pressed : String = ""
 var next_attack : String = ""
 var is_attacking : bool = false
+
+# Damage & Invincibility Variables
+var is_invincible : bool = false
+var invincibility_duration : float = 1.0 
+
+# Physics Variables
 var gravity : float = 5000
 var jump_force : float = -1500
 var is_jumping : bool = false
-var fall_start_y : float = 0.0
-var fall_time : float = 0.0
-
-# Jump & Dash Variables
 var coyote_time: float = 0.12
 var jump_buffer_time: float = 0.12
 var fall_gravity_multiplier: float = 2.0
@@ -27,6 +34,7 @@ var apex_threshold: float = 120.0
 var coyote_timer: float = 0.0
 var jump_buffer_timer: float = 0.0
 
+# Air dash Variables
 var is_dashing: bool = false
 var can_air_dash: bool = true
 var dash_dir_x: int = 1
@@ -54,81 +62,73 @@ func _ready() -> void:
 	var hearts_parent = $HealthLayer/HBoxContainer
 	scale = Vector2(character_scale, character_scale)
 	
-	for child in hearts_parent.get_children():
-		heart_list.append(child)
+	if hearts_parent:
+		for child in hearts_parent.get_children():
+			heart_list.append(child)
+			
+	# --- SETUP HITBOX ---
+	# Matikan hitbox saat mulai game
+	attack_area.monitoring = false
+	
+	# Hubungkan sinyal body_entered lewat kode
+	if not attack_area.body_entered.is_connected(_on_attack_area_body_entered):
+		attack_area.body_entered.connect(_on_attack_area_body_entered)
 	
 	UpdateAnimation()
+	update_hearts()
 
 func _process(delta: float) -> void:
-	# 1. Input Gerak
 	direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	
-	# 2. Update Arah Hadap
 	if direction.x != 0:
-		if direction.x > 0:
-			cardinal_direction = Vector2.RIGHT
-		else:
-			cardinal_direction = Vector2.LEFT
+		cardinal_direction = Vector2.RIGHT if direction.x > 0 else Vector2.LEFT
 
-	# Jump Buffer
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			jump_buffer_timer = jump_buffer_time
 		elif not is_attacking and not is_dashing and can_air_dash:
 			_start_air_dash()
 
-	# 3. Logic State & Weapon
 	SetState()
 	UpdateWeapon()
-	
-	# 4. Update Visual
 	UpdateAnimation()
 
 func _physics_process(delta: float) -> void:
-	# COYOTE TIMER
 	if is_on_floor():
 		coyote_timer = coyote_time
 	else:
 		coyote_timer = max(coyote_timer - delta, 0.0)
 
-	# JUMP EXECUTION
 	if jump_buffer_timer > 0.0 and (is_on_floor() or coyote_timer > 0.0) and not is_attacking:
 		jump_buffer_timer = 0.0
 		is_jumping = true
 		velocity.y = jump_force
-		
-		# Set visual state saat lompat (Gunakan string format agar otomatis ikut senjata)
 		state = weapon + "_jumping"
 		UpdateAnimation()
 
 	if jump_buffer_timer > 0.0:
 		jump_buffer_timer -= delta
 
-	# GRAVITY
 	if not is_on_floor():
 		if is_dashing:
 			velocity.y = 0.0
 		else:
 			var g := gravity
-			if velocity.y < 0.0: # Naik
+			if velocity.y < 0.0:
 				if Input.is_action_just_released("jump"): g *= jump_cut_multiplier
 				elif absf(velocity.y) <= apex_threshold: g *= apex_gravity_multiplier
-			else: # Turun
+			else:
 				g *= fall_gravity_multiplier
 			velocity.y = min(velocity.y + g * delta, 3000)
 	else:
-		# LANDING
 		if is_jumping:
 			is_jumping = false
 			if not is_attacking:
-				# Reset ke idle/run saat mendarat
 				state = weapon + ("_idle" if direction == Vector2.ZERO else "_run")
-				
 				is_dashing = false
 				can_air_dash = true
 				UpdateAnimation()
 
-	# MOVEMENT PHYSICS
 	if is_dashing:
 		dash_timer -= delta
 		if dash_timer <= 0.0: is_dashing = false
@@ -144,6 +144,46 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, target, accel * delta)
 
 	move_and_slide()
+	_check_player_collision() # Cek kalau player ditabrak musuh
+
+# --- LOGIKA SERANGAN (PLAYER HITBOX) ---
+# Fungsi ini otomatis dipanggil saat Attack_Range (Area2D) mendeteksi body masuk
+# TETAPI hanya aktif saat attack_area.monitoring = true (yang kita set di SetState)
+func _on_attack_area_body_entered(body: Node2D) -> void:
+	# JANGAN pakai "if body is Kronco", karena itu cuma deteksi Kronco.
+	
+	# GUNAKAN "has_method" agar bisa memukul SEMUA musuh (Kronco, Skeleton, dll)
+	if body.has_method("take_damage"):
+		# Pastikan tidak memukul diri sendiri
+		if body != self:
+			body.take_damage(1)
+
+# --- LOGIKA PLAYER DITABRAK MUSUH ---
+func _check_player_collision() -> void:
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider is Kronco:
+			take_damage(1) # Kurangi darah player
+
+func take_damage(amount: int) -> void:
+	if is_invincible: return
+	health -= amount
+	print("Player Hit! Sisa Health: ", health)
+	update_hearts()
+	if health <= 0: die()
+	else: start_invincibility()
+
+func start_invincibility() -> void:
+	is_invincible = true
+	modulate.a = 0.5
+	await get_tree().create_timer(invincibility_duration).timeout
+	modulate.a = 1.0
+	is_invincible = false
+
+func die() -> void:
+	print("Player Mati")
+	get_tree().reload_current_scene()
 
 func _start_air_dash() -> void:
 	is_dashing = true
@@ -157,28 +197,30 @@ func SetState() -> bool:
 	var new_state : String = state
 	if is_dashing: return false
 	
-	# --- LOGIKA MOVEMENT UMUM (BERLAKU UNTUK SEMUA SENJATA) ---
-	# Kita gunakan string concatenation (weapon + "_action") agar tidak perlu if-else panjang
 	if is_on_floor() and not is_attacking:
 		if Input.is_action_just_pressed("jump"):
 			new_state = weapon + "_jumping"
 			is_jumping = true
 			velocity.y = jump_force
 		elif direction == Vector2.ZERO:
-			move_speed = 150 # Reset speed saat idle
+			move_speed = 150
 			new_state = weapon + "_idle"
 		elif Input.is_action_pressed("run"):
 			move_speed = 250
 			new_state = weapon + "_run"
 		else:
 			move_speed = 150
-			# Gunakan run sprite jika tidak ada walk, atau ganti ke _walk jika ada
-			new_state = weapon + "_run" 
+			new_state = weapon + "_run"
 	
 	# --- ATTACK LOGIC ---
 	if Input.is_action_just_pressed("basic_hit") and not is_attacking:
 		new_state = weapon + "_attack"
 		is_attacking = true
+		
+		# NYALAKAN HITBOX! 
+		# Ini membuat Area2D mulai mendeteksi musuh.
+		# Godot akan otomatis memanggil _on_attack_area_body_entered jika ada musuh.
+		attack_area.monitoring = true 
 	
 	if new_state == state: return false
 	state = new_state
@@ -186,58 +228,40 @@ func SetState() -> bool:
 
 func UpdateWeapon():
 	var old_weapon = weapon
-	
 	if Input.is_action_just_pressed("slot_1"): weapon = "pedang" 
 	elif Input.is_action_just_pressed("slot_2"): weapon = "rencong" 
 	elif Input.is_action_just_pressed("slot_3"): weapon = "keris"
 	
-	# Jika senjata berubah, PAKSA update state visual langsung!
 	if old_weapon != weapon and not is_attacking:
-		# Ubah state misal dari "pedang_idle" jadi "rencong_idle"
 		if "idle" in state: state = weapon + "_idle"
 		elif "run" in state: state = weapon + "_run"
 		elif "jumping" in state: state = weapon + "_jumping"
 		UpdateAnimation()
 
 func UpdateAnimation() -> void:
-	# 1. HIDE SEMUA TERLEBIH DAHULU
 	keris_attack.hide(); keris_idle.hide(); keris_run.hide()
 	rencong_attack.hide(); rencong_run.hide(); rencong_idle.hide()
 	pedang_attack.hide(); pedang_idle.hide(); pedang_run.hide()
 	
-	# 2. TENTUKAN ARAH FLIP (Untuk Sprite)
 	var flip_scale = -1 if cardinal_direction == Vector2.LEFT else 1
 	
-	# 3. SHOW YANG SESUAI DAN APPLY FLIP
-	# Pedang
-	if state == "pedang_idle":
-		pedang_idle.show(); pedang_idle.scale.x = flip_scale
-	elif state == "pedang_run":
-		pedang_run.show(); pedang_run.scale.x = flip_scale
-	elif state == "pedang_attack":
-		pedang_attack.show(); pedang_attack.scale.x = flip_scale
-	elif state == "pedang_jumping":
-		pedang_idle.show(); pedang_idle.scale.x = flip_scale # Fallback ke idle
-		
-	# Keris
-	elif state == "keris_idle":
-		keris_idle.show(); keris_idle.scale.x = flip_scale
-	elif state == "keris_run":
-		keris_run.show(); keris_run.scale.x = flip_scale
-	elif state == "keris_attack":
-		keris_attack.show(); keris_attack.scale.x = flip_scale
-		
-	# Rencong
-	elif state == "rencong_idle":
-		rencong_idle.show(); rencong_idle.scale.x = flip_scale
-	elif state == "rencong_run":
-		rencong_run.show(); rencong_run.scale.x = flip_scale
-	elif state == "rencong_attack":
-		rencong_attack.show(); rencong_attack.scale.x = flip_scale
+	# FLIP HITBOX JUGA!
+	# Agar saat hadap kiri, hitbox pindah ke kiri
+	attack_area.scale.x = flip_scale 
+	
+	if state == "pedang_idle":   pedang_idle.show(); pedang_idle.scale.x = flip_scale
+	elif state == "pedang_run":  pedang_run.show(); pedang_run.scale.x = flip_scale
+	elif state == "pedang_attack": pedang_attack.show(); pedang_attack.scale.x = flip_scale
+	elif state == "pedang_jumping": pedang_idle.show(); pedang_idle.scale.x = flip_scale
+	
+	elif state == "keris_idle":  keris_idle.show(); keris_idle.scale.x = flip_scale
+	elif state == "keris_run":   keris_run.show(); keris_run.scale.x = flip_scale
+	elif state == "keris_attack": keris_attack.show(); keris_attack.scale.x = flip_scale
+	
+	elif state == "rencong_idle": rencong_idle.show(); rencong_idle.scale.x = flip_scale
+	elif state == "rencong_run":  rencong_run.show(); rencong_run.scale.x = flip_scale
+	elif state == "rencong_attack": rencong_attack.show(); rencong_attack.scale.x = flip_scale
 
-	# 4. JALANKAN ANIMASI PLAYER (DENGAN PENGECEKAN)
-	# INI KUNCI PERBAIKAN ANIMASI STUCK:
-	# Hanya play jika nama animasi berbeda. Jangan restart jika sama.
 	if animation_player.current_animation != state:
 		if animation_player.has_animation(state):
 			animation_player.play(state)
@@ -245,5 +269,25 @@ func UpdateAnimation() -> void:
 func _on_animation_player_animation_finished(anim_name: String) -> void:
 	if "attack" in anim_name:
 		is_attacking = false
-		state = weapon + "_idle" # Reset otomatis sesuai weapon
+		
+		# MATIKAN HITBOX
+		# Agar kalau jalan biasa tidak membunuh musuh
+		attack_area.monitoring = false
+		
+		state = weapon + "_idle"
 		UpdateAnimation()
+
+func update_hearts():
+	# Loop sebanyak jumlah slot hati yang ada di UI
+	for i in range(heart_list.size()):
+		# Logika:
+		# Jika index saat ini (i) kurang dari jumlah darah (health), maka hati aktif.
+		# Contoh: Health = 2.
+		# i=0 (Hati ke-1): 0 < 2 -> TRUE (Show)
+		# i=1 (Hati ke-2): 1 < 2 -> TRUE (Show)
+		# i=2 (Hati ke-3): 2 < 2 -> FALSE (Hide)
+		
+		if i < health:
+			heart_list[i].visible = true # Tampilkan hati
+		else:
+			heart_list[i].visible = false # Sembunyikan hati (atau ganti tekstur hati kosong)

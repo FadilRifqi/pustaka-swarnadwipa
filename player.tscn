@@ -1,12 +1,15 @@
-[gd_scene load_steps=19 format=3 uid="uid://c11o6et3g00y1"]
+[gd_scene load_steps=26 format=3 uid="uid://c11o6et3g00y1"]
 
 [ext_resource type="Script" uid="uid://bw2o1rbms3w0r" path="res://player.gd" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://c4u2s7mdp1kmd" path="res://assets/Main Character/idle_keris.png" id="5_b26j0"]
 [ext_resource type="Texture2D" uid="uid://dq75ffla0db8x" path="res://assets/sprite/attack_keris.png" id="5_sweqy"]
 [ext_resource type="Texture2D" uid="uid://de5q02kel0qsm" path="res://assets/Main Character/idle_rencong.png" id="6_n7ghd"]
+[ext_resource type="Texture2D" uid="uid://dpi6axds0r2rw" path="res://assets/Main Character/run_keris.png" id="6_nvl01"]
 [ext_resource type="Texture2D" uid="uid://cbxorpf3tp3s3" path="res://assets/Main Character/attack_rencong.png" id="7_nvl01"]
 [ext_resource type="Texture2D" uid="uid://1eqqpch0gmow" path="res://assets/Main Character/attack_pedang.png" id="8_ivps1"]
+[ext_resource type="Texture2D" uid="uid://buscm4t3ea4g6" path="res://assets/Main Character/run_rencong.png" id="9_ivps1"]
 [ext_resource type="Texture2D" uid="uid://sjjv52g85p43" path="res://assets/Main Character/idle_pedang.png" id="9_urp6f"]
+[ext_resource type="Texture2D" uid="uid://xmvjpttxu57a" path="res://assets/Main Character/run_pedang.png" id="10_n7ghd"]
 [ext_resource type="Script" uid="uid://y7m1k6gfkgsi" path="res://camera_2d.gd" id="13_bwjto"]
 [ext_resource type="Texture2D" uid="uid://bhdxq8n346vw1" path="res://assets/sprite/heart-Sheet.png" id="13_urp6f"]
 
@@ -88,9 +91,46 @@ tracks/5/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PedangRun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("KerisRun:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("RencongRun:frame")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_hqtel"]
 resource_name = "attack_keris"
+length = 0.6485
 step = 0.07
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -118,6 +158,24 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_ivps1"]
+resource_name = "keris_run"
+length = 1.061
+loop_mode = 1
+step = 0.14
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("KerisRun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.14, 0.28, 0.42, 0.56, 0.7, 0.84, 0.98),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
@@ -158,6 +216,24 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
+[sub_resource type="Animation" id="Animation_nvl01"]
+resource_name = "pedang_run"
+length = 1.0531
+loop_mode = 1
+step = 0.14
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PedangRun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.14, 0.28, 0.42, 0.56, 0.7, 0.84, 0.98),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
 [sub_resource type="Animation" id="Animation_u1c27"]
 resource_name = "rencong_attack"
 length = 0.3587
@@ -193,16 +269,40 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
+[sub_resource type="Animation" id="Animation_urp6f"]
+resource_name = "rencong_run"
+length = 1.0641
+loop_mode = 1
+step = 0.14
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RencongRun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.14, 0.28, 0.42, 0.56, 0.7, 0.84, 0.98),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i3pqv"]
 _data = {
 &"RESET": SubResource("Animation_onrkg"),
-&"attack_keris": SubResource("Animation_hqtel"),
+&"keris_attack": SubResource("Animation_hqtel"),
 &"keris_idle": SubResource("Animation_bwjto"),
+&"keris_run": SubResource("Animation_ivps1"),
 &"pedang_attack": SubResource("Animation_q13i1"),
 &"pedang_idle": SubResource("Animation_op7ga"),
+&"pedang_run": SubResource("Animation_nvl01"),
 &"rencong_attack": SubResource("Animation_u1c27"),
-&"rencong_idle": SubResource("Animation_606se")
+&"rencong_idle": SubResource("Animation_606se"),
+&"rencong_run": SubResource("Animation_urp6f")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ivps1"]
+size = Vector2(19, 37)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_hqtel")
@@ -247,7 +347,6 @@ layout_mode = 2
 texture = ExtResource("13_urp6f")
 
 [node name="KerisAttack" type="Sprite2D" parent="."]
-position = Vector2(14, -1)
 texture = ExtResource("5_sweqy")
 hframes = 8
 
@@ -257,6 +356,8 @@ texture = ExtResource("5_b26j0")
 hframes = 8
 
 [node name="KerisRun" type="Sprite2D" parent="."]
+texture = ExtResource("6_nvl01")
+hframes = 8
 
 [node name="RencongIdle" type="Sprite2D" parent="."]
 position = Vector2(0, -3)
@@ -269,6 +370,8 @@ texture = ExtResource("7_nvl01")
 hframes = 8
 
 [node name="RencongRun" type="Sprite2D" parent="."]
+texture = ExtResource("9_ivps1")
+hframes = 8
 
 [node name="PedangAttack" type="Sprite2D" parent="."]
 position = Vector2(0, -3)
@@ -281,5 +384,13 @@ texture = ExtResource("9_urp6f")
 hframes = 8
 
 [node name="PedangRun" type="Sprite2D" parent="."]
+texture = ExtResource("10_n7ghd")
+hframes = 8
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="Attack_Range" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(14, -1)
+shape = SubResource("RectangleShape2D_ivps1")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
