@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://db16skm158cs2"]
+[gd_scene load_steps=13 format=3 uid="uid://db16skm158cs2"]
 
 [ext_resource type="Script" uid="uid://w8lh4sgv5fls" path="res://scene/MainMenu.gd" id="1_85i58"]
 [ext_resource type="Texture2D" uid="uid://b8t6eawx4l8ej" path="res://assets/Image.png" id="2_q4ih2"]
@@ -6,9 +6,10 @@
 [ext_resource type="FontFile" uid="uid://c1v035gxx5dwl" path="res://assets/TrajanPro-Bold.otf" id="6_ee4am"]
 [ext_resource type="Script" uid="uid://rgsk8dsmect7" path="res://scene/button.gd" id="8_ee4am"]
 [ext_resource type="PackedScene" uid="uid://cfqtwyeb6aokb" path="res://orangpendek.tscn" id="8_q4ih2"]
+[ext_resource type="PackedScene" uid="uid://cknie8q5idtlq" path="res://skeleton.tscn" id="9_581fk"]
 [ext_resource type="Script" uid="uid://2h2iuylurl8q" path="res://scene/kronco.gd" id="9_b5lh0"]
 [ext_resource type="Texture2D" uid="uid://duquwbej1akbs" path="res://assets/samping.png" id="9_f2och"]
-
+[ext_resource type="Script" uid="uid://drrci3532asp3" path="res://scene/skeleton.gd" id="10_ee4am"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ee4am"]
 size = Vector2(1154, 121)
@@ -167,6 +168,10 @@ shape = SubResource("RectangleShape2D_b5lh0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
 position = Vector2(-21, 353)
 shape = SubResource("RectangleShape2D_b5lh0")
+
+[node name="Skeleton" parent="." instance=ExtResource("9_581fk")]
+position = Vector2(29, 462)
+script = ExtResource("10_ee4am")
 
 [connection signal="pressed" from="VBoxContainer/new_game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/continue" to="." method="_on_continue_pressed"]

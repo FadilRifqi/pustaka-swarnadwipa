@@ -2,17 +2,19 @@ class_name SkeletonMainMenu
 extends CharacterBody2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var idle: Sprite2D = $Idle
+@onready var walk: Sprite2D = $Sprite2D
 
 @export var move_speed: float = 100.0
 @export var gravity: float = 980.0
 @export var patrol_interval: float = 5.0   # ganti arah tiap 5 detik
+@export var character_scale: float = 2.0 
 
 var direction := 1
 var timer := 0.0
 
 func _ready() -> void:
 	animation_player.play("walk")
+	scale = Vector2(character_scale, character_scale)
 
 func _process(delta: float) -> void:
 	timer += delta
@@ -42,4 +44,4 @@ func _physics_process(delta: float) -> void:
 
 	# Flip sprite
 	if velocity.x != 0:
-		idle.flip_h = velocity.x > 0
+		walk.flip_h = velocity.x < 0
