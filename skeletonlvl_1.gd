@@ -105,7 +105,7 @@ func take_damage(amount: int) -> void:
 		# Knockback
 		if player:
 			var knockback_dir = sign(global_position.x - player.global_position.x)
-			velocity.x = knockback_dir * 100
+			velocity.x = knockback_dir * 200
 			velocity.y = -150
 
 func die() -> void:

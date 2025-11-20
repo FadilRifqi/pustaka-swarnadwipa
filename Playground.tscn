@@ -1,13 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://tifin6apg3ri"]
+[gd_scene load_steps=6 format=3 uid="uid://tifin6apg3ri"]
 
 [ext_resource type="PackedScene" uid="uid://c11o6et3g00y1" path="res://player.tscn" id="1_80c3a"]
-[ext_resource type="Texture2D" uid="uid://d1quhceu2mi7l" path="res://assets/bg/bg.png" id="4_threo"]
-[ext_resource type="Texture2D" uid="uid://68fbpradrnng" path="res://assets/bg/Background_0.png" id="5_s2wwn"]
+[ext_resource type="Texture2D" uid="uid://b8t6eawx4l8ej" path="res://assets/Image.png" id="4_46faf"]
 [ext_resource type="PackedScene" uid="uid://cfqtwyeb6aokb" path="res://orangpendek.tscn" id="6_s2wwn"]
 [ext_resource type="PackedScene" uid="uid://b8i3dt45bkb22" path="res://skeletonlvl1.tscn" id="7_bia53"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80c3a"]
-size = Vector2(1154, 121)
+size = Vector2(1255, 121)
 
 [node name="Level1" type="Node2D"]
 
@@ -18,11 +17,35 @@ position = Vector2(63, 494)
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(582, 633.5)
+position = Vector2(526.5, 635)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(1731, 634)
+shape = SubResource("RectangleShape2D_80c3a")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2951, 637)
+shape = SubResource("RectangleShape2D_80c3a")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(4187, 639)
+shape = SubResource("RectangleShape2D_80c3a")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(5393, 641)
+shape = SubResource("RectangleShape2D_80c3a")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(6626, 645)
+shape = SubResource("RectangleShape2D_80c3a")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(7841, 645)
+shape = SubResource("RectangleShape2D_80c3a")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(9074, 647)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="Orang Pendek" parent="." instance=ExtResource("6_s2wwn")]
@@ -37,14 +60,21 @@ follow_viewport_enabled = true
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-z_index = 1
-position = Vector2(577.625, 329.625)
-scale = Vector2(1.67113, 1.81371)
-texture = ExtResource("4_threo")
+position = Vector2(607, 268)
+scale = Vector2(1.95484, 2.16111)
+texture = ExtResource("4_46faf")
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Sprite2D"]
+position = Vector2(748.399, 0.356956)
+scale = Vector2(1.42642, 1.00198)
+texture = ExtResource("4_46faf")
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
-position = Vector2(580, 326.5)
-scale = Vector2(1.49219, 1.55048)
-texture = ExtResource("5_s2wwn")
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Sprite2D/Sprite2D"]
+position = Vector2(748.399, 0.356956)
+scale = Vector2(1.42642, 1.00198)
+texture = ExtResource("4_46faf")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Sprite2D/Sprite2D/Sprite2D"]
+position = Vector2(748.399, 0.356956)
+scale = Vector2(1.42642, 1.00198)
+texture = ExtResource("4_46faf")

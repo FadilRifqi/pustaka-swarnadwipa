@@ -45,8 +45,8 @@ texture = ExtResource("2_581fk")
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="TextureRect/ParallaxBackground"]
 
 [node name="Sprite2D" type="Sprite2D" parent="TextureRect/ParallaxBackground/ParallaxLayer2"]
-position = Vector2(580, 326.5)
-scale = Vector2(1.49219, 1.55048)
+position = Vector2(587, 312.5)
+scale = Vector2(1.59115, 1.61779)
 texture = ExtResource("3_ee4am")
 
 [node name="GameTitle2" type="Label" parent="."]
