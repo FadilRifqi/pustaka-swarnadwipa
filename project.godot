@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Tubes Tekgem"
-run/main_scene="uid://biuf1lvkmlw73"
+run/main_scene="uid://db16skm158cs2"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

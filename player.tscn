@@ -1,153 +1,23 @@
-[gd_scene load_steps=31 format=3 uid="uid://c11o6et3g00y1"]
+[gd_scene load_steps=9 format=3 uid="uid://c11o6et3g00y1"]
 
-[ext_resource type="Texture2D" uid="uid://d0qgkiaqdxjcc" path="res://assets/sprite/Walking-Sheet.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bw2o1rbms3w0r" path="res://player.gd" id="1_hqtel"]
-[ext_resource type="Texture2D" uid="uid://p0xra3ca4lv" path="res://assets/sprite/idle_spear-Sheet.png" id="2_onrkg"]
-[ext_resource type="Texture2D" uid="uid://dm4xw4joqxl2s" path="res://assets/sprite/Combo 1 Spear-Sheet.png" id="3_i3pqv"]
-[ext_resource type="Texture2D" uid="uid://ccs7v2dwb2l2t" path="res://assets/sprite/Combo 2 Spear-Sheet.png" id="5_sweqy"]
-[ext_resource type="Texture2D" uid="uid://ct1vl5lfsy7eo" path="res://assets/sprite/Combo3Spear-Sheet.png" id="6_2hs0m"]
-[ext_resource type="Texture2D" uid="uid://5rlisget20do" path="res://assets/sprite/Barehand Idle-Sheet.png" id="7_1jxqw"]
-[ext_resource type="Texture2D" uid="uid://c8l5h37hg8fkd" path="res://assets/sprite/Barehand Walking-Sheet.png" id="8_dw050"]
-[ext_resource type="Texture2D" uid="uid://b37xxbsyyr2oc" path="res://assets/sprite/Barehand Running-Sheet.png" id="9_b26j0"]
-[ext_resource type="Texture2D" uid="uid://cgqy1ys87f4qj" path="res://assets/sprite/Barehand Jump-Sheet.png" id="10_n7ghd"]
-[ext_resource type="Texture2D" uid="uid://bhigrj7q8o3vc" path="res://assets/sprite/Spear Running-Sheet.png" id="11_ivps1"]
-[ext_resource type="Texture2D" uid="uid://crs78if4bapr6" path="res://assets/sprite/Spear Jumping-Sheet.png" id="12_urp6f"]
+[ext_resource type="Texture2D" uid="uid://dq75ffla0db8x" path="res://assets/sprite/attack_keris.png" id="5_sweqy"]
 [ext_resource type="Script" uid="uid://y7m1k6gfkgsi" path="res://camera_2d.gd" id="13_bwjto"]
 [ext_resource type="Texture2D" uid="uid://bhdxq8n346vw1" path="res://assets/sprite/heart-Sheet.png" id="13_urp6f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bwjto"]
-radius = 28.0
-height = 94.0
+radius = 6.0
+height = 32.0
 
 [sub_resource type="Animation" id="Animation_onrkg"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Spear_Walking:frame")
+tracks/0/path = NodePath("KerisAttack:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Spear_Idle:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Spear_Attack_1:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Spear_Attack_2:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Spear_Attack_3:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Barehand_Idle:frame")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Barehand_Walking:frame")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Barehand_Running:frame")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Barehand_Jumping:frame")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Spear_Running:frame")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Spear_Jumping:frame")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -155,306 +25,38 @@ tracks/10/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_hqtel"]
-resource_name = "attack_spear_1"
-length = 0.4201
+resource_name = "attack_keris"
+step = 0.07
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Spear_Attack_1:frame")
-tracks/0/interp = 1
+tracks/0/path = NodePath("KerisAttack:frame")
+tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.133333, 0.2, 0.233333, 0.266667, 0.333333),
+"times": PackedFloat32Array(0, 0.142857, 0.214286, 0.285714, 0.357143, 0.428571, 0.5, 0.571429),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 2, 4, 6, 7, 5, 4, 0]
-}
-
-[sub_resource type="Animation" id="Animation_2hs0m"]
-resource_name = "attack_spear_2"
-length = 0.22
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Spear_Attack_2:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5]
-}
-
-[sub_resource type="Animation" id="Animation_1jxqw"]
-resource_name = "attack_spear_3"
-length = 0.7041
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Spear_Attack_3:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.30487, 0.399261, 0.499076, 0.599976),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6]
-}
-
-[sub_resource type="Animation" id="Animation_n7ghd"]
-resource_name = "barehand_idle"
-length = 0.4511
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Barehand_Idle:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 1, 0]
-}
-
-[sub_resource type="Animation" id="Animation_urp6f"]
-resource_name = "barehand_jumping"
-length = 0.1741
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Barehand_Jumping:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-
-[sub_resource type="Animation" id="Animation_ivps1"]
-resource_name = "barehand_running"
-length = 0.3341
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Barehand_Running:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.08, 0.16, 0.24, 0.32),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 1, 0]
-}
-
-[sub_resource type="Animation" id="Animation_nvl01"]
-resource_name = "barehand_walking"
-length = 0.6
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Barehand_Walking:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.333333, 0.466667, 0.533333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 2, 1, 0]
-}
-
-[sub_resource type="Animation" id="Animation_i3pqv"]
-resource_name = "idle"
-length = 0.6261
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Spear_Idle:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6]
-}
-
-[sub_resource type="Animation" id="Animation_dw050"]
-resource_name = "spear_idle"
-length = 0.6261
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Spear_Idle:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6]
-}
-
-[sub_resource type="Animation" id="Animation_606se"]
-resource_name = "spear_jumping"
-length = 0.2141
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Spear_Jumping:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-
-[sub_resource type="Animation" id="Animation_bwjto"]
-resource_name = "spear_running"
-length = 0.3348
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Spear_Running:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.08, 0.16, 0.24, 0.32),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 1, 0]
-}
-
-[sub_resource type="Animation" id="Animation_b26j0"]
-resource_name = "spear_walking"
-length = 0.6179
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Spear_Walking:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.166667, 0.266667, 0.366667, 0.466667, 0.566667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 1, 2, 3, 4, 5]
-}
-
-[sub_resource type="Animation" id="Animation_4flbx"]
-resource_name = "walking"
-length = 0.6179
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Spear_Walking:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.166667, 0.266667, 0.366667, 0.466667, 0.566667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 1, 2, 3, 4, 5]
+"update": 0,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i3pqv"]
 _data = {
 &"RESET": SubResource("Animation_onrkg"),
-&"attack_spear_1": SubResource("Animation_hqtel"),
-&"attack_spear_2": SubResource("Animation_2hs0m"),
-&"attack_spear_3": SubResource("Animation_1jxqw"),
-&"barehand_idle": SubResource("Animation_n7ghd"),
-&"barehand_jumping": SubResource("Animation_urp6f"),
-&"barehand_running": SubResource("Animation_ivps1"),
-&"barehand_walking": SubResource("Animation_nvl01"),
-&"idle": SubResource("Animation_i3pqv"),
-&"spear_idle": SubResource("Animation_dw050"),
-&"spear_jumping": SubResource("Animation_606se"),
-&"spear_running": SubResource("Animation_bwjto"),
-&"spear_walking": SubResource("Animation_b26j0"),
-&"walking": SubResource("Animation_4flbx")
+&"attack_keris": SubResource("Animation_hqtel")
 }
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_hqtel")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, -7)
+position = Vector2(-1, 0)
 shape = SubResource("CapsuleShape2D_bwjto")
-
-[node name="Spear_Walking" type="Sprite2D" parent="."]
-position = Vector2(14, -6)
-texture = ExtResource("1_4flbx")
-hframes = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_i3pqv")
 }
-
-[node name="Spear_Idle" type="Sprite2D" parent="."]
-position = Vector2(10, -6)
-texture = ExtResource("2_onrkg")
-hframes = 7
-
-[node name="Spear_Attack_1" type="Sprite2D" parent="."]
-position = Vector2(10, -8)
-texture = ExtResource("3_i3pqv")
-hframes = 8
-
-[node name="Spear_Attack_2" type="Sprite2D" parent="."]
-position = Vector2(9, -8)
-texture = ExtResource("5_sweqy")
-hframes = 6
-
-[node name="Spear_Attack_3" type="Sprite2D" parent="."]
-position = Vector2(2, -5)
-texture = ExtResource("6_2hs0m")
-hframes = 7
-
-[node name="Barehand_Idle" type="Sprite2D" parent="."]
-position = Vector2(-2, -4)
-texture = ExtResource("7_1jxqw")
-hframes = 3
-
-[node name="Barehand_Walking" type="Sprite2D" parent="."]
-position = Vector2(-2, -6)
-texture = ExtResource("8_dw050")
-hframes = 3
-
-[node name="Barehand_Running" type="Sprite2D" parent="."]
-position = Vector2(-13, -5)
-texture = ExtResource("9_b26j0")
-hframes = 3
-
-[node name="Barehand_Jumping" type="Sprite2D" parent="."]
-position = Vector2(-2, -6)
-texture = ExtResource("10_n7ghd")
-hframes = 3
-
-[node name="Spear_Running" type="Sprite2D" parent="."]
-position = Vector2(0, -8)
-texture = ExtResource("11_ivps1")
-hframes = 3
-
-[node name="Spear_Jumping" type="Sprite2D" parent="."]
-position = Vector2(10, -10)
-texture = ExtResource("12_urp6f")
-hframes = 3
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -200)
@@ -468,8 +70,8 @@ script = ExtResource("13_bwjto")
 [node name="HealthLayer" type="CanvasLayer" parent="."]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HealthLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 296.0
+offset_bottom = 96.0
 
 [node name="hearth" type="TextureRect" parent="HealthLayer/HBoxContainer"]
 custom_minimum_size = Vector2(1.3, 0)
@@ -485,5 +87,10 @@ texture = ExtResource("13_urp6f")
 custom_minimum_size = Vector2(1.3, 0)
 layout_mode = 2
 texture = ExtResource("13_urp6f")
+
+[node name="KerisAttack" type="Sprite2D" parent="."]
+position = Vector2(8, -3)
+texture = ExtResource("5_sweqy")
+hframes = 8
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

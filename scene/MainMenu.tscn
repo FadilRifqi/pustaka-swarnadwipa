@@ -1,0 +1,174 @@
+[gd_scene load_steps=11 format=3 uid="uid://db16skm158cs2"]
+
+[ext_resource type="Script" uid="uid://w8lh4sgv5fls" path="res://scene/MainMenu.gd" id="1_85i58"]
+[ext_resource type="Texture2D" uid="uid://b8t6eawx4l8ej" path="res://assets/Image.png" id="2_q4ih2"]
+[ext_resource type="FontFile" uid="uid://d3easpuo6ebkl" path="res://assets/TrajanPro-Regular.ttf" id="4_581fk"]
+[ext_resource type="FontFile" uid="uid://c1v035gxx5dwl" path="res://assets/TrajanPro-Bold.otf" id="6_ee4am"]
+[ext_resource type="Script" uid="uid://rgsk8dsmect7" path="res://scene/button.gd" id="8_ee4am"]
+[ext_resource type="PackedScene" uid="uid://cfqtwyeb6aokb" path="res://orangpendek.tscn" id="8_q4ih2"]
+[ext_resource type="Script" uid="uid://2h2iuylurl8q" path="res://scene/kronco.gd" id="9_b5lh0"]
+[ext_resource type="Texture2D" uid="uid://duquwbej1akbs" path="res://assets/samping.png" id="9_f2och"]
+
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ee4am"]
+size = Vector2(1154, 121)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b5lh0"]
+size = Vector2(44, 449)
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_85i58")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 3.0
+offset_right = 1149.0
+offset_bottom = 647.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q4ih2")
+
+[node name="GameTitle2" type="Label" parent="."]
+offset_top = 119.0
+offset_right = 1155.0
+offset_bottom = 183.0
+theme_override_fonts/font = ExtResource("6_ee4am")
+theme_override_font_sizes/font_size = 64
+text = "Pustaka Swarnadwipa"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameTitle" type="Label" parent="."]
+offset_top = 187.0
+offset_right = 1155.0
+offset_bottom = 215.0
+theme_override_fonts/font = ExtResource("6_ee4am")
+theme_override_font_sizes/font_size = 28
+text = "The Sumatra Chronicles"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 481.0
+offset_top = 287.0
+offset_right = 664.0
+offset_bottom = 517.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="new_game" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_581fk")
+theme_override_font_sizes/font_size = 32
+text = "New Game"
+flat = true
+script = ExtResource("8_ee4am")
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/new_game"]
+position = Vector2(-25, 23)
+scale = Vector2(0.11859, 0.119145)
+texture = ExtResource("9_f2och")
+
+[node name="Sprite2D2" type="Sprite2D" parent="VBoxContainer/new_game"]
+position = Vector2(224, 22)
+rotation = 3.14159
+scale = Vector2(0.11859, 0.119145)
+texture = ExtResource("9_f2och")
+
+[node name="continue" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_581fk")
+theme_override_font_sizes/font_size = 32
+text = "Continue"
+flat = true
+script = ExtResource("8_ee4am")
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/continue"]
+position = Vector2(-22, 23)
+scale = Vector2(0.11859, 0.119145)
+texture = ExtResource("9_f2och")
+
+[node name="Sprite2D2" type="Sprite2D" parent="VBoxContainer/continue"]
+position = Vector2(219, 22)
+rotation = 3.14159
+scale = Vector2(0.11859, 0.119145)
+texture = ExtResource("9_f2och")
+
+[node name="settings" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_581fk")
+theme_override_font_sizes/font_size = 32
+text = "Settings
+"
+flat = true
+script = ExtResource("8_ee4am")
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/settings"]
+position = Vector2(-14, 23)
+scale = Vector2(0.11859, 0.119145)
+texture = ExtResource("9_f2och")
+
+[node name="Sprite2D2" type="Sprite2D" parent="VBoxContainer/settings"]
+position = Vector2(209, 22)
+rotation = 3.14159
+scale = Vector2(0.11859, 0.119145)
+texture = ExtResource("9_f2och")
+
+[node name="exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_581fk")
+theme_override_font_sizes/font_size = 32
+text = "Exit
+"
+flat = true
+script = ExtResource("8_ee4am")
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/exit"]
+position = Vector2(29, 23)
+scale = Vector2(0.11859, 0.119145)
+texture = ExtResource("9_f2och")
+
+[node name="Sprite2D2" type="Sprite2D" parent="VBoxContainer/exit"]
+position = Vector2(170, 22)
+rotation = 3.14159
+scale = Vector2(0.11859, 0.119145)
+texture = ExtResource("9_f2och")
+
+[node name="Orang Pendek" parent="." instance=ExtResource("8_q4ih2")]
+position = Vector2(1072, 461)
+script = ExtResource("9_b5lh0")
+patrol_interval = 5.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(582, 581)
+shape = SubResource("RectangleShape2D_ee4am")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 329)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(1177, 357)
+shape = SubResource("RectangleShape2D_b5lh0")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(-21, 353)
+shape = SubResource("RectangleShape2D_b5lh0")
+
+[connection signal="pressed" from="VBoxContainer/new_game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="VBoxContainer/settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/exit" to="." method="_on_exit_pressed"]
