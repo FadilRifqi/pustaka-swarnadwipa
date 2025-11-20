@@ -310,7 +310,6 @@ script = ExtResource("1_hqtel")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 0)
 shape = SubResource("CapsuleShape2D_bwjto")
-metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -333,78 +332,64 @@ player_path = NodePath("..")
 [node name="HBoxContainer" type="HBoxContainer" parent="HealthLayer"]
 offset_right = 296.0
 offset_bottom = 96.0
-metadata/_edit_lock_ = true
 
 [node name="hearth" type="TextureRect" parent="HealthLayer/HBoxContainer"]
 custom_minimum_size = Vector2(1.3, 0)
 layout_mode = 2
 texture = ExtResource("13_urp6f")
-metadata/_edit_lock_ = true
 
 [node name="hearth2" type="TextureRect" parent="HealthLayer/HBoxContainer"]
 custom_minimum_size = Vector2(1.3, 0)
 layout_mode = 2
 texture = ExtResource("13_urp6f")
-metadata/_edit_lock_ = true
 
 [node name="hearth3" type="TextureRect" parent="HealthLayer/HBoxContainer"]
 custom_minimum_size = Vector2(1.3, 0)
 layout_mode = 2
 texture = ExtResource("13_urp6f")
-metadata/_edit_lock_ = true
 
 [node name="KerisAttack" type="Sprite2D" parent="."]
 texture = ExtResource("5_sweqy")
 hframes = 8
-metadata/_edit_lock_ = true
 
 [node name="KerisIdle" type="Sprite2D" parent="."]
 position = Vector2(0, -2)
 texture = ExtResource("5_b26j0")
 hframes = 8
-metadata/_edit_lock_ = true
 
 [node name="KerisRun" type="Sprite2D" parent="."]
 texture = ExtResource("6_nvl01")
 hframes = 8
-metadata/_edit_lock_ = true
 
 [node name="RencongIdle" type="Sprite2D" parent="."]
 position = Vector2(0, -3)
 texture = ExtResource("6_n7ghd")
 hframes = 8
-metadata/_edit_lock_ = true
 
 [node name="RencongAttack" type="Sprite2D" parent="."]
 position = Vector2(0, -2)
 texture = ExtResource("7_nvl01")
 hframes = 8
-metadata/_edit_lock_ = true
 
 [node name="RencongRun" type="Sprite2D" parent="."]
 texture = ExtResource("9_ivps1")
 hframes = 8
-metadata/_edit_lock_ = true
 
 [node name="PedangAttack" type="Sprite2D" parent="."]
 position = Vector2(0, -3)
 texture = ExtResource("8_ivps1")
 hframes = 8
-metadata/_edit_lock_ = true
 
 [node name="PedangIdle" type="Sprite2D" parent="."]
 position = Vector2(0, -4)
 texture = ExtResource("9_urp6f")
 hframes = 8
-metadata/_edit_lock_ = true
 
 [node name="PedangRun" type="Sprite2D" parent="."]
 texture = ExtResource("10_n7ghd")
 hframes = 8
-metadata/_edit_lock_ = true
 
 [node name="AttackArea" type="Area2D" parent="."]
-metadata/_edit_lock_ = true
 
 [node name="Attack_Range" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(14, -1)
