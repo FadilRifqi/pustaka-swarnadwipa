@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4bm8u18qilq5"]
+
+[ext_resource type="Script" uid="uid://bj81tqrnqrjwh" path="res://skeleton.gd" id="1_plk42"]
+[ext_resource type="Texture2D" path="res://assets/sprite/Skeleton_01_White_Walk.png" id="2_plk42"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ygfy8"]
+radius = 16.0
+height = 66.0
+
+[sub_resource type="Animation" id="Animation_1mgah"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Idle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_r6xse"]
+resource_name = "walk"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bp63r"]
+_data = {
+&"RESET": SubResource("Animation_1mgah"),
+&"walk": SubResource("Animation_r6xse")
+}
+
+[node name="Skeleton" type="CharacterBody2D"]
+script = ExtResource("1_plk42")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ygfy8")
+
+[node name="Idle" type="Sprite2D" parent="."]
+texture = ExtResource("2_plk42")
+hframes = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bp63r")
+}
