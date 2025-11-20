@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://sq84btm72dkk"]
+
+[ext_resource type="Texture2D" uid="uid://w71tnna3yuai" path="res://assets/sprite/Orang  pendek Idle-Sheet.png" id="1_kni8c"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b5lh0"]
+
+[node name="Kroco" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_b5lh0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_kni8c")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
