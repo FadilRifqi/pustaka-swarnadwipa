@@ -1,4 +1,4 @@
-class_name KroncoMainMenu
+class_name SkeletonMainMenu
 extends CharacterBody2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer

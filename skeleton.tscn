@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfqtwyeb6aokb"]
+[gd_scene load_steps=7 format=3 uid="uid://b7q5d3fd12486"]
 
-[ext_resource type="Texture2D" uid="uid://w71tnna3yuai" path="res://assets/sprite/Orang  pendek Idle-Sheet.png" id="1_bjayw"]
-[ext_resource type="Script" uid="uid://curlrhr5apldq" path="res://kronco.gd" id="2_ygfy8"]
+[ext_resource type="Script" uid="uid://cx558qsmhk8tw" path="res://skeleton.gd" id="1_plk42"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ygfy8"]
 radius = 16.0
@@ -62,14 +61,13 @@ _data = {
 &"walk": SubResource("Animation_bp63r")
 }
 
-[node name="Orang Pendek" type="CharacterBody2D"]
-script = ExtResource("2_ygfy8")
+[node name="Skeleton" type="CharacterBody2D"]
+script = ExtResource("1_plk42")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ygfy8")
 
 [node name="Idle" type="Sprite2D" parent="."]
-texture = ExtResource("1_bjayw")
 hframes = 2
 frame = 1
 
