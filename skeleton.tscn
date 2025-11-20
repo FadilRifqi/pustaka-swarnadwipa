@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cx558qsmhk8tw" path="res://skeleton.gd" id="1_plk42"]
 
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ygfy8"]
 radius = 16.0
 height = 66.0
@@ -54,12 +55,13 @@ tracks/0/keys = {
 "values": [0, 1]
 }
 
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bp63r"]
 _data = {
 &"RESET": SubResource("Animation_1mgah"),
 &"idle": SubResource("Animation_ygfy8"),
 &"walk": SubResource("Animation_bp63r")
-}
+
 
 [node name="Skeleton" type="CharacterBody2D"]
 script = ExtResource("1_plk42")
@@ -70,6 +72,7 @@ shape = SubResource("CapsuleShape2D_ygfy8")
 [node name="Idle" type="Sprite2D" parent="."]
 hframes = 2
 frame = 1
+
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

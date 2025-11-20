@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://2h2iuylurl8q" path="res://scene/kronco.gd" id="9_b5lh0"]
 [ext_resource type="Texture2D" uid="uid://duquwbej1akbs" path="res://assets/samping.png" id="9_f2och"]
 
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ee4am"]
 size = Vector2(1154, 121)
 
