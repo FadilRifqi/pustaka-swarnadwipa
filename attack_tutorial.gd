@@ -4,7 +4,7 @@ extends Area2D
 # Contoh: "Tekan {jump} untuk Lompat dan {basic_hit} untuk Serang"
 @export_multiline var message: String = "Tekan {basic_hit} untuk Attack"
 @export var show_duration: float = 3.0
-@export var trigger_id: String = ""
+@export var trigger_id: String = "attack_tutorial"
 
 func _ready() -> void:
 	if trigger_id != "" and trigger_id in Global.visited_triggers:
