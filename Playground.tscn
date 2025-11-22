@@ -1,14 +1,31 @@
-[gd_scene load_steps=6 format=3 uid="uid://tifin6apg3ri"]
+[gd_scene load_steps=14 format=3 uid="uid://tifin6apg3ri"]
 
+[ext_resource type="Script" uid="uid://kmdwa8mcf6j2" path="res://playground.gd" id="1_5ejyp"]
 [ext_resource type="PackedScene" uid="uid://c11o6et3g00y1" path="res://player.tscn" id="1_80c3a"]
 [ext_resource type="Texture2D" uid="uid://b8t6eawx4l8ej" path="res://assets/Image.png" id="4_46faf"]
-[ext_resource type="PackedScene" uid="uid://cfqtwyeb6aokb" path="res://orangpendek.tscn" id="6_s2wwn"]
-[ext_resource type="PackedScene" uid="uid://b8i3dt45bkb22" path="res://skeletonlvl1.tscn" id="7_bia53"]
+[ext_resource type="Texture2D" uid="uid://6j54rrbfy3hg" path="res://assets/lvl1-bg/1.png" id="5_5ejyp"]
+[ext_resource type="Texture2D" uid="uid://7dqp8oxqm60t" path="res://assets/lvl1-bg/2.png" id="6_q63b2"]
+[ext_resource type="Texture2D" uid="uid://bh2qgyj4n07ar" path="res://assets/lvl1-bg/3.png" id="7_qpvxo"]
+[ext_resource type="Texture2D" uid="uid://bacu4wy18pon" path="res://assets/lvl1-bg/4.png" id="8_cebcm"]
+[ext_resource type="Texture2D" uid="uid://dkbtrbma0mwcr" path="res://assets/lvl1-bg/5.png" id="9_8fsar"]
+[ext_resource type="AudioStream" uid="uid://bjj8khe667kvl" path="res://assets/music/bgm.ogg" id="10_3321n"]
+[ext_resource type="Texture2D" uid="uid://dacqgk4mebrvc" path="res://assets/lvl1-bg/6.png" id="10_lirkl"]
+[ext_resource type="PackedScene" uid="uid://clh88mnka3jls" path="res://scene/pause_menu.tscn" id="11_5ejyp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_46faf"]
+size = Vector2(20, 711.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80c3a"]
 size = Vector2(1255, 121)
 
 [node name="Level1" type="Node2D"]
+script = ExtResource("1_5ejyp")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(-11, 237.25)
+shape = SubResource("RectangleShape2D_46faf")
 
 [node name="Player" parent="." instance=ExtResource("1_80c3a")]
 z_index = 12
@@ -48,13 +65,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 position = Vector2(9074, 647)
 shape = SubResource("RectangleShape2D_80c3a")
 
-[node name="Orang Pendek" parent="." instance=ExtResource("6_s2wwn")]
-position = Vector2(1043, 476)
-
-[node name="Skeleton" parent="." instance=ExtResource("7_bia53")]
-position = Vector2(1280, 493)
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+visible = false
 follow_viewport_enabled = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -83,3 +95,73 @@ texture = ExtResource("4_46faf")
 position = Vector2(8297.66, 271.095)
 scale = Vector2(2.79774, 2.17831)
 texture = ExtResource("4_46faf")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(7556, 326)
+shape = SubResource("RectangleShape2D_46faf")
+
+[node name="bg" type="ParallaxBackground" parent="."]
+
+[node name="layer1" type="ParallaxLayer" parent="bg"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="bg/layer1"]
+scale = Vector2(1.88871, 1.76667)
+texture = ExtResource("5_5ejyp")
+centered = false
+
+[node name="layer2" type="ParallaxLayer" parent="bg"]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="bg/layer2"]
+scale = Vector2(1.88226, 1.76667)
+texture = ExtResource("6_q63b2")
+centered = false
+
+[node name="layer3" type="ParallaxLayer" parent="bg"]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="bg/layer3"]
+scale = Vector2(1.88871, 1.76667)
+texture = ExtResource("7_qpvxo")
+centered = false
+
+[node name="layer4" type="ParallaxLayer" parent="bg"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="bg/layer4"]
+scale = Vector2(1.89677, 1.81111)
+texture = ExtResource("8_cebcm")
+centered = false
+
+[node name="layer5" type="ParallaxLayer" parent="bg"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="bg/layer5"]
+scale = Vector2(1.87581, 1.60278)
+texture = ExtResource("9_8fsar")
+centered = false
+
+[node name="layer6" type="ParallaxLayer" parent="bg"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="bg/layer6"]
+position = Vector2(-4, -13)
+scale = Vector2(1.88065, 1.89444)
+texture = ExtResource("10_lirkl")
+centered = false
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_3321n")
+parameters/looping = true
+
+[node name="PauseMenu" parent="." instance=ExtResource("11_5ejyp")]
+process_mode = 3

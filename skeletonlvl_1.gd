@@ -87,7 +87,8 @@ func start_attack() -> void:
 
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage") and body != self:
-		body.take_damage(1)
+		if body is Player:
+			body.take_damage(2)
 
 func take_damage(amount: int) -> void:
 	if is_dead: return

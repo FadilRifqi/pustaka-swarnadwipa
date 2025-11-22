@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://db16skm158cs2"]
+[gd_scene load_steps=15 format=3 uid="uid://db16skm158cs2"]
 
 [ext_resource type="Script" uid="uid://w8lh4sgv5fls" path="res://scene/MainMenu.gd" id="1_85i58"]
 [ext_resource type="Texture2D" uid="uid://d1quhceu2mi7l" path="res://assets/bg/bg.png" id="2_581fk"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" uid="uid://2h2iuylurl8q" path="res://scene/kronco.gd" id="9_b5lh0"]
 [ext_resource type="Texture2D" uid="uid://duquwbej1akbs" path="res://assets/samping.png" id="9_f2och"]
 [ext_resource type="Script" uid="uid://drrci3532asp3" path="res://scene/skeleton.gd" id="10_ee4am"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ee4am"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ee4am"]
 size = Vector2(1154, 121)
@@ -84,6 +86,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("4_581fk")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ee4am")
 text = "New Game"
 flat = true
 script = ExtResource("8_ee4am")
@@ -104,6 +107,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("4_581fk")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ee4am")
 text = "Continue"
 flat = true
 script = ExtResource("8_ee4am")
@@ -124,6 +128,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("4_581fk")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ee4am")
 text = "Settings
 "
 flat = true
@@ -145,6 +150,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("4_581fk")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ee4am")
 text = "Exit
 "
 flat = true

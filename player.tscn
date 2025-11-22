@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c11o6et3g00y1"]
+[gd_scene load_steps=44 format=3 uid="uid://c11o6et3g00y1"]
 
 [ext_resource type="Script" uid="uid://bw2o1rbms3w0r" path="res://player.gd" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://c4u2s7mdp1kmd" path="res://assets/Main Character/idle_keris.png" id="5_b26j0"]
@@ -301,6 +301,135 @@ _data = {
 &"rencong_run": SubResource("Animation_urp6f")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivps1"]
+atlas = ExtResource("13_urp6f")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urp6f"]
+atlas = ExtResource("13_urp6f")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwjto"]
+atlas = ExtResource("13_urp6f")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_606se"]
+atlas = ExtResource("13_urp6f")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1c27"]
+atlas = ExtResource("13_urp6f")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_op7ga"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivps1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urp6f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwjto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_606se")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1c27")
+}],
+"loop": true,
+"name": &"frame",
+"speed": 0.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_op7ga"]
+atlas = ExtResource("13_urp6f")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q13i1"]
+atlas = ExtResource("13_urp6f")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pylmc"]
+atlas = ExtResource("13_urp6f")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbfsw"]
+atlas = ExtResource("13_urp6f")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tmop"]
+atlas = ExtResource("13_urp6f")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ahtn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_op7ga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q13i1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pylmc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbfsw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tmop")
+}],
+"loop": true,
+"name": &"frame",
+"speed": 0.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lmhl"]
+atlas = ExtResource("13_urp6f")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dx0e4"]
+atlas = ExtResource("13_urp6f")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jm5j8"]
+atlas = ExtResource("13_urp6f")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hik5"]
+atlas = ExtResource("13_urp6f")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtqh7"]
+atlas = ExtResource("13_urp6f")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2wuci"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lmhl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dx0e4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jm5j8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hik5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtqh7")
+}],
+"loop": true,
+"name": &"frame",
+"speed": 0.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivps1"]
 size = Vector2(19, 37)
 
@@ -317,7 +446,6 @@ libraries = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(149, 11)
 offset = Vector2(0, -200)
 limit_left = 0
 limit_smoothed = true
@@ -333,20 +461,23 @@ player_path = NodePath("..")
 offset_right = 296.0
 offset_bottom = 96.0
 
-[node name="hearth" type="TextureRect" parent="HealthLayer/HBoxContainer"]
-custom_minimum_size = Vector2(1.3, 0)
-layout_mode = 2
-texture = ExtResource("13_urp6f")
+[node name="Heart1" type="AnimatedSprite2D" parent="HealthLayer/HBoxContainer"]
+position = Vector2(67.5, 68)
+scale = Vector2(1.191, 1.2)
+sprite_frames = SubResource("SpriteFrames_op7ga")
+animation = &"frame"
 
-[node name="hearth2" type="TextureRect" parent="HealthLayer/HBoxContainer"]
-custom_minimum_size = Vector2(1.3, 0)
-layout_mode = 2
-texture = ExtResource("13_urp6f")
+[node name="Heart2" type="AnimatedSprite2D" parent="HealthLayer/HBoxContainer"]
+position = Vector2(148, 67)
+scale = Vector2(1.191, 1.2)
+sprite_frames = SubResource("SpriteFrames_7ahtn")
+animation = &"frame"
 
-[node name="hearth3" type="TextureRect" parent="HealthLayer/HBoxContainer"]
-custom_minimum_size = Vector2(1.3, 0)
-layout_mode = 2
-texture = ExtResource("13_urp6f")
+[node name="Heart3" type="AnimatedSprite2D" parent="HealthLayer/HBoxContainer"]
+position = Vector2(229, 66)
+scale = Vector2(1.191, 1.2)
+sprite_frames = SubResource("SpriteFrames_2wuci")
+animation = &"frame"
 
 [node name="KerisAttack" type="Sprite2D" parent="."]
 texture = ExtResource("5_sweqy")

@@ -12,7 +12,7 @@ var direction := 1
 var timer := 0.0
 
 func _ready() -> void:
-	animation_player.play("walk")
+	animation_player.play("idle")
 
 func _process(delta: float) -> void:
 	timer += delta
