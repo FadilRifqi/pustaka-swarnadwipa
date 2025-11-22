@@ -47,7 +47,7 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 		if body is Player:
 			print("tes")
 			# Kronco memberi damage 2
-			body.take_damage(1)
+			body.take_damage(1, self)
 
 func _physics_process(delta: float) -> void:
 	if not player or is_dead: return

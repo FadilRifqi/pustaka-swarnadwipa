@@ -12,8 +12,11 @@ var cardinal_direction : Vector2 = Vector2.RIGHT
 var direction : Vector2 = Vector2.ZERO
 @export var move_speed : float = 300.0
 @onready var attack_area: Area2D = $AttackArea
+@onready var tutorial_bubble: PanelContainer = $TutorialBubble
+@onready var label: Label = $TutorialBubble/Label
 
 # State & Weapon
+var notification_tween: Tween
 var state : String = "pedang_idle"
 var weapon : String = "pedang"
 var last_pressed : String = ""
@@ -43,6 +46,9 @@ var can_air_dash: bool = true
 var dash_dir_x: int = 1
 var dash_duration: float = 0.18
 var dash_timer: float = 0.0
+var is_hurt: bool = false
+
+@export var knockback_force: float = 250.0 # Kekuatan terpental
 @export var dash_speed: float = 900.0
 @export var character_scale: float = 3.0 
 
@@ -92,40 +98,74 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if is_on_floor(): coyote_timer = coyote_time
 	else: coyote_timer = max(coyote_timer - delta, 0.0)
-	if jump_buffer_timer > 0.0 and (is_on_floor() or coyote_timer > 0.0) and not is_attacking:
-		jump_buffer_timer = 0.0; is_jumping = true; velocity.y = jump_force
-		state = weapon + "_jumping"; UpdateAnimation()
-	if jump_buffer_timer > 0.0: jump_buffer_timer -= delta
-	if not is_on_floor():
-		if is_dashing: velocity.y = 0.0
-		else:
-			var g := gravity
-			if velocity.y < 0.0:
-				if Input.is_action_just_released("jump"): g *= jump_cut_multiplier
-				elif absf(velocity.y) <= apex_threshold: g *= apex_gravity_multiplier
-			else: g *= fall_gravity_multiplier
-			velocity.y = min(velocity.y + g * delta, 3000)
+	if is_hurt:
+		# --- LOGIKA SAAT TERPENTAL ---
+		# Player tidak bisa dikontrol, hanya meluncur akibat dorongan
+		# Tambahkan sedikit gesekan (friction) di udara agar tidak melayang selamanya
+		velocity.x = move_toward(velocity.x, 0, 500 * delta)
 	else:
-		if is_jumping:
-			is_jumping = false
-			if not is_attacking:
-				state = weapon + ("_idle" if direction == Vector2.ZERO else "_run")
-				is_dashing = false; can_air_dash = true; UpdateAnimation()
-	if is_dashing:
-		dash_timer -= delta
-		if dash_timer <= 0.0: is_dashing = false
-		velocity.x = float(dash_dir_x) * dash_speed
-	elif is_attacking:
-		if is_on_floor(): velocity.x = 0.0
+		if jump_buffer_timer > 0.0 and (is_on_floor() or coyote_timer > 0.0) and not is_attacking:
+			jump_buffer_timer = 0.0; is_jumping = true; velocity.y = jump_force
+			state = weapon + "_jumping"; UpdateAnimation()
+		if jump_buffer_timer > 0.0: jump_buffer_timer -= delta
+		if not is_on_floor():
+			if is_dashing: velocity.y = 0.0
+			else:
+				var g := gravity
+				if velocity.y < 0.0:
+					if Input.is_action_just_released("jump"): g *= jump_cut_multiplier
+					elif absf(velocity.y) <= apex_threshold: g *= apex_gravity_multiplier
+				else: g *= fall_gravity_multiplier
+				velocity.y = min(velocity.y + g * delta, 3000)
+		else:
+			if is_jumping:
+				is_jumping = false
+				if not is_attacking and not is_hurt:
+					state = weapon + ("_idle" if direction == Vector2.ZERO else "_run")
+					is_dashing = false; can_air_dash = true; UpdateAnimation()
+		if is_dashing:
+			dash_timer -= delta
+			if dash_timer <= 0.0: is_dashing = false
+			velocity.x = float(dash_dir_x) * dash_speed
+		elif is_attacking:
+			if is_on_floor(): velocity.x = 0.0
+			else:
+				var target := direction.x * move_speed
+				velocity.x = move_toward(velocity.x, target, 900.0 * delta)
 		else:
 			var target := direction.x * move_speed
-			velocity.x = move_toward(velocity.x, target, 900.0 * delta)
-	else:
-		var target := direction.x * move_speed
-		var accel := 1800.0 if is_on_floor() else 900.0
-		velocity.x = move_toward(velocity.x, target, accel * delta)
+			var accel := 1800.0 if is_on_floor() else 900.0
+			velocity.x = move_toward(velocity.x, target, accel * delta)
 	move_and_slide()
 	_check_player_collision()
+
+func show_notification(text_content: String, duration: float = 3.0) -> void:
+	# 1. Ubah Teks
+	if label:
+		label.text = text_content
+	
+	# 2. Reset kondisi visual
+	tutorial_bubble.visible = true
+	tutorial_bubble.modulate.a = 0.0 # Mulai dari transparan
+	
+	# 3. Reset Tween jika sedang berjalan (biar animasi tidak tabrakan)
+	if notification_tween:
+		notification_tween.kill()
+	
+	# 4. Buat Animasi Baru
+	notification_tween = create_tween()
+	
+	# Fade In (0.5 detik)
+	notification_tween.tween_property(tutorial_bubble, "modulate:a", 1.0, 0.5)
+	
+	# Diam/Baca (sesuai durasi)
+	notification_tween.tween_interval(duration)
+	
+	# Fade Out (0.5 detik)
+	notification_tween.tween_property(tutorial_bubble, "modulate:a", 0.0, 0.5)
+	
+	# Sembunyikan setelah selesai
+	notification_tween.tween_callback(tutorial_bubble.hide)
 
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage"):
@@ -142,16 +182,34 @@ func _check_player_collision() -> void:
 		if collider is Kronco:
 			take_damage(1)
 
-func take_damage(amount: int) -> void:
+func take_damage(amount: int, source: Node2D = null) -> void:
 	if is_invincible: return
 	
 	health -= amount
 	print("Player Hit! Sisa Health: ", health)
+	update_hearts()
 	
-	update_hearts() # Update UI
-	
-	if health <= 0: die()
-	else: start_invincibility()
+	if health <= 0:
+		die()
+	else:
+		# Panggil fungsi Knockback
+		apply_knockback(source)
+		start_invincibility()
+
+func apply_knockback(source: Node2D):
+	if source:
+		is_hurt = true
+		
+		# Hitung arah: Dari Musuh MENUJU Player
+		# (Posisi Player - Posisi Musuh)
+		var knockback_dir = (global_position - source.global_position).normalized()
+		
+		# Dorong ke X dan sedikit ke atas (Y) biar ada efek loncat dikit
+		velocity.x = knockback_dir.x * knockback_force
+		
+		# Tunggu sebentar (misal 0.3 detik) sebelum bisa gerak lagi
+		await get_tree().create_timer(0.3).timeout
+		is_hurt = false
 
 func start_invincibility() -> void:
 	is_invincible = true

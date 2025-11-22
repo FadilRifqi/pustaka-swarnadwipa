@@ -46,14 +46,87 @@ layout_mode = 2
 max_value = 1.0
 step = 0.05
 
-[node name="Fullscreen Check" type="CheckBox" parent="Control/Panel/VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="Control/Panel/VBoxContainer"]
 layout_mode = 2
-text = "Fullscreen"
+size_flags_vertical = 3
+theme_override_constants/h_separation = 48
+columns = 2
+
+[node name="Jump" type="Label" parent="Control/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Jump"
+
+[node name="BtnJump" type="Button" parent="Control/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Space"
+
+[node name="Attack" type="Label" parent="Control/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Basic Attack"
+
+[node name="BtnAttack" type="Button" parent="Control/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Z"
+
+[node name="Heavy Attack" type="Label" parent="Control/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Heavy Attack"
+
+[node name="BtnHeavyAttack" type="Button" parent="Control/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "X"
+
+[node name="Move Left" type="Label" parent="Control/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Move Left"
+
+[node name="BtnLeft" type="Button" parent="Control/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "←"
+
+[node name="Move Right" type="Label" parent="Control/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Move Right"
+
+[node name="BtnRight" type="Button" parent="Control/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "→"
+
+[node name="Slot 1" type="Label" parent="Control/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Weapon 1"
+
+[node name="BtnSlot1" type="Button" parent="Control/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="Slot 2" type="Label" parent="Control/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Weapon 2"
+
+[node name="BtnSlot2" type="Button" parent="Control/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "2"
+
+[node name="Slot 3" type="Label" parent="Control/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Weapon 3"
+
+[node name="BtnSlot3" type="Button" parent="Control/Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "3"
 
 [node name="Back" type="Button" parent="Control/Panel/VBoxContainer"]
 layout_mode = 2
 text = "Back"
 
 [connection signal="value_changed" from="Control/Panel/VBoxContainer/Volume Slider" to="Control" method="_on_volume_slider_value_changed"]
-[connection signal="toggled" from="Control/Panel/VBoxContainer/Fullscreen Check" to="Control" method="_on_fullscreen_check_toggled"]
+[connection signal="pressed" from="Control/Panel/VBoxContainer/GridContainer/BtnJump" to="Control" method="_on_btn_jump_pressed"]
+[connection signal="pressed" from="Control/Panel/VBoxContainer/GridContainer/BtnAttack" to="Control" method="_on_btn_attack_pressed"]
+[connection signal="pressed" from="Control/Panel/VBoxContainer/GridContainer/BtnHeavyAttack" to="Control" method="_on_btn_heavy_attack_pressed"]
+[connection signal="pressed" from="Control/Panel/VBoxContainer/GridContainer/BtnLeft" to="Control" method="_on_btn_left_pressed"]
+[connection signal="pressed" from="Control/Panel/VBoxContainer/GridContainer/BtnRight" to="Control" method="_on_btn_right_pressed"]
+[connection signal="pressed" from="Control/Panel/VBoxContainer/GridContainer/BtnSlot1" to="Control" method="_on_btn_slot_1_pressed"]
+[connection signal="pressed" from="Control/Panel/VBoxContainer/GridContainer/BtnSlot2" to="Control" method="_on_btn_slot_2_pressed"]
+[connection signal="pressed" from="Control/Panel/VBoxContainer/GridContainer/BtnSlot3" to="Control" method="_on_btn_slot_3_pressed"]
 [connection signal="pressed" from="Control/Panel/VBoxContainer/Back" to="Control" method="_on_back_pressed"]

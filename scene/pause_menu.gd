@@ -124,7 +124,8 @@ func save_game() -> void:
 		},
 		"enemies": enemies_data,
 		"bgm_time": bgm_time, # Simpan ke file
-		"scene": get_tree().current_scene.scene_file_path
+		"scene": get_tree().current_scene.scene_file_path,
+		"visited_triggers": Global.visited_triggers
 	}
 	
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
@@ -187,7 +188,19 @@ func load_game() -> void:
 			bgm_node.play(saved_time)
 			# Kembalikan volume (jika sebelumnya di fade-in dari -80)
 			bgm_node.volume_db = -10.0 # Sesuaikan dengan volume standar game kamu (misal -10 atau 0)
-
+	
+	if data.has("visited_triggers"):
+		Global.visited_triggers = data["visited_triggers"]
+		
+		# Cari semua TextTrigger di level ini dan paksa cek ulang
+		# (Asumsi TextTrigger punya nama class_name TextTrigger, atau kita cari by filename)
+		# Cara manual cari node:
+		var triggers = level_node.find_children("*", "Area2D", true, false)
+		for t in triggers:
+			# Cek apakah node ini punya variabel 'trigger_id' (berarti dia TextTrigger)
+			if "trigger_id" in t:
+				if t.trigger_id in Global.visited_triggers:
+					t.queue_free()
 	print("Game Loaded & Music Resumed at: ", data.get("bgm_time", 0))
 	
 	if not Global.is_returning_from_settings:

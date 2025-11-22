@@ -11,6 +11,7 @@ func _on_new_game_pressed() -> void:
 	# Pastikan flag load mati, agar game mulai dari awal (posisi default)
 	Global.load_saved_game = false 
 	Global.is_returning_from_settings = false
+	Global.visited_triggers = []
 	get_tree().change_scene_to_file("res://Level_1.tscn")
 
 func _on_continue_pressed() -> void:

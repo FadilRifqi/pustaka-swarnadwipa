@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://c11o6et3g00y1"]
+[gd_scene load_steps=46 format=3 uid="uid://c11o6et3g00y1"]
 
 [ext_resource type="Script" uid="uid://bw2o1rbms3w0r" path="res://player.gd" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://c4u2s7mdp1kmd" path="res://assets/Main Character/idle_keris.png" id="5_b26j0"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://buscm4t3ea4g6" path="res://assets/Main Character/run_rencong.png" id="9_ivps1"]
 [ext_resource type="Texture2D" uid="uid://sjjv52g85p43" path="res://assets/Main Character/idle_pedang.png" id="9_urp6f"]
 [ext_resource type="Texture2D" uid="uid://xmvjpttxu57a" path="res://assets/Main Character/run_pedang.png" id="10_n7ghd"]
+[ext_resource type="FontFile" uid="uid://cjm7adbu2am7x" path="res://assets/font/TrajanPro-Regular.ttf" id="13_606se"]
 [ext_resource type="Script" uid="uid://y7m1k6gfkgsi" path="res://camera_2d.gd" id="13_bwjto"]
 [ext_resource type="Texture2D" uid="uid://bhdxq8n346vw1" path="res://assets/sprite/heart-Sheet.png" id="13_urp6f"]
 
@@ -433,6 +434,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivps1"]
 size = Vector2(19, 37)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ivps1"]
+bg_color = Color(0.996078, 0.996078, 0.996078, 1)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_hqtel")
 
@@ -525,5 +529,20 @@ hframes = 8
 [node name="Attack_Range" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(14, -1)
 shape = SubResource("RectangleShape2D_ivps1")
+
+[node name="TutorialBubble" type="PanelContainer" parent="."]
+visible = false
+offset_left = 15.0
+offset_top = -64.0
+offset_right = 83.0
+offset_bottom = -45.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ivps1")
+
+[node name="Label" type="Label" parent="TutorialBubble"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("13_606se")
+theme_override_font_sizes/font_size = 8
+vertical_alignment = 1
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
