@@ -4,8 +4,8 @@ var player: Player
 const SAVE_PATH = "user://savegame.json"
 
 # --- REFERENSI UNTUK SPAWN MUSUH ---
-@export var skeleton_scene: PackedScene = preload("res://skeletonlvl1.tscn")
-@export var kronco_scene: PackedScene = preload("res://orangpendek.tscn")
+@export var skeleton_scene: PackedScene
+@export var demon_scene: PackedScene 
 @onready var save_toast: PanelContainer = $Control/SaveToast
 
 @onready var level_node = get_parent() 
@@ -96,7 +96,8 @@ func save_game() -> void:
 		if is_instance_valid(enemy):
 			var type = ""
 			if enemy is SkeletonLvl1: type = "skeleton"
-			elif enemy is Kronco: type = "kronco"
+			elif enemy is Demon: type = "demon"
+			
 			
 			if type != "":
 				enemies_data.append({
@@ -125,7 +126,8 @@ func save_game() -> void:
 		"enemies": enemies_data,
 		"bgm_time": bgm_time, # Simpan ke file
 		"scene": get_tree().current_scene.scene_file_path,
-		"visited_triggers": Global.visited_triggers
+		"visited_triggers": Global.visited_triggers,
+		"unlocked_weapons": Global.unlocked_weapons
 	}
 	
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
@@ -172,7 +174,7 @@ func load_game() -> void:
 		for e_data in data["enemies"]:
 			var new_enemy
 			if e_data["type"] == "skeleton": new_enemy = skeleton_scene.instantiate()
-			elif e_data["type"] == "kronco": new_enemy = kronco_scene.instantiate()
+			elif e_data["type"] == "demon": new_enemy = demon_scene.instantiate()
 			
 			if new_enemy:
 				new_enemy.position = Vector2(e_data["pos_x"], e_data["pos_y"])
@@ -201,6 +203,13 @@ func load_game() -> void:
 			if "trigger_id" in t:
 				if t.trigger_id in Global.visited_triggers:
 					t.queue_free()
+	
+	if data.has("unlocked_weapons"):
+		Global.unlocked_weapons = data["unlocked_weapons"]
+		# Penting: Beritahu player untuk update visual slotnya setelah data di-load
+		if player:
+			player.check_weapon_unlocks()
+	
 	print("Game Loaded & Music Resumed at: ", data.get("bgm_time", 0))
 	
 	if not Global.is_returning_from_settings:

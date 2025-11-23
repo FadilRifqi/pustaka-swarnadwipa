@@ -114,7 +114,7 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 
 # --- LOGIKA TERKENA DAMAGE ---
 func take_damage(amount: int, source: Node2D = null) -> void:
-	if is_dead: return
+	if is_dead or source.is_in_group("enemies"): return
 	health -= amount
 	
 	health_bar.value = health

@@ -7,14 +7,26 @@ var heart_list : Array[AnimatedSprite2D]
 # Health Logic: 3 Jantung x 5 Frame = 15 Total HP (Contoh)
 var health : int = 12 
 var max_hp_per_heart : int = 4 
-
+var is_inventory_opened = false
+var max_stamina : float = 10.0
+var current_stamina : float = 10.0
+var stamina_timer : float = 0.0
+@onready var stamina_bar: ProgressBar = $HealthLayer/Stamina # Ganti nama variabel node
+var regen_rate : float = 1.0 / 1.8
 var cardinal_direction : Vector2 = Vector2.RIGHT
 var direction : Vector2 = Vector2.ZERO
 @export var move_speed : float = 300.0
 @onready var attack_area: Area2D = $AttackArea
 @onready var tutorial_bubble: PanelContainer = $TutorialBubble
 @onready var label: Label = $TutorialBubble/Label
+@onready var keris: Sprite2D = $HealthLayer/Keris
+@onready var rencong: Sprite2D = $HealthLayer/Rencong
+@onready var locked_rencong: Sprite2D = $HealthLayer/LockedRencong
+@onready var locked_keris: Sprite2D = $HealthLayer/LockedKeris
+@onready var inventory_item: TextureRect = $HealthLayer/InventoryItem 
+@onready var item_slot_icon: Sprite2D = $HealthLayer/HealthPotion
 
+var selected_item = null
 # State & Weapon
 var notification_tween: Tween
 var state : String = "pedang_idle"
@@ -68,6 +80,7 @@ var is_hurt: bool = false
 func _ready() -> void:
 	var hearts_parent = $HealthLayer/HBoxContainer
 	scale = Vector2(character_scale, character_scale)
+	check_weapon_unlocks()
 	
 	if hearts_parent:
 		for child in hearts_parent.get_children():
@@ -83,6 +96,7 @@ func _ready() -> void:
 	
 	UpdateAnimation()
 	update_hearts()
+	update_stamina_ui()
 
 func _process(delta: float) -> void:
 	direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -91,9 +105,103 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor(): jump_buffer_timer = jump_buffer_time
 		elif not is_attacking and not is_dashing and can_air_dash: _start_air_dash()
+	if Input.is_action_just_pressed("inventory"):
+		# Gunakan nama variabel baru: inventory_item
+		is_inventory_opened = not is_inventory_opened
+		inventory_item.visible = not inventory_item.visible
+		
+		# Atur Mouse
+		if inventory_item.visible:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if Input.is_action_just_pressed("use_item"): # Buat action 'use_item'
+		use_selected_item()
+	
 	SetState()
 	UpdateWeapon()
 	UpdateAnimation()
+	_process_stamina(delta)
+	
+func select_consumable(item_data):
+	selected_item = item_data
+	if item_slot_icon:
+		# Sprite2D juga punya properti 'texture', jadi ini tetap jalan
+		item_slot_icon.texture = item_data["icon"]
+
+func use_selected_item():
+	if selected_item != null:
+		print("Menggunakan: ", selected_item["name"])
+		
+		# Logika efek item
+		if selected_item["name"] == "Health Potion":
+			health += selected_item["value"]
+			# Batasi max health (sesuai logika kamu, misal 12)
+			if health > 12: health = 12
+			update_hearts()
+			
+		elif selected_item["name"] == "Stamina Potion":
+			current_stamina += selected_item["value"]
+			# Batasi max stamina
+			if current_stamina > max_stamina: current_stamina = max_stamina
+			update_stamina_ui()
+			
+		if inventory_item.has_method("remove_item"):
+			inventory_item.remove_item(selected_item)
+		
+		# Kosongkan variabel di tangan Player
+		selected_item = null
+		
+		# Kosongkan gambar di HUD (Item Slot)
+		if item_slot_icon:
+			item_slot_icon.texture = null
+		# KOSONGKAN SLOT SETELAH DIPAKAI (Opsional)
+		# Jika item habis pakai, reset selected_item jadi null
+		# Dan hapus dari inventory (butuh logika hapus di script inventory)
+		
+
+func _process_stamina(delta: float) -> void:
+	# Hanya regen jika stamina belum penuh
+	if current_stamina < max_stamina:
+		
+		# Opsional: Jangan regen saat sedang lari/dash (biar lebih fair)
+		if not is_dashing and not is_attacking:
+			# Tambahkan stamina sedikit demi sedikit setiap frame
+			current_stamina += regen_rate * delta
+			
+			# Pastikan tidak melebihi batas maksimal
+			if current_stamina > max_stamina:
+				current_stamina = max_stamina
+			
+			# Update UI setiap frame agar terlihat smooth
+			update_stamina_ui()
+
+func check_weapon_unlocks():
+	# 1. Cek Rencong (Slot 2)
+	if Global.unlocked_weapons["rencong"] == true:
+		# Jika sudah terbuka: Sembunyikan gembok
+		rencong.visible = true
+		locked_rencong.visible = false
+	else:
+		# Jika terkunci: Munculkan gembok
+		rencong.visible = false
+		locked_rencong.visible = true
+		# Pastikan sprite asli rencong sembunyi (jika ada logic visual statis)
+		rencong_idle.visible = false 
+
+	# 2. Cek Keris (Slot 3)
+	if Global.unlocked_weapons["keris"] == true:
+		keris.visible = true
+		locked_keris.visible = false
+	else:
+		keris.visible = false
+		locked_keris.visible = true
+		keris_idle.visible = false
+
+func update_stamina_ui() -> void:
+	if stamina_bar:
+		stamina_bar.max_value = max_stamina
+		stamina_bar.value = current_stamina
 
 func _physics_process(delta: float) -> void:
 	if is_on_floor(): coyote_timer = coyote_time
@@ -171,8 +279,8 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage"):
 		if body != self:
 			# Logic damage ke musuh (Kronco damage 1, Skeleton damage 2, dst)
-			if body is Kronco: body.take_damage(1)
-			elif body is SkeletonLvl1: body.take_damage(2)
+			if body is Demon: body.take_damage(1, self)
+			elif body is SkeletonLvl1: body.take_damage(1, self)
 			else: body.take_damage(1)
 
 func _check_player_collision() -> void:
@@ -223,9 +331,21 @@ func die() -> void:
 	get_tree().reload_current_scene()
 
 func _start_air_dash() -> void:
-	is_dashing = true; can_air_dash = false; dash_timer = dash_duration
-	dash_dir_x = -1 if cardinal_direction == Vector2.LEFT else 1
-	velocity.y = 0.0; UpdateAnimation()
+	if current_stamina >= 3.0:
+		# Kurangi Stamina
+		current_stamina -= 3.0
+		update_stamina_ui()
+		
+		# Jalankan Dash
+		is_dashing = true
+		can_air_dash = false
+		dash_timer = dash_duration
+		dash_dir_x = -1 if cardinal_direction == Vector2.LEFT else 1
+		velocity.y = 0.0
+		UpdateAnimation()
+	else:
+		print("Stamina tidak cukup untuk Dash!")
+		# Opsional: Tambahkan efek suara gagal atau visual merah di bar
 
 func SetState() -> bool:
 	var new_state : String = state
@@ -236,16 +356,36 @@ func SetState() -> bool:
 		elif direction == Vector2.ZERO: move_speed = 150; new_state = weapon + "_idle"
 		elif Input.is_action_pressed("run"): move_speed = 300; new_state = weapon + "_run"
 		else: move_speed = 300; new_state = weapon + "_run"
-	if Input.is_action_just_pressed("basic_hit") and not is_attacking:
-		new_state = weapon + "_attack"; is_attacking = true; attack_area.monitoring = true 
+	if Input.is_action_just_pressed("basic_hit") and not is_attacking and not is_inventory_opened:
+		if current_stamina >= 1.0:
+			# Kurangi Staminais_inventory_opened
+			current_stamina -= 1.0
+			update_stamina_ui()
+			
+			# Jalankan Attack
+			new_state = weapon + "_attack"
+			is_attacking = true
+			attack_area.monitoring = true 
+		else:
+			print("Stamina habis!")
+			return false # Batalkan attack
 	if new_state == state: return false
 	state = new_state; return true
 
 func UpdateWeapon():
 	var old_weapon = weapon
 	if Input.is_action_just_pressed("slot_1"): weapon = "pedang" 
-	elif Input.is_action_just_pressed("slot_2"): weapon = "rencong" 
-	elif Input.is_action_just_pressed("slot_3"): weapon = "keris"
+	elif Input.is_action_just_pressed("slot_2"):
+		if Global.unlocked_weapons["rencong"] == true:
+			weapon = "rencong"
+		else:
+			print("Senjata Rencong Belum Terbuka!")
+			# Optional: Play sound error / Shake UI
+	elif Input.is_action_just_pressed("slot_3"): 
+		if Global.unlocked_weapons["keris"] == true:
+			weapon = "keris"
+		else:
+			print("Senjata Keris Belum Terbuka!")
 	if old_weapon != weapon and not is_attacking:
 		if "idle" in state: state = weapon + "_idle"
 		elif "run" in state: state = weapon + "_run"

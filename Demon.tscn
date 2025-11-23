@@ -207,7 +207,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 7.0
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_olh8g"]
@@ -217,7 +217,13 @@ height = 36.0
 size = Vector2(39, 59)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_idgk3"]
-bg_color = Color(0.996078, 0.996078, 0.996078, 1)
+bg_color = Color(0.996078, 0.996078, 0.996078, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eel2s"]
 bg_color = Color(0.501961, 0, 0, 1)
@@ -228,7 +234,8 @@ script = ExtResource("1_idgk3")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, -16)
 sprite_frames = SubResource("SpriteFrames_jtmfd")
-animation = &"die"
+animation = &"walk"
+frame_progress = 0.573046
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_olh8g")

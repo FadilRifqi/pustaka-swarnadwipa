@@ -17,6 +17,11 @@ const INPUT_ACTIONS = [
 	"heavy_attak" # <--- Pastikan ejaannya sama persis dengan Input Map Godot
 ]
 
+var unlocked_weapons = {
+	"rencong": false,
+	"keris": false
+}
+
 func _ready() -> void:
 	# Load keybind saat game pertama kali dibuka
 	load_keybinds()

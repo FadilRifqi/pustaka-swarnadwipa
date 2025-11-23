@@ -174,7 +174,13 @@ _data = {
 size = Vector2(40.5, 40)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fa304"]
-bg_color = Color(0.996078, 0.996078, 0.996078, 1)
+bg_color = Color(0.996078, 0.996078, 0.996078, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_028gl"]
 bg_color = Color(0.501961, 0, 0, 1)

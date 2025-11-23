@@ -1,15 +1,23 @@
-[gd_scene load_steps=46 format=3 uid="uid://c11o6et3g00y1"]
+[gd_scene load_steps=56 format=3 uid="uid://c11o6et3g00y1"]
 
 [ext_resource type="Script" uid="uid://bw2o1rbms3w0r" path="res://player.gd" id="1_hqtel"]
+[ext_resource type="Texture2D" uid="uid://dmi0v00cgg3u0" path="res://assets/ui/horizontal_type_1.png" id="4_bwjto"]
 [ext_resource type="Texture2D" uid="uid://c4u2s7mdp1kmd" path="res://assets/Main Character/idle_keris.png" id="5_b26j0"]
 [ext_resource type="Texture2D" uid="uid://dq75ffla0db8x" path="res://assets/sprite/attack_keris.png" id="5_sweqy"]
+[ext_resource type="Texture2D" uid="uid://bhm4wqju5wtyi" path="res://assets/ui/pxArt-export.png" id="5_u1c27"]
 [ext_resource type="Texture2D" uid="uid://de5q02kel0qsm" path="res://assets/Main Character/idle_rencong.png" id="6_n7ghd"]
 [ext_resource type="Texture2D" uid="uid://dpi6axds0r2rw" path="res://assets/Main Character/run_keris.png" id="6_nvl01"]
+[ext_resource type="Texture2D" uid="uid://bysl6v7si6lsh" path="res://assets/ui/pxArt (1)-export.png" id="6_op7ga"]
 [ext_resource type="Texture2D" uid="uid://cbxorpf3tp3s3" path="res://assets/Main Character/attack_rencong.png" id="7_nvl01"]
+[ext_resource type="Texture2D" uid="uid://d02a38n4n066y" path="res://assets/ui/pedang.png" id="7_op7ga"]
 [ext_resource type="Texture2D" uid="uid://1eqqpch0gmow" path="res://assets/Main Character/attack_pedang.png" id="8_ivps1"]
+[ext_resource type="Texture2D" uid="uid://djrnpt1k4uuf7" path="res://assets/ui/locker.png" id="8_q13i1"]
 [ext_resource type="Texture2D" uid="uid://buscm4t3ea4g6" path="res://assets/Main Character/run_rencong.png" id="9_ivps1"]
+[ext_resource type="Texture2D" uid="uid://d24faooseqxjc" path="res://assets/ui/itemslot.png" id="9_pylmc"]
 [ext_resource type="Texture2D" uid="uid://sjjv52g85p43" path="res://assets/Main Character/idle_pedang.png" id="9_urp6f"]
 [ext_resource type="Texture2D" uid="uid://xmvjpttxu57a" path="res://assets/Main Character/run_pedang.png" id="10_n7ghd"]
+[ext_resource type="Texture2D" uid="uid://ds35ffxmp54rq" path="res://assets/ui/inventory.png" id="12_7ahtn"]
+[ext_resource type="Script" uid="uid://cqrlffr62wck1" path="res://inventory_item_player.gd" id="13_7lmhl"]
 [ext_resource type="FontFile" uid="uid://cjm7adbu2am7x" path="res://assets/font/TrajanPro-Regular.ttf" id="13_606se"]
 [ext_resource type="Script" uid="uid://y7m1k6gfkgsi" path="res://camera_2d.gd" id="13_bwjto"]
 [ext_resource type="Texture2D" uid="uid://bhdxq8n346vw1" path="res://assets/sprite/heart-Sheet.png" id="13_urp6f"]
@@ -431,6 +439,22 @@ animations = [{
 "speed": 0.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_urp6f"]
+bg_color = Color(0.792157, 0.941176, 0.972549, 1)
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bwjto"]
+bg_color = Color(0.564706, 0.878431, 0.937255, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivps1"]
 size = Vector2(19, 37)
 
@@ -482,6 +506,90 @@ position = Vector2(229, 66)
 scale = Vector2(1.191, 1.2)
 sprite_frames = SubResource("SpriteFrames_2wuci")
 animation = &"frame"
+
+[node name="Stamina" type="ProgressBar" parent="HealthLayer"]
+offset_left = 317.0
+offset_top = 49.0
+offset_right = 610.0
+offset_bottom = 76.0
+theme_override_styles/background = SubResource("StyleBoxFlat_urp6f")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bwjto")
+max_value = 10.0
+value = 6.1
+show_percentage = false
+
+[node name="Inventory" type="Sprite2D" parent="HealthLayer"]
+position = Vector2(1012, 61)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_bwjto")
+
+[node name="Keris" type="Sprite2D" parent="HealthLayer"]
+position = Vector2(1066, 57)
+rotation = -2.40855
+scale = Vector2(0.62326, 0.357939)
+texture = ExtResource("5_u1c27")
+
+[node name="Rencong" type="Sprite2D" parent="HealthLayer"]
+position = Vector2(1014, 57.9999)
+rotation = -2.49757
+scale = Vector2(0.575245, 0.477033)
+texture = ExtResource("6_op7ga")
+
+[node name="Pedang" type="Sprite2D" parent="HealthLayer"]
+position = Vector2(959, 61)
+scale = Vector2(1.27083, 1.15625)
+texture = ExtResource("7_op7ga")
+
+[node name="LockedRencong" type="Sprite2D" parent="HealthLayer"]
+position = Vector2(1012, 60)
+scale = Vector2(1.453, 1.453)
+texture = ExtResource("8_q13i1")
+
+[node name="LockedKeris" type="Sprite2D" parent="HealthLayer"]
+position = Vector2(1068, 60)
+scale = Vector2(1.453, 1.453)
+texture = ExtResource("8_q13i1")
+
+[node name="ItemSlot" type="Sprite2D" parent="HealthLayer"]
+position = Vector2(883, 63)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("9_pylmc")
+
+[node name="HealthPotion" type="Sprite2D" parent="HealthLayer"]
+position = Vector2(883, 61)
+scale = Vector2(2, 2)
+
+[node name="InventoryItem" type="TextureRect" parent="HealthLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -195.0
+offset_top = -192.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("12_7ahtn")
+script = ExtResource("13_7lmhl")
+
+[node name="GridContainer" type="GridContainer" parent="HealthLayer/InventoryItem"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -83.0
+offset_right = 84.0
+offset_bottom = 83.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 42
+theme_override_constants/v_separation = 42
+columns = 4
 
 [node name="KerisAttack" type="Sprite2D" parent="."]
 texture = ExtResource("5_sweqy")

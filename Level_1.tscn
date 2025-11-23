@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://tifin6apg3ri"]
+[gd_scene load_steps=18 format=3 uid="uid://tifin6apg3ri"]
 
 [ext_resource type="Script" uid="uid://kmdwa8mcf6j2" path="res://playground.gd" id="1_4s4xf"]
 [ext_resource type="PackedScene" uid="uid://c11o6et3g00y1" path="res://player.tscn" id="2_p7bnq"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://7dqp8oxqm60t" path="res://assets/lvl1-bg/2.png" id="5_yaehp"]
 [ext_resource type="Texture2D" uid="uid://bh2qgyj4n07ar" path="res://assets/lvl1-bg/3.png" id="6_d1osm"]
 [ext_resource type="Texture2D" uid="uid://bacu4wy18pon" path="res://assets/lvl1-bg/4.png" id="7_ie7uf"]
-[ext_resource type="Texture2D" uid="uid://dkbtrbma0mwcr" path="res://assets/lvl1-bg/5.png" id="8_gwx4l"]
 [ext_resource type="Texture2D" uid="uid://dacqgk4mebrvc" path="res://assets/lvl1-bg/6.png" id="9_fkbji"]
 [ext_resource type="AudioStream" uid="uid://bjj8khe667kvl" path="res://assets/music/bgm.ogg" id="10_6eo5x"]
 [ext_resource type="PackedScene" uid="uid://b8i3dt45bkb22" path="res://skeletonlvl1.tscn" id="10_p7bnq"]
@@ -66,15 +65,6 @@ motion_mirroring = Vector2(1152, 0)
 [node name="Sprite2D" type="Sprite2D" parent="bg/layer4"]
 scale = Vector2(1.89677, 1.81111)
 texture = ExtResource("7_ie7uf")
-centered = false
-
-[node name="layer5" type="ParallaxLayer" parent="bg"]
-motion_scale = Vector2(0.5, 0.5)
-motion_mirroring = Vector2(1152, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="bg/layer5"]
-scale = Vector2(1.87581, 1.60278)
-texture = ExtResource("8_gwx4l")
 centered = false
 
 [node name="layer6" type="ParallaxLayer" parent="bg"]
