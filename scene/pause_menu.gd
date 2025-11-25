@@ -112,6 +112,11 @@ func save_game() -> void:
 	# Pastikan nama node musik di level kamu adalah "bgm"
 	var bgm_node = level_node.get_node_or_null("bgm")
 	bgm_time = bgm_node.get_playback_position()
+	
+	var inventory_list = []
+	# Akses node inventory via player (sesuaikan nama variabel di player.gd)
+	if player.inventory_item: 
+		inventory_list = player.inventory_item.get_save_data()
 
 	# 4. Simpan JSON
 	var save_data = {
@@ -127,7 +132,8 @@ func save_game() -> void:
 		"bgm_time": bgm_time, # Simpan ke file
 		"scene": get_tree().current_scene.scene_file_path,
 		"visited_triggers": Global.visited_triggers,
-		"unlocked_weapons": Global.unlocked_weapons
+		"unlocked_weapons": Global.unlocked_weapons,
+		"inventory": inventory_list
 	}
 	
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
@@ -209,6 +215,18 @@ func load_game() -> void:
 		# Penting: Beritahu player untuk update visual slotnya setelah data di-load
 		if player:
 			player.check_weapon_unlocks()
+	
+	if data.has("inventory"):
+		var saved_inv = data["inventory"]
+		
+		# Pastikan variabel inventory_item di player valid
+		if player.inventory_item:
+			player.inventory_item.load_save_data(saved_inv)
+			
+			# Reset item yang sedang dipegang player (biar gak ngebug pegang item hantu)
+			player.selected_item = null
+			if player.item_slot_icon:
+				player.item_slot_icon.texture = null
 	
 	print("Game Loaded & Music Resumed at: ", data.get("bgm_time", 0))
 	

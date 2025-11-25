@@ -54,6 +54,7 @@ motion_scale = Vector2(0.3, 0.3)
 motion_mirroring = Vector2(1152, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="bg/layer3"]
+position = Vector2(-10, -1)
 scale = Vector2(1.88871, 1.76667)
 texture = ExtResource("6_d1osm")
 centered = false
