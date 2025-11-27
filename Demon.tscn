@@ -211,10 +211,11 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_olh8g"]
+radius = 15.0
 height = 36.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u1gxt"]
-size = Vector2(39, 59)
+size = Vector2(23, 44)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_idgk3"]
 bg_color = Color(0.996078, 0.996078, 0.996078, 0)
@@ -232,7 +233,8 @@ bg_color = Color(0.501961, 0, 0, 1)
 script = ExtResource("1_idgk3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(2, -16)
+position = Vector2(-4.76837e-07, -16)
+scale = Vector2(1.07, 1)
 sprite_frames = SubResource("SpriteFrames_jtmfd")
 animation = &"attack"
 
@@ -242,8 +244,9 @@ shape = SubResource("CapsuleShape2D_olh8g")
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(29.5, -13.5)
+position = Vector2(22, 0)
 shape = SubResource("RectangleShape2D_u1gxt")
+debug_color = Color(0.937255, 0, 0, 0.419608)
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -19.0

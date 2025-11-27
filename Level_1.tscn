@@ -9184,7 +9184,7 @@ color = Color(0, 0, 0, 1)
 tile_set = SubResource("TileSet_6eo5x")
 
 [node name="BeguGanjang" parent="." instance=ExtResource("10_2wi7h")]
-position = Vector2(4482, 524)
+position = Vector2(656, -392)
 
 [node name="Cindaku" parent="." instance=ExtResource("11_4s4xf")]
-position = Vector2(3766, 507)
+position = Vector2(4742, 526)

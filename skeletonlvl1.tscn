@@ -212,7 +212,7 @@ hframes = 10
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(27.75, 9)
+position = Vector2(21, 9)
 shape = SubResource("RectangleShape2D_fa304")
 
 [node name="Hurt" type="Sprite2D" parent="."]
