@@ -204,8 +204,6 @@ func update_stamina_ui() -> void:
 		stamina_bar.value = current_stamina
 
 func _physics_process(delta: float) -> void:
-	is_attacking = false
-	is_hurt = false
 	if is_on_floor(): coyote_timer = coyote_time
 	else: coyote_timer = max(coyote_timer - delta, 0.0)
 	if is_hurt:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://tifin6apg3ri"]
+[gd_scene load_steps=8 format=3 uid="uid://beos4egwekwhq"]
 
 [ext_resource type="PackedScene" uid="uid://c11o6et3g00y1" path="res://player.tscn" id="1_80c3a"]
 [ext_resource type="Texture2D" uid="uid://btlcyocddhw31" path="res://assets/sprite/Tiles Stage 1-Sheet.png" id="2_d17em"]

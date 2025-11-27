@@ -9139,12 +9139,6 @@ shape = SubResource("RectangleShape2D_p7bnq")
 [node name="Demon" parent="." instance=ExtResource("13_ar1si")]
 position = Vector2(2566, 681)
 
-[node name="Demon2" parent="." instance=ExtResource("13_ar1si")]
-position = Vector2(2795, 669)
-
-[node name="Demon3" parent="." instance=ExtResource("13_ar1si")]
-position = Vector2(2566, 681)
-
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
