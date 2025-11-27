@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://b84juhwgusgfw"]
+[gd_scene load_steps=98 format=3 uid="uid://bhn1o7drvjs7b"]
 
 [ext_resource type="Texture2D" uid="uid://p7ykdj5loial" path="res://assets/beguganjang/idle.png" id="1_01prx"]
 [ext_resource type="Script" uid="uid://bmlxebgin8wbf" path="res://scene/begu_ganjang.gd" id="1_8st7g"]
@@ -665,7 +665,7 @@ shape = SubResource("CapsuleShape2D_yee52")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_nayuo")
 animation = &"walk"
-frame_progress = 0.3137
+frame_progress = 0.990507
 
 [node name="AttackArea" type="Area2D" parent="."]
 

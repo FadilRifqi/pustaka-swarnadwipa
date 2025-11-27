@@ -7,7 +7,8 @@ const SAVE_PATH = "user://savegame.json"
 @export var skeleton_scene: PackedScene
 @export var demon_scene: PackedScene 
 @onready var save_toast: PanelContainer = $Control/SaveToast
-
+@export var cindaku_scene: PackedScene 
+@export var beguganjang_scene: PackedScene
 @onready var level_node = get_parent() 
 
 func _ready() -> void:
@@ -97,6 +98,8 @@ func save_game() -> void:
 			var type = ""
 			if enemy is SkeletonLvl1: type = "skeleton"
 			elif enemy is Demon: type = "demon"
+			elif enemy is Cindaku: type = "cindaku"       # Tambahan
+			elif enemy is BeguGanjang: type = "beguganjang" # Tambahan
 			
 			
 			if type != "":
@@ -181,6 +184,8 @@ func load_game() -> void:
 			var new_enemy
 			if e_data["type"] == "skeleton": new_enemy = skeleton_scene.instantiate()
 			elif e_data["type"] == "demon": new_enemy = demon_scene.instantiate()
+			elif e_data["type"] == "cindaku": new_enemy = cindaku_scene.instantiate()         # Tambahan
+			elif e_data["type"] == "beguganjang": new_enemy = beguganjang_scene.instantiate() # Tambahan
 			
 			if new_enemy:
 				new_enemy.position = Vector2(e_data["pos_x"], e_data["pos_y"])

@@ -13,7 +13,7 @@ extends Control
 	"slot_1": $Panel/VBoxContainer/GridContainer/BtnSlot1,
 	"slot_2": $Panel/VBoxContainer/GridContainer/BtnSlot2,
 	"slot_3": $Panel/VBoxContainer/GridContainer/BtnSlot3,
-	"heavy_attack" : $Panel/VBoxContainer/GridContainer/BtnHeavyAttack
+	"skill" : $Panel/VBoxContainer/GridContainer/BtnHeavyAttack
 
 }
 
@@ -100,7 +100,7 @@ func _on_btn_slot_3_pressed() -> void:
 	start_remapping("slot_3", buttons["slot_3"])
 	
 func _on_btn_heavy_attack_pressed() -> void:
-	start_remapping("heavy_attak", buttons["heavy_attak"])
+	start_remapping("skill", buttons["skill"])
 
 # --- TOMBOL BACK ---
 func _on_back_pressed() -> void:

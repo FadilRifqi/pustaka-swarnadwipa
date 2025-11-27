@@ -1,4 +1,4 @@
-[gd_scene load_steps=132 format=3 uid="uid://c11o6et3g00y1"]
+[gd_scene load_steps=133 format=3 uid="uid://c11o6et3g00y1"]
 
 [ext_resource type="Script" uid="uid://bw2o1rbms3w0r" path="res://player.gd" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://dmi0v00cgg3u0" path="res://assets/ui/horizontal_type_1.png" id="4_bwjto"]
@@ -820,6 +820,9 @@ gradient = SubResource("Gradient_5tmop")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7lmhl"]
+size = Vector2(95, 20)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_hqtel")
 
@@ -969,9 +972,9 @@ vertical_alignment = 1
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.412152, 0.412152, 0.412152, 1)
 self_modulate = Color(0.497474, 0.497474, 0.497474, 1)
-position = Vector2(0, -1)
+position = Vector2(-2, -3)
 sprite_frames = SubResource("SpriteFrames_rpay4")
-animation = &"keris_skill"
+animation = &"keris_run"
 autoplay = "keris_idle"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -980,3 +983,10 @@ energy = 2.0
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_7ahtn")
 texture_scale = 4.6
+
+[node name="SkillArea" type="Area2D" parent="."]
+position = Vector2(-2, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SkillArea"]
+position = Vector2(49, 0)
+shape = SubResource("RectangleShape2D_7lmhl")

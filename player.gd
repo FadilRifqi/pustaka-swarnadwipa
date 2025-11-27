@@ -7,13 +7,14 @@ var heart_list : Array[AnimatedSprite2D]
 var health : int = 12 
 var max_hp_per_heart : int = 4 
 var is_inventory_opened = false
-
+@export var skill_sprite_offset: Vector2 = Vector2(70, 0)
 # Stamina
 var max_stamina : float = 10.0
 var current_stamina : float = 10.0
 var stamina_timer : float = 0.0
 @onready var stamina_bar: ProgressBar = $HealthLayer/Stamina
 var regen_rate : float = 1.0 / 1.8
+@onready var skill_area: Area2D = $SkillArea
 
 # Movement
 var cardinal_direction : Vector2 = Vector2.RIGHT
@@ -64,7 +65,7 @@ var apex_gravity_multiplier: float = 0.85
 var apex_threshold: float = 120.0
 var coyote_timer: float = 0.0
 var jump_buffer_timer: float = 0.0
-
+@export var skill_damage: int = 3 # Damage khusus Skill
 # Dash Logic
 var is_dashing: bool = false
 var can_air_dash: bool = true
@@ -95,6 +96,10 @@ func _ready() -> void:
 	if not attack_area.body_entered.is_connected(_on_attack_area_body_entered):
 		attack_area.body_entered.connect(_on_attack_area_body_entered)
 	
+	skill_area.monitoring = false
+	if not skill_area.body_entered.is_connected(_on_skill_area_body_entered):
+		skill_area.body_entered.connect(_on_skill_area_body_entered)
+	
 	# Setup Animation Signal
 	if not animated_sprite.animation_finished.is_connected(_on_animated_sprite_animation_finished):
 		animated_sprite.animation_finished.connect(_on_animated_sprite_animation_finished)
@@ -102,6 +107,14 @@ func _ready() -> void:
 	UpdateAnimation()
 	update_hearts()
 	update_stamina_ui()
+
+func _on_skill_area_body_entered(body: Node2D) -> void:
+	if body.has_method("take_damage") and body != self:
+		print("Skill Hit! Damage: ", skill_damage)
+		# Damage Skill (Misal 3)
+		if body is Demon: body.take_damage(skill_damage, self)
+		elif body is SkeletonLvl1: body.take_damage(skill_damage, self)
+		else: body.take_damage(skill_damage)
 
 func _process(delta: float) -> void:
 	direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -219,7 +232,7 @@ func SetState() -> bool:
 			# Set State Skill
 			new_state = weapon + "_skill"
 			is_using_skill = true
-			attack_area.monitoring = true 
+			skill_area.monitoring = true 
 			
 			# Jalankan Geser 200px
 			perform_skill_dash()
@@ -233,19 +246,14 @@ func SetState() -> bool:
 
 # --- LOGIKA TELEPORT SKILL ---
 func perform_skill_dash() -> void:
-	var dir = -1 if cardinal_direction == Vector2.LEFT else 1
+	var is_left = cardinal_direction == Vector2.LEFT
 	
-	# 1. Matikan Collision (Biar tembus musuh)
-	collision_shape.set_deferred("disabled", true)
-	
-	# 2. Pindah Posisi Instan (200 Pixel)
-	position.x += skill_dash_distance * dir
-	
-	# 3. Tunggu 1 Frame Fisika
-	await get_tree().physics_frame
-	
-	# 4. Nyalakan Collision lagi
-	collision_shape.set_deferred("disabled", false)
+	if is_left:
+		animated_sprite.offset.x = -skill_sprite_offset.x
+	else:
+		animated_sprite.offset.x = skill_sprite_offset.x
+		
+	animated_sprite.offset.y = skill_sprite_offset.y
 	
 	# Player akan tetap dalam state "skill" (is_using_skill = true)
 	# sampai animasi skill selesai dimainkan di fungsi _on_animated_sprite_animation_finished
@@ -269,8 +277,12 @@ func UpdateWeapon():
 func UpdateAnimation() -> void:
 	var is_left = cardinal_direction == Vector2.LEFT
 	animated_sprite.flip_h = is_left
+	
 	if is_left: attack_area.scale.x = -1
 	else: attack_area.scale.x = 1
+	
+	if is_left: skill_area.scale.x = -1
+	else: skill_area.scale.x = 1
 	
 	if animated_sprite.animation != state:
 		if animated_sprite.sprite_frames.has_animation(state):
@@ -278,6 +290,7 @@ func UpdateAnimation() -> void:
 		else:
 			print("Warning: Animasi tidak ditemukan -> ", state)
 			animated_sprite.play(weapon + "_idle")
+	
 
 # --- SINYAL ANIMASI SELESAI ---
 func _on_animated_sprite_animation_finished() -> void:
@@ -293,10 +306,10 @@ func _on_animated_sprite_animation_finished() -> void:
 		UpdateAnimation()
 	if "skill" in anim_name:	
 		is_using_skill = false # Kembalikan kontrol gerak ke player
-		attack_area.monitoring = false
+		skill_area.monitoring = false
 		state = weapon + "_idle"
 		UpdateAnimation()
-		position.x -= skill_dash_distance * dir
+		animated_sprite.offset = Vector2.ZERO
 
 # --- HELPER FUNCTIONS ---
 func select_consumable(item_data, index):
@@ -404,4 +417,4 @@ func update_hearts():
 	for i in range(heart_list.size()):
 		var heart_anim = heart_list[i]
 		var heart_health = clamp(health - (i * max_hp_per_heart), 0, max_hp_per_heart)
-		heart_anim.frame = (max_hp_per_heart - heart_health) + 1
+		heart_anim.frame = (max_hp_per_heart - heart_health) 
