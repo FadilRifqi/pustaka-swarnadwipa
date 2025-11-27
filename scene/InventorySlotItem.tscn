@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7ea4lgbg1x3y"]
+
+[ext_resource type="Script" uid="uid://p1hu3glnok5" path="res://scene/inventory_slot_item.gd" id="1_g45ss"]
+
+[node name="InventorySlotItem" type="TextureRect"]
+offset_right = 48.0
+offset_bottom = 48.0
+script = ExtResource("1_g45ss")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://cpnkumnlhlm1b"]
+
+[ext_resource type="Texture2D" uid="uid://cmigvvf1j1gyb" path="res://assets/ui/ELR_FallLeaf.png" id="1_p3lty"]
+[ext_resource type="Script" uid="uid://bgq0fuvsn4jue" path="res://leaf.gd" id="1_qihfy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qihfy"]
+atlas = ExtResource("1_p3lty")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jiete"]
+atlas = ExtResource("1_p3lty")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbfpc"]
+atlas = ExtResource("1_p3lty")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtoxm"]
+atlas = ExtResource("1_p3lty")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6mtc"]
+atlas = ExtResource("1_p3lty")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f6l1t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qihfy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jiete")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbfpc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtoxm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6mtc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Leaf" type="CharacterBody2D"]
+script = ExtResource("1_qihfy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_f6l1t")
+frame_progress = 0.647606
