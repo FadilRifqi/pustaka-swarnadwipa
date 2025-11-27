@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cknie8q5idtlq"]
+[gd_scene load_steps=7 format=3 uid="uid://cknie8q5idtlq"]
 
 [ext_resource type="Texture2D" uid="uid://w810smlpnw7" path="res://assets/sprite/Skeleton_01_White_Walk.png" id="1_crlql"]
 
@@ -44,13 +44,18 @@ _data = {
 &"walk": SubResource("Animation_plk42")
 }
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_crlql"]
+polygon = PackedVector2Array(5, 10, 18, 0, 18, -13, 1, -24, -13, 5)
+
 [node name="Skeleton" type="CharacterBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-1, 0)
 shape = SubResource("CapsuleShape2D_rie6r")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(2, -11)
 texture = ExtResource("1_crlql")
 hframes = 10
@@ -59,3 +64,6 @@ hframes = 10
 libraries = {
 &"": SubResource("AnimationLibrary_sv33q")
 }
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_crlql")

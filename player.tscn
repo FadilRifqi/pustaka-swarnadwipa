@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=3 uid="uid://c11o6et3g00y1"]
+[gd_scene load_steps=132 format=3 uid="uid://c11o6et3g00y1"]
 
 [ext_resource type="Script" uid="uid://bw2o1rbms3w0r" path="res://player.gd" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://dmi0v00cgg3u0" path="res://assets/ui/horizontal_type_1.png" id="4_bwjto"]
@@ -21,6 +21,8 @@
 [ext_resource type="FontFile" uid="uid://cjm7adbu2am7x" path="res://assets/font/TrajanPro-Regular.ttf" id="13_606se"]
 [ext_resource type="Script" uid="uid://y7m1k6gfkgsi" path="res://camera_2d.gd" id="13_bwjto"]
 [ext_resource type="Texture2D" uid="uid://bhdxq8n346vw1" path="res://assets/sprite/heart-Sheet.png" id="13_urp6f"]
+[ext_resource type="Texture2D" uid="uid://52wpq5m77bnj" path="res://assets/Main Character/skill_keris.png" id="16_7lmhl"]
+[ext_resource type="Texture2D" uid="uid://7jprtqdh4bnm" path="res://assets/Main Character/skill_rencong.png" id="20_dx0e4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bwjto"]
 radius = 6.0
@@ -273,6 +275,26 @@ region = Rect2(576, 0, 96, 80)
 atlas = ExtResource("6_nvl01")
 region = Rect2(672, 0, 96, 80)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpay4"]
+atlas = ExtResource("16_7lmhl")
+region = Rect2(0, 0, 155, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfa3h"]
+atlas = ExtResource("16_7lmhl")
+region = Rect2(155, 0, 155, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04g4e"]
+atlas = ExtResource("16_7lmhl")
+region = Rect2(310, 0, 155, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lx1qc"]
+atlas = ExtResource("16_7lmhl")
+region = Rect2(465, 0, 155, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_elm0x"]
+atlas = ExtResource("16_7lmhl")
+region = Rect2(620, 0, 155, 80)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_oybyf"]
 atlas = ExtResource("7_nvl01")
 region = Rect2(0, 0, 96, 80)
@@ -368,6 +390,26 @@ region = Rect2(576, 0, 96, 80)
 [sub_resource type="AtlasTexture" id="AtlasTexture_m6nxt"]
 atlas = ExtResource("9_ivps1")
 region = Rect2(672, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7vj2"]
+atlas = ExtResource("20_dx0e4")
+region = Rect2(0, 0, 155, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtw5u"]
+atlas = ExtResource("20_dx0e4")
+region = Rect2(155, 0, 155, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f37gn"]
+atlas = ExtResource("20_dx0e4")
+region = Rect2(310, 0, 155, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jccjf"]
+atlas = ExtResource("20_dx0e4")
+region = Rect2(465, 0, 155, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhi2v"]
+atlas = ExtResource("20_dx0e4")
+region = Rect2(620, 0, 155, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ym00c"]
 atlas = ExtResource("8_ivps1")
@@ -556,6 +598,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_rpay4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfa3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04g4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lx1qc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_elm0x")
+}],
+"loop": false,
+"name": &"keris_skill",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_oybyf")
 }, {
 "duration": 1.0,
@@ -640,6 +702,26 @@ animations = [{
 "loop": true,
 "name": &"rencong_run",
 "speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7vj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtw5u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f37gn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jccjf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhi2v")
+}],
+"loop": false,
+"name": &"rencong_skill",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -889,13 +971,12 @@ modulate = Color(0.412152, 0.412152, 0.412152, 1)
 self_modulate = Color(0.497474, 0.497474, 0.497474, 1)
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_rpay4")
-animation = &"keris_run"
+animation = &"rencong_skill"
 autoplay = "keris_idle"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(0.68536, 0.900768, 0.733403, 1)
-energy = 3.37
-blend_mode = 2
+color = Color(0.862804, 0.681687, 0.330747, 1)
+energy = 2.0
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_7ahtn")
-texture_scale = 4.0
+texture_scale = 4.6

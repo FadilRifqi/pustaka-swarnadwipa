@@ -38,7 +38,7 @@ var notification_tween: Tween
 
 # State & Weapon
 var state : String = "sword_idle"
-var weapon : String = "sword"
+var weapon : String = "keris"
 var last_pressed : String = ""
 var next_attack : String = ""
 var is_attacking : bool = false
