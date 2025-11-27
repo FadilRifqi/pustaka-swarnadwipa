@@ -971,7 +971,7 @@ modulate = Color(0.412152, 0.412152, 0.412152, 1)
 self_modulate = Color(0.497474, 0.497474, 0.497474, 1)
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_rpay4")
-animation = &"rencong_skill"
+animation = &"keris_skill"
 autoplay = "keris_idle"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
