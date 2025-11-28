@@ -4,8 +4,8 @@ class_name Player extends CharacterBody2D
 var heart_list : Array[AnimatedSprite2D] 
 
 # Health Logic
-var health : int = 12 
-var max_hp_per_heart : int = 4 
+var health : float = 12.0
+var max_hp_per_heart : float = 4.0 
 var is_inventory_opened = false
 @export var skill_sprite_offset: Vector2 = Vector2(70, 0)
 # Stamina
@@ -45,7 +45,7 @@ var notification_tween: Tween
 
 # State & Weapon
 var state : String = "sword_idle"
-var weapon : String = "keris"
+var weapon : String = "sword"
 var is_attacking : bool = false
 var is_using_skill : bool = false # Status Skill
 
@@ -321,7 +321,7 @@ func use_selected_item():
 	if selected_item != null:
 		if selected_item["name"] == "Health Potion":
 			health += selected_item["value"]
-			if health > 12: health = 12
+			if health > 12.0: health = 12.0
 			update_hearts()
 		elif selected_item["name"] == "Stamina Potion":
 			current_stamina += selected_item["value"]
@@ -375,9 +375,10 @@ func _check_player_collision() -> void:
 		var collider = collision.get_collider()
 		if collider is Kronco: take_damage(1)
 
-func take_damage(amount: int, source: Node2D = null) -> void:
+func take_damage(amount: float, source: Node2D = null) -> void:
 	if is_invincible: return
 	health -= amount
+	print(health)
 	update_hearts()
 	if health <= 0: die()
 	else:

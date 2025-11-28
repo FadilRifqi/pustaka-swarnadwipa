@@ -2,13 +2,13 @@ class_name Cindaku
 extends CharacterBody2D
 
 # --- STATS BOSS ---
-@export var max_health: int = 50 # Nyawa Maksimal
+@export var max_health: int = 15 # Nyawa Maksimal
 var health: int = max_health     # Nyawa Saat Ini
 
 # Damage Values
-@export var damage_normal: int = 4
-@export var damage_skill_1: int = 8 
-@export var damage_skill_2: int = 6 
+@export var damage_normal: float = 1.0
+@export var damage_skill_1: float = 1.0
+@export var damage_skill_2: float = 1.0
 
 # Movement & AI
 @export var move_speed: float = 85.0
@@ -24,7 +24,7 @@ var skill_cooldown_time: float = 3.0
 # Node References
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var player: Player = $"../Player"
-@onready var health_bar: ProgressBar = $ProgressBar
+@onready var health_bar: ProgressBar = $HealthBar
 
 # HITBOXES
 @onready var attack_area: Area2D = $AttackArea
@@ -118,18 +118,18 @@ func decide_attack() -> void:
 func start_normal_attack():
 	is_attacking = true
 	current_attack_type = "attack"
-	attack_area.monitoring = true
+	attack_area.monitoring = false
 
 func start_skill_1():
 	is_attacking = true
 	current_attack_type = "skill1"
-	skill_area.monitoring = true
+	skill_area.monitoring = false
 	start_cooldown()
 
 func start_skill_2():
 	is_attacking = true
 	current_attack_type = "skill2"
-	attack_area.monitoring = true
+	attack_area.monitoring = false
 	start_cooldown()
 
 func start_cooldown():
@@ -144,8 +144,8 @@ func _on_frame_changed() -> void:
 	
 	# Sesuaikan frame ini dengan sprite sheet kamu!
 	if anim == "attack" and frame == 4: attack_area.monitoring = true
-	elif anim == "skill2" and frame == 5: attack_area.monitoring = true
-	elif anim == "skill1" and frame == 6: skill_area.monitoring = true
+	elif anim == "skill2" and frame == 2: attack_area.monitoring = true
+	elif anim == "skill1" and frame == 3: skill_area.monitoring = true
 
 func _on_attack_area_entered(body: Node2D) -> void:
 	if body.has_method("take_damage") and body != self and body is Player:

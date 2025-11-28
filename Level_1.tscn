@@ -8977,13 +8977,13 @@ shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D76"]
 offset_left = -121.0
-offset_top = 366.0
+offset_top = 442.0
 offset_right = 140.0
-offset_bottom = 962.0
+offset_bottom = 1038.0
 color = Color(0.00820202, 0.00820202, 0.00820202, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D76"]
-position = Vector2(9, 667)
+position = Vector2(9, 743)
 shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="StaticBody2D66" type="StaticBody2D" parent="StaticBody2D"]

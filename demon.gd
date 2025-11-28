@@ -5,11 +5,11 @@ extends CharacterBody2D
 @export var max_health: int = 8
 var health: int = max_health
 
-@export var damage_amount: int = 3
+@export var damage_amount: float = 0.5
 @export var move_speed: float = 110.0
 @export var gravity: float = 980.0
 @export var chase_distance: float = 500.0 
-@export var attack_range: float = 60.0  
+@export var attack_range: float = 70.0  
 @export var knockback_force: float = 250.0 
 
 # Node References
@@ -55,6 +55,7 @@ func _physics_process(delta: float) -> void:
 	if not is_dead:
 		if player and not is_hurt and not is_attacking:
 			var distance = global_position.distance_to(player.global_position)
+			print(distance)
 			var direction_x = sign(player.global_position.x - global_position.x)
 			
 			if distance <= attack_range:

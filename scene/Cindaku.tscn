@@ -232,7 +232,7 @@ script = ExtResource("1_gvitc")
 position = Vector2(2.78125, -2.8125)
 scale = Vector2(0.738306, 0.854688)
 sprite_frames = SubResource("SpriteFrames_wtoh8")
-animation = &"attack"
+animation = &"skill2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -6)
@@ -257,6 +257,14 @@ offset_right = 20.0
 offset_bottom = -35.0
 theme_override_styles/background = SubResource("StyleBoxFlat_gvitc")
 theme_override_styles/fill = SubResource("StyleBoxFlat_p6fox")
-max_value = 30.0
-value = 30.0
+max_value = 15.0
+value = 15.0
 show_percentage = false
+
+[node name="Detectors" type="Node2D" parent="."]
+
+[node name="Wallcheck" type="RayCast2D" parent="Detectors"]
+target_position = Vector2(26, -1)
+
+[node name="GapCheck" type="RayCast2D" parent="Detectors"]
+target_position = Vector2(24, 18)

@@ -5,6 +5,10 @@ class_name SkeletonLvl1 extends CharacterBody2D
 var health: int = max_health
 @export var move_speed: float = 80.0
 @export var gravity: float = 980.0
+@export var jump_force: float = -400.0 # Kekuatan lompat musuh
+@onready var detectors: Node2D = $Detectors
+@onready var wall_check: RayCast2D = $Detectors/WallCheck
+@onready var gap_check: RayCast2D = $Detectors/GapCheck
 
 # AI Settings
 @export var detect_range: float = 400.0 
@@ -64,6 +68,30 @@ func _physics_process(delta: float) -> void:
 			# Kejar
 			elif distance <= detect_range:
 				velocity.x = direction_x * move_speed
+				if velocity.x != 0:
+					facing_right = velocity.x > 0
+					var scale_x = 1 if facing_right else -1
+					
+					# Flip Sprite & Hitbox (Kode lama)
+					walking.scale.x = scale_x
+					# ... flip sprite lain ...
+					attack_area.scale.x = scale_x
+					
+					# Flip Detectors (BARU)
+					detectors.scale.x = scale_x
+					
+				if is_on_floor():
+					# 1. Jika ada tembok di depan
+					var wall_detected = wall_check.is_colliding()
+					
+					# 2. Jika TIDAK ada lantai di depan (Gap)
+					var gap_detected = not gap_check.is_colliding()
+					
+					if wall_detected or gap_detected:
+						print(wall_detected)
+						print(gap_detected)
+						print("Musuh Lompats!")
+						velocity.y = jump_force
 			# Diam
 			else:
 				velocity.x = move_toward(velocity.x, 0, move_speed)
@@ -103,7 +131,7 @@ func start_attack() -> void:
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage") and body != self:
 		# Skeleton memberi damage 1 (atau ubah sesuai keinginan)
-		body.take_damage(1, self) 
+		body.take_damage(0.25, self) 
 
 # --- LOGIKA TERKENA DAMAGE ---
 func take_damage(amount: int, source: Node2D = null) -> void:
