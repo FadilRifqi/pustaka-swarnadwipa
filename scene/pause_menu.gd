@@ -103,11 +103,15 @@ func save_game() -> void:
 			
 			
 			if type != "":
+				var drop_id = "None"
+				if "drop_weapon_id" in enemy:
+					drop_id = enemy.drop_weapon_id
 				enemies_data.append({
 					"type": type,
 					"pos_x": enemy.global_position.x,
 					"pos_y": enemy.global_position.y,
-					"health": enemy.health
+					"health": enemy.health,
+					"drop_weapon_id": drop_id
 				})
 
 	# --- 3. DATA BGM (BARU) ---
@@ -127,6 +131,7 @@ func save_game() -> void:
 			"pos_x": player.global_position.x,
 			"pos_y": player.global_position.y,
 			"health": player.health,
+			"stamina": player.current_stamina,
 			"weapon": player.weapon,
 			"cam_zoom_x": cam_zoom_x,
 			"cam_zoom_y": cam_zoom_y,
@@ -165,6 +170,7 @@ func load_game() -> void:
 		player.global_position = Vector2(p_data["pos_x"], p_data["pos_y"])
 		player.health = int(p_data["health"])
 		player.weapon = p_data.get("weapon", "pedang")
+		player.current_stamina =  int(p_data["stamina"])
 		player.money = int(p_data.get("money", 0))
 		player.update_money_ui()
 		
@@ -194,6 +200,9 @@ func load_game() -> void:
 				new_enemy.position = Vector2(e_data["pos_x"], e_data["pos_y"])
 				level_node.add_child(new_enemy)
 				new_enemy.health = int(e_data["health"])
+				
+				if e_data.has("drop_weapon_id") and "drop_weapon_id" in new_enemy:
+					new_enemy.drop_weapon_id = e_data["drop_weapon_id"]
 
 	# --- C. LOAD BGM (BARU) ---
 	if data.has("bgm_time"):

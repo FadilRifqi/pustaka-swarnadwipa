@@ -657,6 +657,7 @@ border_blend = true
 bg_color = Color(0.501961, 0, 0, 1)
 
 [node name="BeguGanjang" type="CharacterBody2D"]
+z_index = 1
 script = ExtResource("1_8st7g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

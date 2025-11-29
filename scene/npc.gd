@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 # Pastikan kamu sudah membuat Area2D di scene tree seperti instruksi di atas
 @onready var interaction_area: Area2D = $InteractionArea
-@onready var prompt_label: Label = $Label # Opsional: Label petunjuk tombol
+@onready var margin_container: MarginContainer = $MarginContainer
 
 var position_text : Vector2
 
@@ -28,8 +28,8 @@ func _ready() -> void:
 	animated_sprite_2d.play("default")
 	
 	# Sembunyikan label "Tekan E" di awal
-	if prompt_label:
-		prompt_label.visible = false
+	if margin_container:
+		margin_container.visible = false
 	
 	# Hubungkan sinyal Area2D secara manual lewat kode (atau bisa lewat editor)
 	# Pastikan node InteractionArea sudah dibuat di scene!
@@ -55,7 +55,7 @@ func _input(event: InputEvent) -> void:
 
 # --- FUNGSI DIALOG ---
 func start_dialog() -> void:
-	prompt_label.visible = false
+	margin_container.visible = false
 	position_text = global_position
 	position_text.x += 30
 	position_text.y -= 60
@@ -66,11 +66,11 @@ func _on_interaction_area_body_entered(body: Node2D) -> void:
 	# Cek apakah yang masuk adalah Player (bukan musuh/tanah)
 	if body is Player: # Pastikan script player kamu class_name-nya 'Player'
 		player_in_range = true
-		if prompt_label:
-			prompt_label.visible = true # Munculkan tulisan "Tekan E"
+		if margin_container:
+			margin_container.visible = true # Munculkan tulisan "Tekan E"
 
 func _on_interaction_area_body_exited(body: Node2D) -> void:
 	if body is Player:
 		player_in_range = false
-		if prompt_label:
-			prompt_label.visible = false # Sembunyikan tulisan
+		if margin_container:
+			margin_container.visible = false # Sembunyikan tulisan

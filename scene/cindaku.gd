@@ -9,7 +9,7 @@ var health: int = max_health     # Nyawa Saat Ini
 @onready var wall_check: RayCast2D = $Detectors/WallCheck
 @export var jump_force = -500
 @export_enum("None", "rencong", "keris") var drop_weapon_id: String = "None"
-@export var chest_scene: PackedScene 
+@export var chest_scene: PackedScene = preload("res://scene/Chest.tscn")
 
 # Damage Values
 @export var damage_normal: float = 1.0
@@ -98,7 +98,6 @@ func _physics_process(delta: float) -> void:
 				if is_on_floor():
 					var wall = wall_check.is_colliding()
 					var gap = not gap_check.is_colliding() 
-					print(wall, gap)
 					
 					if wall or gap:
 						velocity.y = jump_force
@@ -251,6 +250,7 @@ func die() -> void:
 func spawn_chest() -> void:
 	# Cek apakah musuh ini disetting untuk menjatuhkan sesuatu
 	if drop_weapon_id != "None" and chest_scene:
+		print("ada")
 		
 		# Cek apakah player SUDAH PUNYA senjata itu?
 		# (Opsional: Kalau sudah punya, gak usah drop chest biar gak nyampah, 

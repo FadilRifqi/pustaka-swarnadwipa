@@ -22,7 +22,7 @@ var direction : Vector2 = Vector2.ZERO
 @export var move_speed : float = 300.0
 
 # Skill & Dash Settings
-@export var dash_speed: float = 900.0
+@export var dash_speed: float = 600.0
 @export var skill_dash_distance: float = 200.0 # JARAK GESER SKILL (200px)
 
 # Nodes
@@ -76,7 +76,7 @@ var damage_keris_skill: int = 4
 var is_dashing: bool = false
 var can_air_dash: bool = true
 var dash_dir_x: int = 1
-var dash_duration: float = 0.18
+var dash_duration: float = 0.08
 var dash_timer: float = 0.0
 var is_hurt: bool = false
 
@@ -148,9 +148,12 @@ func _process(delta: float) -> void:
 			cardinal_direction = Vector2.RIGHT if direction.x > 0 else Vector2.LEFT
 	
 	if Input.is_action_just_pressed("jump"):
-		if is_on_floor(): jump_buffer_timer = jump_buffer_time
-		elif not is_attacking and not is_using_skill and not is_dashing and can_air_dash: 
-			_start_air_dash()
+		if is_on_floor(): 
+			jump_buffer_timer = jump_buffer_time
+	
+	if Input.is_action_just_pressed("dash"):
+		if not is_attacking and not is_using_skill and not is_dashing:
+			start_dash()
 	
 	if Input.is_action_just_pressed("inventory"):
 		is_inventory_opened = not is_inventory_opened
@@ -167,6 +170,31 @@ func _process(delta: float) -> void:
 	UpdateWeapon()
 	UpdateAnimation()
 	_process_stamina(delta)
+
+func start_dash() -> void:
+	# 1. Cek Stamina
+	if current_stamina >= 3.0:
+		current_stamina -= 3.0
+		update_stamina_ui()
+		
+		# 2. Set Status Dash
+		is_dashing = true
+		can_air_dash = false # Opsional: Matikan air dash agar tidak spam di udara
+		dash_timer = dash_duration
+		
+		# 3. Tentukan Arah Dash (Sesuai input atau hadap)
+		if direction.x != 0:
+			dash_dir_x = direction.x 
+		else:
+			dash_dir_x = -1 if cardinal_direction == Vector2.LEFT else 1
+			
+		# 4. Reset Velocity Y (Agar tidak jatuh saat dash di udara)
+		velocity.y = 0.0
+		
+		UpdateAnimation()
+	else:
+		show_notification("Need Stamina!", 1.0)
+		print("Stamina tidak cukup untuk Dash!")
 
 # --- PHYSICS PROCESS ---
 func _physics_process(delta: float) -> void:
@@ -244,7 +272,7 @@ func SetState() -> bool:
 			is_attacking = true
 			attack_area.monitoring = true 
 		else:
-			print("Stamina habis!")
+			show_notification("Need Stamina!", 1.0)
 			return false
 	
 	# SKILL INPUT
@@ -384,20 +412,8 @@ func check_weapon_unlocks():
 func show_notification(text_content: String, duration: float = 3.0) -> void:
 	# Kita ubah teks tunggal menjadi Array[String] karena DialogManager butuh Array
 	var lines: Array[String] = [text_content]
-	
-	# Panggil DialogManager (Asumsi DialogManager adalah Autoload)
-	# Gunakan global_position agar dialog muncul di dekat kepala player
-	# Tambahkan sedikit offset Y (misal -100) agar tidak menutupi muka player
 	var dialog_pos = global_position + Vector2(0, -100)
-	
-	# Panggil fungsi start_dialog
-	# Pastikan nama fungsi di DialogManager kamu benar: start_dialog(pos, lines)
-	if DialogManager.has_method("start_dialog"):
-		DialogManager.start_dialog(dialog_pos, lines)
-	else:
-		print("Error: DialogManager tidak ditemukan atau tidak punya fungsi start_dialog!")
-		# Fallback ke bubble lama jika DialogManager belum siap (Opsional)
-		# _show_old_bubble(text_content, duration)
+	DialogManager.start_dialog(dialog_pos, lines, duration)
 
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage"):

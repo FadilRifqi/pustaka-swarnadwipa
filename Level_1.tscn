@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://tifin6apg3ri"]
+[gd_scene load_steps=25 format=3 uid="uid://tifin6apg3ri"]
 
 [ext_resource type="Script" uid="uid://kmdwa8mcf6j2" path="res://playground.gd" id="1_4s4xf"]
 [ext_resource type="PackedScene" uid="uid://c11o6et3g00y1" path="res://player.tscn" id="2_p7bnq"]
@@ -9,8 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://clh88mnka3jls" path="res://scene/pause_menu.tscn" id="11_3fa85"]
 [ext_resource type="PackedScene" uid="uid://h7jss4taxyai" path="res://scene/Cindaku.tscn" id="11_4s4xf"]
 [ext_resource type="Script" uid="uid://brhfjp3bv8rxv" path="res://attack_tutorial.gd" id="12_p7bnq"]
-[ext_resource type="PackedScene" uid="uid://b7tlcecmy4tg4" path="res://scene/Chest.tscn" id="12_yaehp"]
-[ext_resource type="Script" uid="uid://ie1vavjbcnpk" path="res://jump_tutorial.gd" id="13_6fba8"]
 [ext_resource type="PackedScene" uid="uid://bxlk0d4jqx6yn" path="res://Demon.tscn" id="13_ar1si"]
 [ext_resource type="PackedScene" uid="uid://b6dago6gbm4te" path="res://scene/ShopUi.tscn" id="13_yaehp"]
 [ext_resource type="PackedScene" uid="uid://8lno4buxs2h1" path="res://scene/Merchant.tscn" id="14_d1osm"]
@@ -36,9 +34,6 @@ size = Vector2(264, 604.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4s4xf"]
 size = Vector2(67.5, 143.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7bnq"]
-size = Vector2(162.75, 146)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ie7uf"]
 size = Vector2(189, 394)
@@ -7940,6 +7935,9 @@ texture_region_size = Vector2i(12, 12)
 tile_size = Vector2i(12, 16)
 sources/0 = SubResource("TileSetAtlasSource_fkbji")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gwx4l"]
+size = Vector2(20, 26.3333)
+
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_4s4xf")
 
@@ -7951,11 +7949,13 @@ shape = SubResource("RectangleShape2D_46faf")
 
 [node name="Player" parent="." instance=ExtResource("2_p7bnq")]
 z_index = 12
-position = Vector2(100, 252)
+position = Vector2(100, 253)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -7973,6 +7973,8 @@ position = Vector2(232.75, -1.875)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D32" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -7989,6 +7991,8 @@ position = Vector2(1454.75, -139.875)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D33" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8005,6 +8009,8 @@ position = Vector2(2215.75, -139.875)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D34" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8021,6 +8027,8 @@ position = Vector2(2283.75, -139.875)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D30" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8037,6 +8045,8 @@ position = Vector2(741.75, -138.875)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D31" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8053,6 +8063,8 @@ position = Vector2(97.75, -245.875)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D39" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8069,6 +8081,8 @@ position = Vector2(616.75, -1077.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D41" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8085,6 +8099,8 @@ position = Vector2(1310.75, -1077.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D42" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8101,6 +8117,8 @@ position = Vector2(2044.75, -824.875)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D43" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8117,6 +8135,8 @@ position = Vector2(2044.75, -1077.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D44" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8133,6 +8153,8 @@ position = Vector2(2791.75, -1083.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D45" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8149,6 +8171,8 @@ position = Vector2(2791.75, -1299.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D46" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8165,6 +8189,8 @@ position = Vector2(3524.75, -1083.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D47" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8181,6 +8207,8 @@ position = Vector2(3524.75, -1299.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D58" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8197,6 +8225,8 @@ position = Vector2(-54.25, -1668.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D59" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8213,6 +8243,8 @@ position = Vector2(-54.25, -1927.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D60" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8229,6 +8261,8 @@ position = Vector2(678.75, -1668.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D61" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8245,6 +8279,8 @@ position = Vector2(678.75, -1927.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D62" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8261,6 +8297,8 @@ position = Vector2(1277.75, -1947.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D63" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8277,6 +8315,8 @@ position = Vector2(2010.75, -1947.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D64" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8293,6 +8333,8 @@ position = Vector2(2542.75, -1951.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D65" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8309,6 +8351,8 @@ position = Vector2(3275.75, -1951.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D73" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8325,6 +8369,8 @@ position = Vector2(3060.75, -2435.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D74" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8341,6 +8387,8 @@ position = Vector2(3282.75, -2200.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D70" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8357,6 +8405,8 @@ position = Vector2(4244.75, -2306.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D75" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8373,6 +8423,8 @@ position = Vector2(3765.75, -2306.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D71" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8389,6 +8441,8 @@ position = Vector2(4776.75, -2305.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D72" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8405,6 +8459,8 @@ position = Vector2(5509.75, -2305.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D48" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8421,6 +8477,8 @@ position = Vector2(4292.75, -1331.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D49" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8437,6 +8495,8 @@ position = Vector2(4299.75, -1496.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D50" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8453,6 +8513,8 @@ position = Vector2(5025.75, -1331.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D51" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8469,6 +8531,8 @@ position = Vector2(5032.75, -1496.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8485,6 +8549,8 @@ position = Vector2(1335, 96)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D7" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8501,6 +8567,8 @@ position = Vector2(1819.75, 96.125)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8517,6 +8585,8 @@ position = Vector2(1105, 706)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8533,6 +8603,8 @@ position = Vector2(1838, 707)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D8" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8550,6 +8622,8 @@ position = Vector2(2222, 924)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D9" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8567,6 +8641,8 @@ position = Vector2(2849, 924)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D10" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8584,6 +8660,8 @@ position = Vector2(3582, 831)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D11" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8601,6 +8679,8 @@ position = Vector2(3669, 745)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D12" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8618,6 +8698,8 @@ position = Vector2(2558, 98)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D27" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8635,6 +8717,8 @@ position = Vector2(4048, -275)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D28" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8652,6 +8736,8 @@ position = Vector2(3282, -169)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D29" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8669,6 +8755,8 @@ position = Vector2(3140, -275)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D13" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8686,6 +8774,8 @@ position = Vector2(4407, 745)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D14" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8703,6 +8793,8 @@ position = Vector2(5155, 745)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D15" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8720,6 +8812,8 @@ position = Vector2(5439, 486)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D21" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8737,6 +8831,8 @@ position = Vector2(5355, 620)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D16" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8754,6 +8850,8 @@ position = Vector2(5545, 364)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D17" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8771,6 +8869,8 @@ position = Vector2(5649, 257)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D22" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8788,6 +8888,8 @@ position = Vector2(5951, -6)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D23" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8805,6 +8907,8 @@ position = Vector2(5951, -269)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D35" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8822,6 +8926,8 @@ position = Vector2(5951, -6)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D36" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8839,6 +8945,8 @@ position = Vector2(5951, -269)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D24" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8856,6 +8964,8 @@ position = Vector2(5667, -525)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D25" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8873,6 +8983,8 @@ position = Vector2(5345, -764)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D52" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8890,6 +9002,8 @@ position = Vector2(5345, -1082)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D53" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8907,6 +9021,8 @@ position = Vector2(5345, -971)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D18" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8924,6 +9040,8 @@ position = Vector2(3616, -160)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D20" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8941,6 +9059,8 @@ position = Vector2(4209, -159)
 shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D19" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(45, 4)
 collision_layer = 3
 collision_mask = 3
@@ -8962,6 +9082,8 @@ position = Vector2(9074, 647)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="tangga" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(3, 15)
 collision_layer = 3
 collision_mask = 3
@@ -8978,6 +9100,8 @@ shape = SubResource("RectangleShape2D_6fba8")
 debug_color = Color(0, 0, 0, 0.419608)
 
 [node name="tangga2" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 position = Vector2(5, 14)
 collision_layer = 3
 collision_mask = 3
@@ -8994,6 +9118,8 @@ shape = SubResource("RectangleShape2D_6fba8")
 debug_color = Color(0, 0, 0, 0.419608)
 
 [node name="tangga4" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 collision_layer = 3
 collision_mask = 3
 
@@ -9009,6 +9135,8 @@ shape = SubResource("RectangleShape2D_6fba8")
 debug_color = Color(0, 0, 0, 0.419608)
 
 [node name="tangga5" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 collision_layer = 3
 collision_mask = 3
 
@@ -9024,6 +9152,8 @@ shape = SubResource("RectangleShape2D_6fba8")
 debug_color = Color(0, 0, 0, 0.419608)
 
 [node name="tangga3" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 collision_layer = 3
 collision_mask = 3
 
@@ -9039,6 +9169,8 @@ shape = SubResource("RectangleShape2D_6fba8")
 debug_color = Color(0, 0, 0, 0.419608)
 
 [node name="mini tangga" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 collision_layer = 3
 collision_mask = 3
 
@@ -9053,6 +9185,8 @@ position = Vector2(74, -386.5)
 shape = SubResource("RectangleShape2D_yaehp")
 
 [node name="mini tangga2" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 collision_layer = 3
 collision_mask = 3
 
@@ -9067,6 +9201,8 @@ position = Vector2(252.5, -590.5)
 shape = SubResource("RectangleShape2D_yaehp")
 
 [node name="mini tangga3" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 collision_layer = 3
 collision_mask = 3
 
@@ -9081,6 +9217,8 @@ position = Vector2(68, -762.5)
 shape = SubResource("RectangleShape2D_yaehp")
 
 [node name="mini tangga5" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 collision_layer = 3
 collision_mask = 3
 
@@ -9095,6 +9233,8 @@ position = Vector2(85, -1125.5)
 shape = SubResource("RectangleShape2D_yaehp")
 
 [node name="mini tangga4" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 collision_layer = 3
 collision_mask = 3
 
@@ -9109,6 +9249,8 @@ position = Vector2(246.5, -932.5)
 shape = SubResource("RectangleShape2D_yaehp")
 
 [node name="StaticBody2D40" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 collision_layer = 3
 collision_mask = 3
 
@@ -9124,6 +9266,8 @@ position = Vector2(408, -891.75)
 shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="StaticBody2D76" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 collision_layer = 3
 collision_mask = 3
 
@@ -9139,6 +9283,8 @@ position = Vector2(9, 743)
 shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="StaticBody2D66" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 collision_layer = 3
 collision_mask = 3
 
@@ -9155,6 +9301,8 @@ position = Vector2(5588, -1766.75)
 shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="StaticBody2D67" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 collision_layer = 3
 collision_mask = 3
 
@@ -9171,6 +9319,8 @@ position = Vector2(5830, -1767.75)
 shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="StaticBody2D68" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 collision_layer = 3
 collision_mask = 3
 
@@ -9187,6 +9337,8 @@ position = Vector2(5588, -2357.75)
 shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="StaticBody2D69" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 collision_layer = 3
 collision_mask = 3
 
@@ -9203,6 +9355,8 @@ position = Vector2(5830, -2358.75)
 shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="StaticBody2D54" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 collision_layer = 3
 collision_mask = 3
 
@@ -9219,6 +9373,8 @@ position = Vector2(-97, -903.25)
 shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="StaticBody2D55" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 collision_layer = 3
 collision_mask = 3
 
@@ -9235,6 +9391,8 @@ position = Vector2(-97, -419.25)
 shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="StaticBody2D56" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 collision_layer = 3
 collision_mask = 3
 
@@ -9251,6 +9409,8 @@ position = Vector2(-95, -1939.25)
 shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="StaticBody2D57" type="StaticBody2D" parent="StaticBody2D"]
+light_mask = 1023
+visibility_layer = 3
 collision_layer = 3
 collision_mask = 3
 
@@ -9289,25 +9449,12 @@ position = Vector2(1576, 496)
 position = Vector2(1252, 476)
 
 [node name="AttackTutorial" type="Area2D" parent="."]
+position = Vector2(1048, 506)
 script = ExtResource("12_p7bnq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackTutorial"]
-position = Vector2(770, 402)
+position = Vector2(4, -3)
 shape = SubResource("RectangleShape2D_4s4xf")
-
-[node name="JumpTutorial" type="Area2D" parent="."]
-script = ExtResource("13_6fba8")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpTutorial"]
-position = Vector2(2238, 478)
-shape = SubResource("RectangleShape2D_p7bnq")
-
-[node name="JumpTutorial2" type="Area2D" parent="."]
-script = ExtResource("13_6fba8")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpTutorial2"]
-position = Vector2(5491, 67)
-shape = SubResource("RectangleShape2D_p7bnq")
 
 [node name="Demon" parent="." instance=ExtResource("13_ar1si")]
 position = Vector2(2566, 681)
@@ -9358,14 +9505,22 @@ tile_set = SubResource("TileSet_6eo5x")
 [node name="BeguGanjang" parent="." instance=ExtResource("10_2wi7h")]
 position = Vector2(656, -392)
 drop_weapon_id = "keris"
-chest_scene = ExtResource("12_yaehp")
 
 [node name="Cindaku" parent="." instance=ExtResource("11_4s4xf")]
 position = Vector2(4742, 526)
 drop_weapon_id = "rencong"
-chest_scene = ExtResource("12_yaehp")
 
 [node name="ShopUi" parent="." instance=ExtResource("13_yaehp")]
 
 [node name="Merchant" parent="." instance=ExtResource("14_d1osm")]
 position = Vector2(1905, 401)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(239, 537)
+scale = Vector2(3, 3)
+script = ExtResource("12_p7bnq")
+trigger_id = "jump_tutorial"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(43.3333, 3.33334)
+shape = SubResource("RectangleShape2D_gwx4l")

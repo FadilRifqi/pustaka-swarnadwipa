@@ -230,6 +230,7 @@ border_blend = true
 bg_color = Color(0.501961, 0, 0, 1)
 
 [node name="Demon" type="CharacterBody2D"]
+z_index = 1
 script = ExtResource("1_idgk3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

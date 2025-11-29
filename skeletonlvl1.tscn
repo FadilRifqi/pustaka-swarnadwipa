@@ -186,6 +186,7 @@ border_blend = true
 bg_color = Color(0.501961, 0, 0, 1)
 
 [node name="Skeleton" type="CharacterBody2D"]
+z_index = 1
 script = ExtResource("1_fa304")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

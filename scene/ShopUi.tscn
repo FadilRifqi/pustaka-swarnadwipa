@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6dago6gbm4te"]
+[gd_scene load_steps=3 format=3 uid="uid://b6dago6gbm4te"]
 
 [ext_resource type="Script" uid="uid://bu30pjhk7isjs" path="res://scene/shop_ui.gd" id="1_lec1b"]
+[ext_resource type="Texture2D" uid="uid://dvapknguhf10b" path="res://assets/ui/gold.png" id="2_hhhny"]
 
 [node name="ShopUi" type="CanvasLayer"]
 script = ExtResource("1_lec1b")
@@ -58,5 +59,19 @@ offset_top = 565.0
 offset_right = 628.0
 offset_bottom = 596.0
 text = "Close"
+
+[node name="Gold" type="Sprite2D" parent="."]
+position = Vector2(134, 87)
+scale = Vector2(2, 2)
+texture = ExtResource("2_hhhny")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 152.0
+offset_top = 74.0
+offset_right = 192.0
+offset_bottom = 97.0
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Panel/CloseBtn" to="." method="_on_close_btn_pressed"]

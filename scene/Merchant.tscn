@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://8lno4buxs2h1"]
+[gd_scene load_steps=6 format=3 uid="uid://8lno4buxs2h1"]
 
 [ext_resource type="Script" uid="uid://dndi1625uodfn" path="res://scene/merchant.gd" id="1_mghsg"]
 [ext_resource type="Texture2D" uid="uid://b28cw2x8tim1p" path="res://assets/Shop/shop.png" id="2_dens0"]
+[ext_resource type="Texture2D" uid="uid://cs8bjey3l1mtr" path="res://assets/ui/bubble-chat1.png" id="3_jjsgq"]
+[ext_resource type="FontFile" uid="uid://cjm7adbu2am7x" path="res://assets/font/TrajanPro-Regular.ttf" id="4_mquol"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jjsgq"]
 size = Vector2(116, 118)
 
 [node name="Merchant" type="Area2D"]
+z_index = -1
 script = ExtResource("1_mghsg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -18,6 +21,25 @@ shape = SubResource("RectangleShape2D_jjsgq")
 scale = Vector2(3, 3)
 texture = ExtResource("2_dens0")
 
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="MarginContainer" type="MarginContainer" parent="."]
+z_index = 2
+offset_left = -96.0
+offset_top = -29.0
+offset_right = 129.0
+offset_bottom = 11.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("3_jjsgq")
+region_rect = Rect2(5, 7, 22, 16)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_mquol")
+text = "Tekan E Untuk Membeli"
+horizontal_alignment = 1
+vertical_alignment = 1

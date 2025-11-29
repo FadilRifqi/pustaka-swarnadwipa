@@ -2,6 +2,8 @@ extends CanvasLayer
 
 @onready var item_list_container: VBoxContainer = $Panel/ScrollContainer/ItemList
 @onready var player = get_tree().get_first_node_in_group("Player")
+@onready var gold: Sprite2D = $Gold
+@onready var label: Label = $Label
 
 # Data Barang Dagangan (ID, Nama, Harga, Icon)
 var shop_items = [
@@ -21,6 +23,7 @@ var shop_items = [
 
 func _ready() -> void:
 	visible = false # Sembunyi di awal
+	label.text = str(player.money)
 	_populate_shop()
 
 func _populate_shop() -> void:
@@ -42,7 +45,14 @@ func _populate_shop() -> void:
 
 func open_shop():
 	visible = true
+	update_money_display()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+func update_money_display() -> void:
+	if player:
+		label.text = str(player.money)
+	else:
+		label.text = str(0)
 
 func close_shop():
 	visible = false

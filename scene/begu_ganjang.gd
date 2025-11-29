@@ -8,8 +8,7 @@ var health: int = max_health
 @export var move_speed: float = 65.0 
 @export var gravity: float = 980.0
 @export_enum("None", "rencong", "keris") var drop_weapon_id: String = "None"
-@export var chest_scene: PackedScene 
-
+@export var chest_scene: PackedScene = preload("res://scene/Chest.tscn")
 # AI Settings
 @export var chase_distance: float = 800.0 
 @export var attack_range: float = 140.0   
@@ -64,7 +63,6 @@ func _physics_process(delta: float) -> void:
 		if player and not is_hurt and not is_attacking:
 			var distance = global_position.distance_to(player.global_position)
 			var direction_x = sign(player.global_position.x - global_position.x)
-			print(distance)
 			# A. SERANG
 			if distance <= attack_range:
 				velocity.x = 0

@@ -986,8 +986,8 @@ theme_override_font_sizes/font_size = 8
 vertical_alignment = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.412152, 0.412152, 0.412152, 1)
-self_modulate = Color(0.497474, 0.497474, 0.497474, 1)
+modulate = Color(0.843184, 0.843184, 0.843184, 1)
+self_modulate = Color(0.838897, 0.838897, 0.838897, 1)
 position = Vector2(-2, -3)
 sprite_frames = SubResource("SpriteFrames_rpay4")
 animation = &"keris_run"
@@ -995,10 +995,12 @@ autoplay = "keris_idle"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0.862804, 0.681687, 0.330747, 1)
-energy = 2.0
+range_item_cull_mask = 3
 shadow_enabled = true
+shadow_filter = 2
+shadow_item_cull_mask = 3
 texture = SubResource("GradientTexture2D_7ahtn")
-texture_scale = 4.6
+texture_scale = 2.22
 
 [node name="SkillArea" type="Area2D" parent="."]
 position = Vector2(-2, 0)

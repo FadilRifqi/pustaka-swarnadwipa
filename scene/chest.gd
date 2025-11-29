@@ -5,7 +5,8 @@ extends Area2D
 
 # Referensi Node
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var label: Label = $Label
+@onready var margin_container: MarginContainer = $MarginContainer
+
 @onready var raycast: RayCast2D = $RayCast2D # Node baru untuk deteksi tanah
 
 # Logika Jatuh
@@ -18,7 +19,7 @@ var player_ref: Player = null
 
 func _ready() -> void:
 	animated_sprite.play("idle")
-	label.visible = false
+	margin_container.visible = false
 	
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
@@ -48,7 +49,7 @@ func _input(event: InputEvent) -> void:
 func open_chest() -> void:
 	if is_opened: return
 	is_opened = true
-	label.visible = false
+	margin_container.visible = false
 	
 	# 1. Mainkan animasi buka
 	animated_sprite.play("opened")
@@ -87,10 +88,10 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		player_in_range = true
 		player_ref = body
-		if not is_opened: label.visible = true
+		if not is_opened: margin_container.visible = true
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is Player:
 		player_in_range = false
 		player_ref = null
-		label.visible = false
+		margin_container.visible = false
