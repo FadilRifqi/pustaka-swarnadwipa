@@ -2,8 +2,12 @@ class_name Cindaku
 extends CharacterBody2D
 
 # --- STATS BOSS ---
-@export var max_health: int = 15 # Nyawa Maksimal
+@export var max_health: int = 12 # Nyawa Maksimal
 var health: int = max_health     # Nyawa Saat Ini
+@onready var detectors: Node2D = $Detectors
+@onready var gap_check: RayCast2D = $Detectors/GapCheck
+@onready var wall_check: RayCast2D = $Detectors/WallCheck
+@export var jump_force = -500
 
 # Damage Values
 @export var damage_normal: float = 1.0
@@ -47,7 +51,7 @@ func _ready() -> void:
 	if health_bar:
 		health_bar.max_value = max_health # Beri tahu bar batas penuhnya
 		health_bar.value = health         # Isi penuh sekarang
-		health_bar.visible = true
+		health_bar.visible = false
 	else:
 		print("WARNING: ProgressBar tidak ditemukan di Scene Cindaku!")
 	
@@ -89,6 +93,13 @@ func _physics_process(delta: float) -> void:
 			elif distance <= chase_distance:
 				velocity.x = direction_x * move_speed
 				handle_flip(velocity.x)
+				if is_on_floor():
+					var wall = wall_check.is_colliding()
+					var gap = not gap_check.is_colliding() 
+					print(wall, gap)
+					
+					if wall or gap:
+						velocity.y = jump_force
 			else:
 				velocity.x = move_toward(velocity.x, 0, move_speed)
 	else:
@@ -104,9 +115,11 @@ func handle_flip(vel_x: float) -> void:
 		if is_left:
 			attack_area.scale.x = -1
 			skill_area.scale.x = -1
+			detectors.scale.x = -1 # Balik arah RayCast
 		else:
 			attack_area.scale.x = 1
 			skill_area.scale.x = 1
+			detectors.scale.x = 1
 
 # --- AI ATTACK DECISION ---
 func decide_attack() -> void:
@@ -169,6 +182,7 @@ func take_damage(amount: int, source: Node2D = null) -> void:
 	# 2. UPDATE UI BAR (INI YANG MEMBUAT BAR BERKURANG)
 	if health_bar:
 		health_bar.value = health
+		health_bar.visible = true 
 	
 	print("Cindaku HP: ", health)
 	
@@ -202,20 +216,45 @@ func take_damage(amount: int, source: Node2D = null) -> void:
 		hurt_tween.tween_callback(func(): is_hurt = false)
 
 func die() -> void:
+	if is_dead: return # Cegah mati 2x
+	
 	is_dead = true
+
+	if player and player.has_method("add_money"):
+		player.add_money(5)
+
+	# Matikan semua visual UI & Hitbox
 	if health_bar: health_bar.visible = false
 	attack_area.monitoring = false
 	skill_area.monitoring = false
+	
+	# Matikan Fisika
 	velocity = Vector2.ZERO
-	update_animation()
+	
+	# Stop Animasi (Agar diam di frame terakhir atau ganti ke idle)
+	animated_sprite.stop()
+	
+	# EFEK MATI (FADE OUT)
+	print("BOSS DEFEATED (Fading Out...)")
+	var tween = create_tween()
+	
+	# Ubah transparansi (alpha) dari 1 ke 0 dalam 2 detik
+	tween.tween_property(self, "modulate:a", 0.0, 2.0)
+	
+	# Hapus node setelah fade out selesai
+	await tween.finished
+	queue_free()
 
 # --- ANIMATION SYSTEM ---
 func update_animation() -> void:
+	# Jika mati, jangan update animasi lagi (biarkan freeze atau fade out)
+	if is_dead: return 
+	
 	var anim = "idle"
 	
-	if is_dead: 
-		anim = "die"
-	# HAPUS LOGIKA "elif is_hurt: anim = 'hurt'" karena tidak ada animasi hurt
+	# ... (Sisa logika animasi hurt/attack/walk tetap sama) ...
+	if is_hurt: 
+		pass # Tetap di animasi terakhir (efek warna merah saja)
 	elif is_attacking: 
 		if current_attack_type == "skill1": anim = "skill1"
 		elif current_attack_type == "skill2": anim = "skill2"
@@ -224,7 +263,6 @@ func update_animation() -> void:
 		anim = "walk"
 	
 	if animated_sprite.animation != anim:
-		# Cek apakah animasi ada di sprite frames
 		if animated_sprite.sprite_frames.has_animation(anim):
 			animated_sprite.play(anim)
 
@@ -235,9 +273,3 @@ func _on_animation_finished() -> void:
 		is_attacking = false
 		attack_area.monitoring = false
 		skill_area.monitoring = false
-		
-	elif anim == "die":
-		var tween = create_tween()
-		tween.tween_property(self, "modulate:a", 0.0, 2.0)
-		await tween.finished
-		queue_free()

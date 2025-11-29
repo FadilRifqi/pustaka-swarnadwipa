@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://8lno4buxs2h1"]
+
+[ext_resource type="Script" uid="uid://dndi1625uodfn" path="res://scene/merchant.gd" id="1_mghsg"]
+[ext_resource type="Texture2D" uid="uid://b28cw2x8tim1p" path="res://assets/Shop/shop.png" id="2_dens0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jjsgq"]
+size = Vector2(116, 118)
+
+[node name="Merchant" type="Area2D"]
+script = ExtResource("1_mghsg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_jjsgq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("2_dens0")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0

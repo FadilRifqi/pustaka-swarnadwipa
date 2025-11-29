@@ -1,4 +1,4 @@
-[gd_scene load_steps=133 format=3 uid="uid://c11o6et3g00y1"]
+[gd_scene load_steps=134 format=3 uid="uid://c11o6et3g00y1"]
 
 [ext_resource type="Script" uid="uid://bw2o1rbms3w0r" path="res://player.gd" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://dmi0v00cgg3u0" path="res://assets/ui/horizontal_type_1.png" id="4_bwjto"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://sjjv52g85p43" path="res://assets/Main Character/idle_pedang.png" id="9_urp6f"]
 [ext_resource type="Texture2D" uid="uid://xmvjpttxu57a" path="res://assets/Main Character/run_pedang.png" id="10_n7ghd"]
 [ext_resource type="Texture2D" uid="uid://ds35ffxmp54rq" path="res://assets/ui/inventory.png" id="12_7ahtn"]
+[ext_resource type="Texture2D" uid="uid://dvapknguhf10b" path="res://assets/ui/gold.png" id="12_dx0e4"]
 [ext_resource type="Texture2D" uid="uid://cw66at03a8odf" path="res://assets/Main Character/attack_keris.png" id="13_5tmop"]
 [ext_resource type="Script" uid="uid://cqrlffr62wck1" path="res://inventory_item_player.gd" id="13_7lmhl"]
 [ext_resource type="FontFile" uid="uid://cjm7adbu2am7x" path="res://assets/font/TrajanPro-Regular.ttf" id="13_606se"]
@@ -823,7 +824,7 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7lmhl"]
 size = Vector2(95, 20)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_hqtel")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -831,9 +832,9 @@ position = Vector2(-1, 0)
 shape = SubResource("CapsuleShape2D_bwjto")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -1)
+position = Vector2(1, -1)
 offset = Vector2(0, -100)
-limit_left = 0
+limit_left = -120
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 25.0
@@ -948,6 +949,20 @@ grow_vertical = 2
 theme_override_constants/h_separation = 42
 theme_override_constants/v_separation = 42
 columns = 4
+
+[node name="Gold" type="Sprite2D" parent="HealthLayer"]
+position = Vector2(419, 108)
+scale = Vector2(2, 2)
+texture = ExtResource("12_dx0e4")
+
+[node name="Label" type="Label" parent="HealthLayer"]
+offset_left = 437.0
+offset_top = 95.0
+offset_right = 477.0
+offset_bottom = 118.0
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AttackArea" type="Area2D" parent="."]
 

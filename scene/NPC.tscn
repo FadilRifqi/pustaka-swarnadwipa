@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://b2wrfo55b6dou"]
+
+[ext_resource type="Texture2D" uid="uid://7tymcfnsvntq" path="res://assets/NPC/villager_npc_spritesheet/npc01_spritesheet.png" id="1_hk2k2"]
+[ext_resource type="Script" uid="uid://btnm8d0vppdf" path="res://scene/npc.gd" id="1_ovfuw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ovfuw"]
+radius = 7.0
+height = 48.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iribn"]
+atlas = ExtResource("1_hk2k2")
+region = Rect2(120, 192, 30, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_em0ta"]
+atlas = ExtResource("1_hk2k2")
+region = Rect2(150, 192, 30, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3u26s"]
+atlas = ExtResource("1_hk2k2")
+region = Rect2(180, 192, 30, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgmww"]
+atlas = ExtResource("1_hk2k2")
+region = Rect2(210, 192, 30, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fecil"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iribn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_em0ta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3u26s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgmww")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ovfuw"]
+size = Vector2(61, 72)
+
+[node name="Npc" type="CharacterBody2D"]
+position = Vector2(-1, 0)
+collision_mask = 2
+script = ExtResource("1_ovfuw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -2)
+shape = SubResource("CapsuleShape2D_ovfuw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fecil")
+frame_progress = 0.9042
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("RectangleShape2D_ovfuw")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -67.0
+offset_top = -54.0
+offset_right = 122.0
+offset_bottom = -31.0
+text = "Tekan E untuk berbicara"

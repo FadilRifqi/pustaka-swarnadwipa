@@ -2,7 +2,7 @@ class_name Player extends CharacterBody2D
 
 # --- VARIABLES ---
 var heart_list : Array[AnimatedSprite2D] 
-
+var money: int = 0 # Uang (Gold)
 # Health Logic
 var health : float = 12.0
 var max_hp_per_heart : float = 4.0 
@@ -52,10 +52,12 @@ var is_using_skill : bool = false # Status Skill
 # Damage & Invincibility
 var is_invincible : bool = false
 var invincibility_duration : float = 1.0 
+@onready var gold: Sprite2D = $HealthLayer/Gold
+@onready var gold_label: Label = $HealthLayer/Label
 
 # Physics
-var gravity : float = 5000
-var jump_force : float = -1500
+var gravity : float = 980.0
+var jump_force : float = -500.0
 var is_jumping : bool = false
 var coyote_time: float = 0.12
 var jump_buffer_time: float = 0.12
@@ -84,6 +86,9 @@ func _ready() -> void:
 	var hearts_parent = $HealthLayer/HBoxContainer
 	scale = Vector2(character_scale, character_scale)
 	check_weapon_unlocks()
+	gold.visible = false
+	gold_label.visible = false
+	update_money_ui()
 	
 	if hearts_parent:
 		for child in hearts_parent.get_children():
@@ -129,6 +134,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
 		is_inventory_opened = not is_inventory_opened
 		inventory_item.visible = not inventory_item.visible
+		gold.visible = not gold.visible
+		gold_label.visible = not gold_label.visible
 		if inventory_item.visible: Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else: Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			
@@ -376,6 +383,7 @@ func _check_player_collision() -> void:
 		if collider is Kronco: take_damage(1)
 
 func take_damage(amount: float, source: Node2D = null) -> void:
+	print("is invisible", is_invincible)
 	if is_invincible: return
 	health -= amount
 	print(health)
@@ -419,3 +427,12 @@ func update_hearts():
 		var heart_anim = heart_list[i]
 		var heart_health = clamp(health - (i * max_hp_per_heart), 0, max_hp_per_heart)
 		heart_anim.frame = (max_hp_per_heart - heart_health) 
+		
+func update_money_ui() -> void:
+	if gold_label:
+		gold_label.text = str(money)
+
+func add_money(amount: int) -> void:
+	money += amount
+	print("Money Added: ", amount, " | Total: ", money)
+	update_money_ui()

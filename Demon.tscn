@@ -211,7 +211,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_olh8g"]
-radius = 15.0
+radius = 7.0
 height = 36.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u1gxt"]
@@ -242,6 +242,7 @@ animation = &"attack"
 shape = SubResource("CapsuleShape2D_olh8g")
 
 [node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(22, 0)
@@ -258,3 +259,13 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_eel2s")
 max_value = 5.0
 value = 5.0
 show_percentage = false
+
+[node name="Detectors" type="Node2D" parent="."]
+
+[node name="WallCheck" type="RayCast2D" parent="Detectors"]
+target_position = Vector2(20, 0)
+collision_mask = 2
+
+[node name="GapCheck" type="RayCast2D" parent="Detectors"]
+target_position = Vector2(11, 24)
+collision_mask = 2

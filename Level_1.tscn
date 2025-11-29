@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://tifin6apg3ri"]
+[gd_scene load_steps=26 format=3 uid="uid://tifin6apg3ri"]
 
 [ext_resource type="Script" uid="uid://kmdwa8mcf6j2" path="res://playground.gd" id="1_4s4xf"]
 [ext_resource type="PackedScene" uid="uid://c11o6et3g00y1" path="res://player.tscn" id="2_p7bnq"]
+[ext_resource type="PackedScene" uid="uid://b2wrfo55b6dou" path="res://scene/NPC.tscn" id="3_p7bnq"]
 [ext_resource type="PackedScene" uid="uid://bhn1o7drvjs7b" path="res://scene/BeguGanjang.tscn" id="10_2wi7h"]
 [ext_resource type="AudioStream" uid="uid://bjj8khe667kvl" path="res://assets/music/bgm.ogg" id="10_6eo5x"]
 [ext_resource type="PackedScene" uid="uid://b8i3dt45bkb22" path="res://skeletonlvl1.tscn" id="10_p7bnq"]
@@ -10,6 +11,8 @@
 [ext_resource type="Script" uid="uid://brhfjp3bv8rxv" path="res://attack_tutorial.gd" id="12_p7bnq"]
 [ext_resource type="Script" uid="uid://ie1vavjbcnpk" path="res://jump_tutorial.gd" id="13_6fba8"]
 [ext_resource type="PackedScene" uid="uid://bxlk0d4jqx6yn" path="res://Demon.tscn" id="13_ar1si"]
+[ext_resource type="PackedScene" uid="uid://b6dago6gbm4te" path="res://scene/ShopUi.tscn" id="13_yaehp"]
+[ext_resource type="PackedScene" uid="uid://8lno4buxs2h1" path="res://scene/Merchant.tscn" id="14_d1osm"]
 [ext_resource type="Texture2D" uid="uid://bg5kqt5ld1skk" path="res://assets/lvl1-bg/bg/Cave - RockCombinations1.png" id="18_gwx4l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_46faf"]
@@ -7942,7 +7945,7 @@ script = ExtResource("1_4s4xf")
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2(-11, 237.25)
+position = Vector2(-107, 240)
 shape = SubResource("RectangleShape2D_46faf")
 
 [node name="Player" parent="." instance=ExtResource("2_p7bnq")]
@@ -7952,22 +7955,26 @@ position = Vector2(100, 252)
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="StaticBody2D"]
-visible = false
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D2"]
-offset_left = -42.0
-offset_top = -148.0
-offset_right = 732.0
-offset_bottom = 119.0
+offset_left = -151.0
+offset_top = -136.0
+offset_right = 623.0
+offset_bottom = 131.0
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D2"]
-position = Vector2(341.75, -13.875)
+position = Vector2(232.75, -1.875)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D32" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D32"]
 offset_left = 1068.0
@@ -7982,6 +7989,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D33" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D33"]
 offset_left = 1829.0
@@ -7996,6 +8005,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D34" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D34"]
 offset_left = 1897.0
@@ -8010,20 +8021,24 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D30" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D30"]
-offset_left = 350.0
-offset_top = -273.0
-offset_right = 1124.0
-offset_bottom = -6.0
+offset_left = 355.0
+offset_top = -272.0
+offset_right = 1129.0
+offset_bottom = -5.0
 color = Color(0, 0, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D30"]
-position = Vector2(736.75, -139.875)
+position = Vector2(741.75, -138.875)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D31" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D31"]
 offset_left = -289.0
@@ -8038,6 +8053,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D39" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D39"]
 offset_left = 230.0
@@ -8052,6 +8069,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D41" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D41"]
 offset_left = 924.0
@@ -8066,6 +8085,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D42" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D42"]
 offset_left = 1658.0
@@ -8080,6 +8101,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D43" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D43"]
 offset_left = 1658.0
@@ -8094,6 +8117,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D44" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D44"]
 offset_left = 2405.0
@@ -8108,6 +8133,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D45" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D45"]
 offset_left = 2405.0
@@ -8122,6 +8149,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D46" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D46"]
 offset_left = 3138.0
@@ -8136,6 +8165,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D47" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D47"]
 offset_left = 3138.0
@@ -8150,6 +8181,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D58" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D58"]
 offset_left = -441.0
@@ -8164,6 +8197,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D59" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D59"]
 offset_left = -441.0
@@ -8178,6 +8213,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D60" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D60"]
 offset_left = 292.0
@@ -8192,6 +8229,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D61" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D61"]
 offset_left = 292.0
@@ -8206,6 +8245,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D62" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D62"]
 offset_left = 891.0
@@ -8220,6 +8261,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D63" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D63"]
 offset_left = 1624.0
@@ -8234,6 +8277,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D64" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D64"]
 offset_left = 2156.0
@@ -8248,6 +8293,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D65" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D65"]
 offset_left = 2889.0
@@ -8262,6 +8309,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D73" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D73"]
 offset_left = 2674.0
@@ -8276,6 +8325,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D74" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D74"]
 offset_left = 2896.0
@@ -8290,6 +8341,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D70" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D70"]
 offset_left = 3858.0
@@ -8304,6 +8357,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D75" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D75"]
 offset_left = 3379.0
@@ -8318,6 +8373,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D71" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D71"]
 offset_left = 4390.0
@@ -8332,6 +8389,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D72" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D72"]
 offset_left = 5123.0
@@ -8346,6 +8405,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D48" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D48"]
 offset_left = 3906.0
@@ -8360,6 +8421,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D49" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D49"]
 offset_left = 3913.0
@@ -8374,6 +8437,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D50" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D50"]
 offset_left = 4639.0
@@ -8388,6 +8453,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D51" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D51"]
 offset_left = 4646.0
@@ -8402,6 +8469,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D4"]
 offset_left = 953.0
@@ -8416,6 +8485,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D7" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D7"]
 offset_left = 1433.0
@@ -8430,6 +8501,8 @@ shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D5"]
 offset_left = 719.0
@@ -8444,6 +8517,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D6"]
 offset_left = 1452.0
@@ -8458,6 +8533,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D8" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D8"]
 offset_left = 1836.0
@@ -8473,6 +8550,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D9" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D9"]
 offset_left = 2463.0
@@ -8488,6 +8567,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D10" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D10"]
 offset_left = 3196.0
@@ -8503,6 +8584,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D11" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D11"]
 offset_left = 3283.0
@@ -8518,6 +8601,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D12" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D12"]
 offset_left = 2172.0
@@ -8533,6 +8618,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D27" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D27"]
 offset_left = 3662.0
@@ -8548,6 +8635,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D28" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D28"]
 offset_left = 2897.0
@@ -8563,6 +8652,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D29" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D29"]
 offset_left = 2754.0
@@ -8578,6 +8669,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D13" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D13"]
 offset_left = 4021.0
@@ -8593,6 +8686,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D14" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D14"]
 offset_left = 4769.0
@@ -8608,6 +8703,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D15" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D15"]
 offset_left = 5053.0
@@ -8623,6 +8720,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D21" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D21"]
 offset_left = 4969.0
@@ -8638,6 +8737,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D16" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D16"]
 offset_left = 5159.0
@@ -8653,6 +8754,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D17" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D17"]
 offset_left = 5263.0
@@ -8668,6 +8771,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D22" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D22"]
 offset_left = 5565.0
@@ -8683,6 +8788,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D23" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D23"]
 offset_left = 5565.0
@@ -8698,6 +8805,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D35" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D35"]
 offset_left = 5565.0
@@ -8713,6 +8822,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D36" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D36"]
 offset_left = 5565.0
@@ -8728,6 +8839,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D24" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D24"]
 offset_left = 5281.0
@@ -8743,6 +8856,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D25" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D25"]
 offset_left = 4959.0
@@ -8758,6 +8873,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D52" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D52"]
 offset_left = 4959.0
@@ -8773,6 +8890,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D53" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D53"]
 offset_left = 4959.0
@@ -8788,6 +8907,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D18" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D18"]
 offset_left = 3230.0
@@ -8803,6 +8924,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D20" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D20"]
 offset_left = 3823.0
@@ -8818,6 +8941,8 @@ shape = SubResource("RectangleShape2D_ar1si")
 
 [node name="StaticBody2D19" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(45, 4)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D19"]
 offset_left = 2667.0
@@ -8836,32 +8961,40 @@ position = Vector2(9074, 647)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="tangga" type="StaticBody2D" parent="StaticBody2D"]
+position = Vector2(3, 15)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/tangga"]
-offset_left = 4950.0
-offset_top = -13.0
-offset_right = 5129.0
-offset_bottom = 96.0
+offset_left = 4908.0
+offset_top = -10.0
+offset_right = 5087.0
+offset_bottom = 99.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/tangga"]
-position = Vector2(5040, 41)
+position = Vector2(4998, 44)
 shape = SubResource("RectangleShape2D_6fba8")
 debug_color = Color(0, 0, 0, 0.419608)
 
 [node name="tangga2" type="StaticBody2D" parent="StaticBody2D"]
+position = Vector2(5, 14)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/tangga2"]
-offset_left = 4799.0
+offset_left = 4733.0
 offset_top = -121.0
-offset_right = 4978.0
+offset_right = 4912.0
 offset_bottom = -12.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/tangga2"]
-position = Vector2(4889, -67)
+position = Vector2(4823, -67)
 shape = SubResource("RectangleShape2D_6fba8")
 debug_color = Color(0, 0, 0, 0.419608)
 
 [node name="tangga4" type="StaticBody2D" parent="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/tangga4"]
 offset_left = 2344.0
@@ -8875,6 +9008,8 @@ shape = SubResource("RectangleShape2D_6fba8")
 debug_color = Color(0, 0, 0, 0.419608)
 
 [node name="tangga5" type="StaticBody2D" parent="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/tangga5"]
 offset_left = 3844.0
@@ -8888,19 +9023,23 @@ shape = SubResource("RectangleShape2D_6fba8")
 debug_color = Color(0, 0, 0, 0.419608)
 
 [node name="tangga3" type="StaticBody2D" parent="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/tangga3"]
-offset_left = 4622.0
-offset_top = -191.0
-offset_right = 4801.0
-offset_bottom = -82.0
+offset_left = 4625.0
+offset_top = -213.0
+offset_right = 4804.0
+offset_bottom = -104.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/tangga3"]
-position = Vector2(4712, -137)
+position = Vector2(4715, -159)
 shape = SubResource("RectangleShape2D_6fba8")
 debug_color = Color(0, 0, 0, 0.419608)
 
 [node name="mini tangga" type="StaticBody2D" parent="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/mini tangga"]
 offset_left = 23.0
@@ -8913,6 +9052,8 @@ position = Vector2(74, -386.5)
 shape = SubResource("RectangleShape2D_yaehp")
 
 [node name="mini tangga2" type="StaticBody2D" parent="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/mini tangga2"]
 offset_left = 202.0
@@ -8925,6 +9066,8 @@ position = Vector2(252.5, -590.5)
 shape = SubResource("RectangleShape2D_yaehp")
 
 [node name="mini tangga3" type="StaticBody2D" parent="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/mini tangga3"]
 offset_left = 17.0
@@ -8937,6 +9080,8 @@ position = Vector2(68, -762.5)
 shape = SubResource("RectangleShape2D_yaehp")
 
 [node name="mini tangga5" type="StaticBody2D" parent="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/mini tangga5"]
 offset_left = 34.0
@@ -8949,6 +9094,8 @@ position = Vector2(85, -1125.5)
 shape = SubResource("RectangleShape2D_yaehp")
 
 [node name="mini tangga4" type="StaticBody2D" parent="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/mini tangga4"]
 offset_left = 196.0
@@ -8961,6 +9108,8 @@ position = Vector2(246.5, -932.5)
 shape = SubResource("RectangleShape2D_yaehp")
 
 [node name="StaticBody2D40" type="StaticBody2D" parent="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D40"]
 offset_left = 277.0
@@ -8974,6 +9123,8 @@ position = Vector2(408, -891.75)
 shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="StaticBody2D76" type="StaticBody2D" parent="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D76"]
 offset_left = -121.0
@@ -8987,6 +9138,8 @@ position = Vector2(9, 743)
 shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="StaticBody2D66" type="StaticBody2D" parent="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D66"]
 offset_left = 5457.0
@@ -9001,6 +9154,8 @@ position = Vector2(5588, -1766.75)
 shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="StaticBody2D67" type="StaticBody2D" parent="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D67"]
 offset_left = 5699.0
@@ -9015,6 +9170,8 @@ position = Vector2(5830, -1767.75)
 shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="StaticBody2D68" type="StaticBody2D" parent="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D68"]
 offset_left = 5457.0
@@ -9029,6 +9186,8 @@ position = Vector2(5588, -2357.75)
 shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="StaticBody2D69" type="StaticBody2D" parent="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D69"]
 offset_left = 5699.0
@@ -9043,6 +9202,8 @@ position = Vector2(5830, -2358.75)
 shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="StaticBody2D54" type="StaticBody2D" parent="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D54"]
 offset_left = -228.0
@@ -9057,6 +9218,8 @@ position = Vector2(-97, -903.25)
 shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="StaticBody2D55" type="StaticBody2D" parent="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D55"]
 offset_left = -228.0
@@ -9071,6 +9234,8 @@ position = Vector2(-97, -419.25)
 shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="StaticBody2D56" type="StaticBody2D" parent="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D56"]
 offset_left = -226.0
@@ -9085,6 +9250,8 @@ position = Vector2(-95, -1939.25)
 shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="StaticBody2D57" type="StaticBody2D" parent="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D57"]
 offset_left = -226.0
@@ -9097,6 +9264,9 @@ metadata/_edit_use_anchors_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D57"]
 position = Vector2(-95, -1455.25)
 shape = SubResource("RectangleShape2D_d1osm")
+
+[node name="Npc" parent="StaticBody2D" instance=ExtResource("3_p7bnq")]
+position = Vector2(-66, 404)
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 
@@ -9168,6 +9338,7 @@ offset_bottom = 970.0
 color = Color(0, 0, 0, 1)
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="."]
+position = Vector2(-24, 4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
 position = Vector2(2315.5, 911)
@@ -9188,3 +9359,8 @@ position = Vector2(656, -392)
 
 [node name="Cindaku" parent="." instance=ExtResource("11_4s4xf")]
 position = Vector2(4742, 526)
+
+[node name="ShopUi" parent="." instance=ExtResource("13_yaehp")]
+
+[node name="Merchant" parent="." instance=ExtResource("14_d1osm")]
+position = Vector2(1905, 401)

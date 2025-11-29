@@ -2,22 +2,30 @@ class_name BeguGanjang
 extends CharacterBody2D
 
 # --- STATS BOSS ---
-@export var max_health: int = 30
+@export var max_health: int = 20
 var health: int = max_health
-@export var damage_amount: int = 6 # Damage sakit
-@export var move_speed: float = 65.0 # Boss biasanya jalan pelan tapi mematikan
+@export var damage_amount: float = 1.5
+@export var move_speed: float = 65.0 
 @export var gravity: float = 980.0
 
 # AI Settings
-@export var chase_distance: float = 800.0 # Jarak pandang lebih jauh
-@export var attack_range: float = 200.0   # Jangkauan pukul
-@export var boss_scale: float = 4.0      # Ukuran Boss (4x lipat)
+@export var chase_distance: float = 800.0 
+@export var attack_range: float = 140.0   
+@export var boss_scale: float = 4.0      
+
+# >>> TAMBAHAN: JUMP FORCE <<<
+@export var jump_force: float = -400.0 
 
 # Node References
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $AttackArea
 @onready var player: Player = $"../Player" 
 @onready var health_bar: ProgressBar = $HealthBar
+
+# >>> TAMBAHAN: DETECTORS <<<
+@onready var detectors: Node2D = $Detectors
+@onready var wall_check: RayCast2D = $Detectors/WallCheck
+@onready var gap_check: RayCast2D = $Detectors/GapCheck
 
 # States
 var is_dead: bool = false
@@ -27,45 +35,40 @@ var is_hurt: bool = false
 func _ready() -> void:
 	health = max_health
 	add_to_group("enemies")
-	
-	# Set Ukuran Boss
 	scale = Vector2(boss_scale, boss_scale)
 	
-	# Setup Health Bar
 	if health_bar:
 		health_bar.max_value = max_health
 		health_bar.value = health
-		health_bar.visible = true # Boss bar selalu terlihat (opsional)
+		health_bar.visible = false 
 	
-	# Setup Hitbox (Mati di awal)
 	attack_area.monitoring = false
 	if not attack_area.body_entered.is_connected(_on_attack_area_body_entered):
 		attack_area.body_entered.connect(_on_attack_area_body_entered)
 
-	# Setup Signal Animasi
 	if not animated_sprite.animation_finished.is_connected(_on_animation_finished):
 		animated_sprite.animation_finished.connect(_on_animation_finished)
 	
-	# Setup Signal Frame (Untuk timing serangan)
 	if not animated_sprite.frame_changed.is_connected(_on_frame_changed):
 		animated_sprite.frame_changed.connect(_on_frame_changed)
 
 func _physics_process(delta: float) -> void:
-	# Gravitasi
+	# 1. Gravitasi
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
+	# 2. Logika A I
 	if not is_dead:
 		if player and not is_hurt and not is_attacking:
 			var distance = global_position.distance_to(player.global_position)
 			var direction_x = sign(player.global_position.x - global_position.x)
-			
-			# A. SERANG (Jarak Dekat)
+			print(distance)
+			# A. SERANG
 			if distance <= attack_range:
 				velocity.x = 0
 				start_attack()
 				
-			# B. KEJAR (Jarak Jauh)
+			# B. KEJAR
 			elif distance <= chase_distance:
 				velocity.x = direction_x * move_speed
 				
@@ -74,16 +77,31 @@ func _physics_process(delta: float) -> void:
 					var is_moving_left = velocity.x < 0
 					animated_sprite.flip_h = is_moving_left
 					
-					# Flip Hitbox
-					if is_moving_left: attack_area.scale.x = -1
-					else: attack_area.scale.x = 1
+					# Flip Hitbox & Detectors
+					if is_moving_left:
+						attack_area.scale.x = -1
+						detectors.scale.x = -1 # Balik arah detektor
+					else:
+						attack_area.scale.x = 1
+						detectors.scale.x = 1
+				
+				# >>> LOGIKA LOMPAT <<<
+				if is_on_floor():
+					var wall_detected = wall_check.is_colliding() if wall_check else false
+					var gap_detected = not gap_check.is_colliding() if gap_check else false
+					
+					# Jika ada tembok atau ada jurang, LOMPAT
+					if wall_detected or gap_detected:
+						velocity.y = jump_force
 			
 			# C. DIAM
 			else:
 				velocity.x = move_toward(velocity.x, 0, move_speed)
 		
-		# Stop gerak jika sedang sibuk
-		if is_attacking or is_hurt:
+		# Stop gerak
+		if is_attacking:
+			velocity.x = 0
+		elif is_hurt:
 			velocity.x = 0
 	else:
 		velocity.x = 0
@@ -91,75 +109,64 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	update_animation()
 
-# --- SYSTEM SERANGAN (TIMING FRAME) ---
+# ... (Sisa fungsi start_attack, damage, die, animation TETAP SAMA) ...
+# (Tidak ada perubahan di bawah sini, copy-paste dari kodemu sebelumnya)
+
 func start_attack() -> void:
-	print(is_attacking)
 	if is_attacking: return
 	is_attacking = true
-	# Hitbox jangan nyala dulu, tunggu frame pukulan
 	attack_area.monitoring = false 
 
 func _on_frame_changed() -> void:
 	if animated_sprite.animation == "attack":
-		# PENTING: Ganti angka '3' ini sesuai frame di mana tangan boss memukul tanah/player
-		if animated_sprite.frame == 8: 
+		if animated_sprite.frame >= 8 and animated_sprite.frame <= 11: 
 			attack_area.monitoring = true
-			# print("BeguGanjang Hantam!")
+		else:
+			attack_area.monitoring = false
+			
 
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage") and body != self:
 		if body is Player:
-			# Kirim damage 6 dan 'self' agar player terpental menjauh dari boss
 			body.take_damage(damage_amount, self)
-			
-			# Matikan hitbox segera agar tidak double hit dalam 1 animasi
 			attack_area.call_deferred("set_monitoring", false)
 
-# --- SYSTEM DAMAGE & HEALTH ---
 func take_damage(amount: int, source: Node2D = null) -> void:
 	if is_dead: return
-	
 	health -= amount
+	if health_bar: health_bar.value = health
+	health_bar.visible = true
 	print("BeguGanjang HP: ", health)
-	
-	# Update UI
-	if health_bar:
-		health_bar.value = health
 	
 	if health <= 0:
 		die()
 	else:
-		# Boss effect: Tidak selalu stun (Hurt) setiap kali dipukul
-		# Agar boss tetap mengancam. Kita buat 50% chance stun atau tanpa stun.
 		is_hurt = true
 		is_attacking = false
 		attack_area.monitoring = false
 		
-		# Knockback Resistance (Boss cuma mundur dikit banget)
 		if source:
 			var knockback_dir = sign(global_position.x - source.global_position.x)
-			velocity.x = knockback_dir * 50 # Angka kecil biar berasa berat
+			velocity.x = knockback_dir * 50 
 		
-		# Efek visual merah
 		modulate = Color.RED
 		await get_tree().create_timer(0.2).timeout
 		modulate = Color.WHITE
+		await get_tree().create_timer(0.5).timeout
+		is_hurt = false
 
 func die() -> void:
 	if is_dead: return
 	is_dead = true
-	print("BOSS DEFEATED!")
-	
+	if player and player.has_method("add_money"):
+		player.add_money(8)
 	attack_area.monitoring = false
 	if health_bar: health_bar.visible = false
-	
 	velocity = Vector2.ZERO
 	update_animation()
 
-# --- ANIMASI ---
 func update_animation() -> void:
 	var anim_name = "idle"
-	
 	if is_dead: anim_name = "die"
 	elif is_hurt: anim_name = "hurt"
 	elif is_attacking: anim_name = "attack"
@@ -170,14 +177,14 @@ func update_animation() -> void:
 
 func _on_animation_finished() -> void:
 	var anim = animated_sprite.animation
-	
 	if anim == "attack":
 		is_attacking = false
+		is_hurt = false
 		attack_area.monitoring = false
 	elif anim == "hurt":
 		is_hurt = false
+		is_attacking = false
 	elif anim == "die":
-		# Boss mati pelan-pelan (Fade out)
 		var tween = create_tween()
 		tween.tween_property(self, "modulate:a", 0.0, 2.0)
 		await tween.finished

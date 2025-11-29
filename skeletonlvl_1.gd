@@ -5,7 +5,7 @@ class_name SkeletonLvl1 extends CharacterBody2D
 var health: int = max_health
 @export var move_speed: float = 80.0
 @export var gravity: float = 980.0
-@export var jump_force: float = -400.0 # Kekuatan lompat musuh
+@export var jump_force: float = -500.0 # Kekuatan lompat musuh
 @onready var detectors: Node2D = $Detectors
 @onready var wall_check: RayCast2D = $Detectors/WallCheck
 @onready var gap_check: RayCast2D = $Detectors/GapCheck
@@ -129,6 +129,7 @@ func start_attack() -> void:
 	attack_area.monitoring = false 
 
 func _on_attack_area_body_entered(body: Node2D) -> void:
+	print(body)
 	if body.has_method("take_damage") and body != self:
 		# Skeleton memberi damage 1 (atau ubah sesuai keinginan)
 		body.take_damage(0.25, self) 
@@ -160,6 +161,10 @@ func die() -> void:
 	if is_dead: return 
 	
 	is_dead = true
+	
+	if player and player.has_method("add_money"):
+		player.add_money(1)
+	
 	attack_area.monitoring = false
 	health_bar.visible = false
 	velocity = Vector2.ZERO

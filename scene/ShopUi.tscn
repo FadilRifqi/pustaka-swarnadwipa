@@ -1,0 +1,62 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6dago6gbm4te"]
+
+[ext_resource type="Script" uid="uid://bu30pjhk7isjs" path="res://scene/shop_ui.gd" id="1_lec1b"]
+
+[node name="ShopUi" type="CanvasLayer"]
+script = ExtResource("1_lec1b")
+
+[node name="Control" type="Control" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 109.0
+offset_top = 59.0
+offset_right = 109.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 556.25
+offset_top = 22.5
+offset_right = 596.25
+offset_bottom = 45.5
+text = "Shop"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -313.5
+offset_top = -232.5
+offset_right = 313.5
+offset_bottom = 232.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemList" type="VBoxContainer" parent="Panel/ScrollContainer"]
+layout_mode = 2
+
+[node name="CloseBtn" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 525.0
+offset_top = 565.0
+offset_right = 628.0
+offset_bottom = 596.0
+text = "Close"
+
+[connection signal="pressed" from="Panel/CloseBtn" to="." method="_on_close_btn_pressed"]

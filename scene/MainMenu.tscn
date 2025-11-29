@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://db16skm158cs2"]
+[gd_scene load_steps=13 format=3 uid="uid://db16skm158cs2"]
 
 [ext_resource type="Script" uid="uid://w8lh4sgv5fls" path="res://scene/MainMenu.gd" id="1_85i58"]
 [ext_resource type="Texture2D" uid="uid://d1quhceu2mi7l" path="res://assets/lvl1-bg/bg/bg.png" id="2_581fk"]
@@ -13,12 +13,6 @@
 [ext_resource type="Script" uid="uid://b8vtd3leqa3yc" path="res://scene/leaf_spawner.gd" id="12_f2och"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ee4am"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ee4am"]
-size = Vector2(1154, 121)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b5lh0"]
-size = Vector2(44, 449)
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_85i58")
@@ -169,24 +163,12 @@ texture = ExtResource("9_f2och")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(582, 581)
-shape = SubResource("RectangleShape2D_ee4am")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 329)
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(1177, 357)
-shape = SubResource("RectangleShape2D_b5lh0")
-
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2(-21, 353)
-shape = SubResource("RectangleShape2D_b5lh0")
 
 [node name="Skeleton" parent="." instance=ExtResource("9_581fk")]
 position = Vector2(29, 462)

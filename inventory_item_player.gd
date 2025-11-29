@@ -130,3 +130,19 @@ func load_save_data(saved_array: Array) -> void:
 			
 	# Update Tampilan Grid setelah data dimuat
 	update_inventory_ui()
+func add_item_by_id(item_id: String) -> bool:
+	# 1. Cari slot kosong (null)
+	var empty_slot_index = -1
+	for i in range(inventory_data.size()):
+		if inventory_data[i] == null:
+			empty_slot_index = i
+			break
+	
+	# 2. Jika ada slot kosong, isi dengan data dari database
+	if empty_slot_index != -1:
+		if all_items.has(item_id):
+			inventory_data[empty_slot_index] = all_items[item_id]
+			update_inventory_ui()
+			return true # Berhasil masuk
+	
+	return false # Gagal (Penuh)

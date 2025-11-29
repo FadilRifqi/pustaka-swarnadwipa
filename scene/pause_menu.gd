@@ -129,7 +129,8 @@ func save_game() -> void:
 			"health": player.health,
 			"weapon": player.weapon,
 			"cam_zoom_x": cam_zoom_x,
-			"cam_zoom_y": cam_zoom_y
+			"cam_zoom_y": cam_zoom_y,
+			"money": player.money
 		},
 		"enemies": enemies_data,
 		"bgm_time": bgm_time, # Simpan ke file
@@ -164,6 +165,8 @@ func load_game() -> void:
 		player.global_position = Vector2(p_data["pos_x"], p_data["pos_y"])
 		player.health = int(p_data["health"])
 		player.weapon = p_data.get("weapon", "pedang")
+		player.money = int(p_data.get("money", 0))
+		player.update_money_ui()
 		
 		player.update_hearts()
 		player.state = player.weapon + "_idle"
