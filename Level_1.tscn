@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://tifin6apg3ri"]
+[gd_scene load_steps=27 format=3 uid="uid://tifin6apg3ri"]
 
 [ext_resource type="Script" uid="uid://kmdwa8mcf6j2" path="res://playground.gd" id="1_4s4xf"]
 [ext_resource type="PackedScene" uid="uid://c11o6et3g00y1" path="res://player.tscn" id="2_p7bnq"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://clh88mnka3jls" path="res://scene/pause_menu.tscn" id="11_3fa85"]
 [ext_resource type="PackedScene" uid="uid://h7jss4taxyai" path="res://scene/Cindaku.tscn" id="11_4s4xf"]
 [ext_resource type="Script" uid="uid://brhfjp3bv8rxv" path="res://attack_tutorial.gd" id="12_p7bnq"]
+[ext_resource type="PackedScene" uid="uid://b7tlcecmy4tg4" path="res://scene/Chest.tscn" id="12_yaehp"]
 [ext_resource type="Script" uid="uid://ie1vavjbcnpk" path="res://jump_tutorial.gd" id="13_6fba8"]
 [ext_resource type="PackedScene" uid="uid://bxlk0d4jqx6yn" path="res://Demon.tscn" id="13_ar1si"]
 [ext_resource type="PackedScene" uid="uid://b6dago6gbm4te" path="res://scene/ShopUi.tscn" id="13_yaehp"]
@@ -9266,7 +9267,7 @@ position = Vector2(-95, -1455.25)
 shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="Npc" parent="StaticBody2D" instance=ExtResource("3_p7bnq")]
-position = Vector2(-66, 404)
+position = Vector2(-12, 405)
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 
@@ -9356,9 +9357,13 @@ tile_set = SubResource("TileSet_6eo5x")
 
 [node name="BeguGanjang" parent="." instance=ExtResource("10_2wi7h")]
 position = Vector2(656, -392)
+drop_weapon_id = "keris"
+chest_scene = ExtResource("12_yaehp")
 
 [node name="Cindaku" parent="." instance=ExtResource("11_4s4xf")]
 position = Vector2(4742, 526)
+drop_weapon_id = "rencong"
+chest_scene = ExtResource("12_yaehp")
 
 [node name="ShopUi" parent="." instance=ExtResource("13_yaehp")]
 

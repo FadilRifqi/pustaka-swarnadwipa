@@ -8,6 +8,8 @@ var health: int = max_health     # Nyawa Saat Ini
 @onready var gap_check: RayCast2D = $Detectors/GapCheck
 @onready var wall_check: RayCast2D = $Detectors/WallCheck
 @export var jump_force = -500
+@export_enum("None", "rencong", "keris") var drop_weapon_id: String = "None"
+@export var chest_scene: PackedScene 
 
 # Damage Values
 @export var damage_normal: float = 1.0
@@ -236,6 +238,7 @@ func die() -> void:
 	
 	# EFEK MATI (FADE OUT)
 	print("BOSS DEFEATED (Fading Out...)")
+	spawn_chest()
 	var tween = create_tween()
 	
 	# Ubah transparansi (alpha) dari 1 ke 0 dalam 2 detik
@@ -244,6 +247,28 @@ func die() -> void:
 	# Hapus node setelah fade out selesai
 	await tween.finished
 	queue_free()
+
+func spawn_chest() -> void:
+	# Cek apakah musuh ini disetting untuk menjatuhkan sesuatu
+	if drop_weapon_id != "None" and chest_scene:
+		
+		# Cek apakah player SUDAH PUNYA senjata itu?
+		# (Opsional: Kalau sudah punya, gak usah drop chest biar gak nyampah, 
+		# atau tetap drop tapi isinya gold sesuai logika Chest.gd)
+		if Global.unlocked_weapons[drop_weapon_id] == false:
+			
+			var chest_instance = chest_scene.instantiate()
+			
+			# Set posisi chest di tempat musuh mati
+			chest_instance.global_position = global_position
+			
+			# Isi data chest (Kunci utamanya)
+			chest_instance.weapon_reward = drop_weapon_id
+			
+			# Masukkan ke Level (bukan ke musuh, karena musuh bakal dihapus)
+			get_parent().call_deferred("add_child", chest_instance)
+			
+			print("Chest Dropped: ", drop_weapon_id)
 
 # --- ANIMATION SYSTEM ---
 func update_animation() -> void:

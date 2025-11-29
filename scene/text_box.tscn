@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://b11yjwyhmg32q"]
+
+[ext_resource type="Texture2D" uid="uid://cs8bjey3l1mtr" path="res://assets/ui/bubble-chat1.png" id="1_3n0le"]
+[ext_resource type="Script" uid="uid://lk0v4rkck0ie" path="res://scene/text_box.gd" id="1_drdq7"]
+[ext_resource type="FontFile" uid="uid://d3easpuo6ebkl" path="res://assets/TrajanPro-Regular.ttf" id="2_b7gos"]
+[ext_resource type="Texture2D" uid="uid://yhb5wdbhpkil" path="res://assets/ui/enter.png" id="4_2dq6x"]
+
+[node name="TextBox" type="MarginContainer"]
+script = ExtResource("1_drdq7")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_3n0le")
+region_rect = Rect2(5, 12, 22, 14)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_b7gos")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LetterDisplayTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="NextIndicator" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("4_2dq6x")
+stretch_mode = 2
+
+[connection signal="timeout" from="LetterDisplayTimer" to="." method="_on_letter_display_timer_timeout"]

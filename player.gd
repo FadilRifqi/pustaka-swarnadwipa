@@ -67,7 +67,11 @@ var apex_gravity_multiplier: float = 0.85
 var apex_threshold: float = 120.0
 var coyote_timer: float = 0.0
 var jump_buffer_timer: float = 0.0
-@export var skill_damage: int = 3 # Damage khusus Skill
+var damage_sword_basic: int = 1
+var damage_rencong_basic: int = 2
+var damage_rencong_skill: int = 3
+var damage_keris_basic: int = 3
+var damage_keris_skill: int = 4
 # Dash Logic
 var is_dashing: bool = false
 var can_air_dash: bool = true
@@ -114,17 +118,34 @@ func _ready() -> void:
 	update_stamina_ui()
 
 func _on_skill_area_body_entered(body: Node2D) -> void:
-	if body.has_method("take_damage") and body != self:
-		print("Skill Hit! Damage: ", skill_damage)
-		# Damage Skill (Misal 3)
-		if body is Demon: body.take_damage(skill_damage, self)
-		elif body is SkeletonLvl1: body.take_damage(skill_damage, self)
-		else: body.take_damage(skill_damage)
+	if body.has_method("take_damage"):
+		if body != self:
+			# 1. Tentukan Damage Skill Berdasarkan Senjata
+			var final_damage = 0
+			
+			if weapon == "rencong":
+				final_damage = damage_rencong_skill
+			elif weapon == "keris":
+				final_damage = damage_keris_skill
+			else:
+				# Sword tidak punya skill damage area
+				return 
+			
+			print("Skill Hit! Weapon: ", weapon, " | Damage: ", final_damage)
+
+			# 2. Kirim Damage
+			if body is Demon: body.take_damage(final_damage, self)
+			elif body is SkeletonLvl1: body.take_damage(final_damage, self)
+			elif body is Kronco: body.take_damage(final_damage, self)
+			elif body is Cindaku: body.take_damage(final_damage, self)
+			elif body is BeguGanjang: body.take_damage(final_damage, self)
+			else: body.take_damage(final_damage)
 
 func _process(delta: float) -> void:
 	direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-	if direction.x != 0:
-		cardinal_direction = Vector2.RIGHT if direction.x > 0 else Vector2.LEFT
+	if not is_attacking and not is_using_skill:
+		if direction.x != 0:
+			cardinal_direction = Vector2.RIGHT if direction.x > 0 else Vector2.LEFT
 	
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor(): jump_buffer_timer = jump_buffer_time
@@ -361,20 +382,46 @@ func check_weapon_unlocks():
 	locked_keris.visible = not Global.unlocked_weapons["keris"]
 
 func show_notification(text_content: String, duration: float = 3.0) -> void:
-	if label: label.text = text_content
-	tutorial_bubble.visible = true; tutorial_bubble.modulate.a = 0.0
-	if notification_tween: notification_tween.kill()
-	notification_tween = create_tween()
-	notification_tween.tween_property(tutorial_bubble, "modulate:a", 1.0, 0.5)
-	notification_tween.tween_interval(duration)
-	notification_tween.tween_property(tutorial_bubble, "modulate:a", 0.0, 0.5)
-	notification_tween.tween_callback(tutorial_bubble.hide)
+	# Kita ubah teks tunggal menjadi Array[String] karena DialogManager butuh Array
+	var lines: Array[String] = [text_content]
+	
+	# Panggil DialogManager (Asumsi DialogManager adalah Autoload)
+	# Gunakan global_position agar dialog muncul di dekat kepala player
+	# Tambahkan sedikit offset Y (misal -100) agar tidak menutupi muka player
+	var dialog_pos = global_position + Vector2(0, -100)
+	
+	# Panggil fungsi start_dialog
+	# Pastikan nama fungsi di DialogManager kamu benar: start_dialog(pos, lines)
+	if DialogManager.has_method("start_dialog"):
+		DialogManager.start_dialog(dialog_pos, lines)
+	else:
+		print("Error: DialogManager tidak ditemukan atau tidak punya fungsi start_dialog!")
+		# Fallback ke bubble lama jika DialogManager belum siap (Opsional)
+		# _show_old_bubble(text_content, duration)
 
 func _on_attack_area_body_entered(body: Node2D) -> void:
-	if body.has_method("take_damage") and body != self:
-		if body is Demon: body.take_damage(1, self)
-		elif body is SkeletonLvl1: body.take_damage(1, self)
-		else: body.take_damage(1)
+	if body.has_method("take_damage"):
+		if body != self:
+			# 1. Tentukan Damage Berdasarkan Senjata
+			var final_damage = 1 # Default (Sword)
+			
+			if weapon == "sword":
+				final_damage = damage_sword_basic
+			elif weapon == "rencong":
+				final_damage = damage_rencong_basic
+			elif weapon == "keris":
+				final_damage = damage_keris_basic
+			
+			print("Basic Attack! Weapon: ", weapon, " | Damage: ", final_damage)
+
+			# 2. Kirim Damage ke Musuh
+			# (Menggunakan 'self' agar musuh tahu arah knockback dari player)
+			if body is Demon: body.take_damage(final_damage, self)
+			elif body is SkeletonLvl1: body.take_damage(final_damage, self)
+			elif body is Kronco: body.take_damage(final_damage, self)
+			elif body is Cindaku: body.take_damage(final_damage, self)
+			elif body is BeguGanjang: body.take_damage(final_damage, self)
+			else: body.take_damage(final_damage) # Default untuk musuh lain
 
 func _check_player_collision() -> void:
 	for i in get_slide_collision_count():

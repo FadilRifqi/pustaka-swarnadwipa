@@ -1,0 +1,117 @@
+[gd_scene load_steps=15 format=3 uid="uid://b7tlcecmy4tg4"]
+
+[ext_resource type="Script" uid="uid://sfcxkelpd8ji" path="res://scene/chest.gd" id="1_lex4w"]
+[ext_resource type="Texture2D" uid="uid://043bbxenkwxt" path="res://assets/ui/Chests.png" id="1_qdwn3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lex4w"]
+atlas = ExtResource("1_qdwn3")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21adq"]
+atlas = ExtResource("1_qdwn3")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjytg"]
+atlas = ExtResource("1_qdwn3")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uuq2c"]
+atlas = ExtResource("1_qdwn3")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrc6b"]
+atlas = ExtResource("1_qdwn3")
+region = Rect2(192, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pcah"]
+atlas = ExtResource("1_qdwn3")
+region = Rect2(0, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ys3n"]
+atlas = ExtResource("1_qdwn3")
+region = Rect2(48, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1utkr"]
+atlas = ExtResource("1_qdwn3")
+region = Rect2(96, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dr7eh"]
+atlas = ExtResource("1_qdwn3")
+region = Rect2(144, 32, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1jg7"]
+atlas = ExtResource("1_qdwn3")
+region = Rect2(192, 32, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vj0eb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lex4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_21adq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjytg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uuq2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yrc6b")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pcah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ys3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1utkr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dr7eh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1jg7")
+}],
+"loop": false,
+"name": &"opened",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ngdc0"]
+
+[node name="Chest" type="Area2D"]
+script = ExtResource("1_lex4w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(10, -6)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_vj0eb")
+animation = &"opened"
+frame = 4
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_ngdc0")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -97.0
+offset_top = -41.0
+offset_right = 97.0
+offset_bottom = -18.0
+theme_override_font_sizes/font_size = 8
+text = "Tekan E Untuk Membuka"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 27)

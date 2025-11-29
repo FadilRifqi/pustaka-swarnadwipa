@@ -5,7 +5,20 @@ extends CharacterBody2D
 @onready var interaction_area: Area2D = $InteractionArea
 @onready var prompt_label: Label = $Label # Opsional: Label petunjuk tombol
 
+var position_text : Vector2
+
 var player_in_range: bool = false
+
+const lines: Array[String] = [
+	"Anak muda... Syukurlah kau datang.",
+	"Desa kami sedang dilanda musibah besar.",
+	"Dua benda pusaka leluhur kami telah dicuri oleh para monster jahat di luar sana.",
+	"Mereka mengambil Rencong Emas dan Keris Pusaka dari kuil penyimpanan.",
+	"Tanpa kedua pusaka itu, kami tidak punya kekuatan untuk melindungi diri.",
+	"Aku sudah terlalu tua untuk mengejar mereka...",
+	"Kumohon, pergilah ke menara itu, kalahkan monster-monster itu, dan rebut kembali pusaka kami!",
+	"Keselamatan desa ini ada di tanganmu."
+]
 
 func _ready() -> void:
 	# 1. Scale 2x
@@ -42,9 +55,11 @@ func _input(event: InputEvent) -> void:
 
 # --- FUNGSI DIALOG ---
 func start_dialog() -> void:
-	print("Dialog dimulai!") 
-	# Di sini kamu bisa memanggil UI Dialog kamu, contoh:
-	# DialogManager.show_text("Halo, selamat datang di desa kami!")
+	prompt_label.visible = false
+	position_text = global_position
+	position_text.x += 30
+	position_text.y -= 60
+	DialogManager.start_dialog(position_text, lines)
 
 # --- SINYAL DETEKSI PLAYER ---
 func _on_interaction_area_body_entered(body: Node2D) -> void:

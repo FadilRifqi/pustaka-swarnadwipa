@@ -16,18 +16,6 @@ var shop_items = [
 		"name": "Stamina Potion",
 		"price": 15,
 		"type": "consumable"
-	},
-	{
-		"id": "rencong",
-		"name": "Unlock Rencong",
-		"price": 50,
-		"type": "weapon"
-	},
-	{
-		"id": "keris",
-		"name": "Unlock Keris",
-		"price": 1,
-		"type": "weapon"
 	}
 ]
 

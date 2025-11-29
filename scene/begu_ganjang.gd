@@ -7,6 +7,8 @@ var health: int = max_health
 @export var damage_amount: float = 1.5
 @export var move_speed: float = 65.0 
 @export var gravity: float = 980.0
+@export_enum("None", "rencong", "keris") var drop_weapon_id: String = "None"
+@export var chest_scene: PackedScene 
 
 # AI Settings
 @export var chase_distance: float = 800.0 
@@ -163,7 +165,30 @@ func die() -> void:
 	attack_area.monitoring = false
 	if health_bar: health_bar.visible = false
 	velocity = Vector2.ZERO
+	spawn_chest()
 	update_animation()
+
+func spawn_chest() -> void:
+	# Cek apakah musuh ini disetting untuk menjatuhkan sesuatu
+	if drop_weapon_id != "None" and chest_scene:
+		
+		# Cek apakah player SUDAH PUNYA senjata itu?
+		# (Opsional: Kalau sudah punya, gak usah drop chest biar gak nyampah, 
+		# atau tetap drop tapi isinya gold sesuai logika Chest.gd)
+		if Global.unlocked_weapons[drop_weapon_id] == false:
+			
+			var chest_instance = chest_scene.instantiate()
+			
+			# Set posisi chest di tempat musuh mati
+			chest_instance.global_position = global_position
+			
+			# Isi data chest (Kunci utamanya)
+			chest_instance.weapon_reward = drop_weapon_id
+			
+			# Masukkan ke Level (bukan ke musuh, karena musuh bakal dihapus)
+			get_parent().call_deferred("add_child", chest_instance)
+			
+			print("Chest Dropped: ", drop_weapon_id)
 
 func update_animation() -> void:
 	var anim_name = "idle"

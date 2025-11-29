@@ -57,7 +57,7 @@ shape = SubResource("CapsuleShape2D_ovfuw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fecil")
-frame_progress = 0.9042
+frame_progress = 0.0457617
 
 [node name="InteractionArea" type="Area2D" parent="."]
 
@@ -65,8 +65,11 @@ frame_progress = 0.9042
 shape = SubResource("RectangleShape2D_ovfuw")
 
 [node name="Label" type="Label" parent="."]
-offset_left = -67.0
-offset_top = -54.0
-offset_right = 122.0
-offset_bottom = -31.0
+offset_left = -93.0
+offset_top = -49.0
+offset_right = 96.0
+offset_bottom = -26.0
+theme_override_font_sizes/font_size = 8
 text = "Tekan E untuk berbicara"
+horizontal_alignment = 1
+vertical_alignment = 1
