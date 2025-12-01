@@ -18,7 +18,8 @@ scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_jjsgq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(3, 3)
+position = Vector2(-81.5, 75.25)
+scale = Vector2(1.7265625, 1.7561984)
 texture = ExtResource("2_dens0")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
