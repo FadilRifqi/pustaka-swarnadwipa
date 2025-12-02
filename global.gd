@@ -6,6 +6,7 @@ var is_returning_from_settings: bool = false
 var visited_triggers: Array = []
 var tutorial_potion_shown: bool = false
 var tutorial_energy_shown: bool = false
+var master_volume : float = 1.0
 const KEYBIND_PATH = "user://keybinds.json"
 # DAFTAR AKSI YANG AKAN DISIMPAN KE JSON
 const INPUT_ACTIONS = [

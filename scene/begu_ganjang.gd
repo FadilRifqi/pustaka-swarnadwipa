@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 # --- STATS BOSS ---
 @export var max_health: int = 20
+var music_triggered: bool
 var health: int = max_health
 @export var damage_amount: float = 1.5
 @export var move_speed: float = 65.0 
@@ -61,7 +62,7 @@ func _physics_process(delta: float) -> void:
 	# 2. Logika A I
 	if not is_dead:
 		if player and not is_hurt and not is_attacking:
-			var distance = global_position.distance_to(player.global_position)
+			var distance = float(global_position.distance_to(player.global_position))
 			var direction_x = sign(player.global_position.x - global_position.x)
 			# A. SERANG
 			if distance <= attack_range:
@@ -70,8 +71,14 @@ func _physics_process(delta: float) -> void:
 				
 			# B. KEJAR
 			elif distance <= chase_distance:
+				print(distance)
+				print(chase_distance)
 				velocity.x = direction_x * move_speed
-				
+				if not music_triggered:
+					music_triggered = true
+					# Panggil fungsi di Playground (Parent)
+					if get_parent().has_method("switch_to_boss_music"):
+						get_parent().switch_to_boss_music()
 				# Flip Logic
 				if velocity.x != 0:
 					var is_moving_left = velocity.x < 0
@@ -96,6 +103,13 @@ func _physics_process(delta: float) -> void:
 			
 			# C. DIAM
 			else:
+				velocity.x = move_toward(velocity.x, 0, move_speed)
+				
+				# >>> PERBAIKAN DI SINI: MATIKAN MUSIK JIKA JAUH <<<
+				if music_triggered:
+					music_triggered = false
+					if get_parent().has_method("switch_to_level_music"):
+						get_parent().switch_to_level_music()
 				velocity.x = move_toward(velocity.x, 0, move_speed)
 		
 		# Stop gerak
@@ -158,6 +172,8 @@ func take_damage(amount: int, source: Node2D = null) -> void:
 func die() -> void:
 	if is_dead: return
 	is_dead = true
+	if get_parent().has_method("switch_to_level_music"):
+		get_parent().switch_to_level_music()
 	if player and player.has_method("add_money"):
 		player.add_money(8)
 	attack_area.monitoring = false

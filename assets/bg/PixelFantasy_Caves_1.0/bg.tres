@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://bcy78063y5aof"]
+
+[ext_resource type="Texture2D" uid="uid://dyrsg0mdm1168" path="res://assets/bg/PixelFantasy_Caves_1.0/background4a.png" id="1_qbjsm"]
+
+[resource]
+atlas = ExtResource("1_qbjsm")
+region = Rect2(0, 262, 960, 218)

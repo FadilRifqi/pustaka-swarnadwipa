@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 # --- STATS BOSS ---
 @export var max_health: int = 12 # Nyawa Maksimal
+var music_triggered: bool = false
 var health: int = max_health     # Nyawa Saat Ini
 @onready var detectors: Node2D = $Detectors
 @onready var gap_check: RayCast2D = $Detectors/GapCheck
@@ -93,6 +94,11 @@ func _physics_process(delta: float) -> void:
 				velocity.x = 0
 				decide_attack()
 			elif distance <= chase_distance:
+				if not music_triggered:
+					music_triggered = true
+					# Panggil fungsi di Playground (Parent)
+					if get_parent().has_method("switch_to_boss_music"):
+						get_parent().switch_to_boss_music()
 				velocity.x = direction_x * move_speed
 				handle_flip(velocity.x)
 				if is_on_floor():
@@ -102,6 +108,10 @@ func _physics_process(delta: float) -> void:
 					if wall or gap:
 						velocity.y = jump_force
 			else:
+				music_triggered = false
+				if music_triggered:
+					if get_parent().has_method("switch_to_level_music"):
+						get_parent().switch_to_level_music()
 				velocity.x = move_toward(velocity.x, 0, move_speed)
 	else:
 		velocity.x = 0
@@ -220,7 +230,9 @@ func die() -> void:
 	if is_dead: return # Cegah mati 2x
 	
 	is_dead = true
-
+	if get_parent().has_method("switch_to_level_music"):
+		get_parent().switch_to_level_music()
+	
 	if player and player.has_method("add_money"):
 		player.add_money(5)
 

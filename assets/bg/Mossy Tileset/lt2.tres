@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://b8aeawpgij6vy"]
+
+[ext_resource type="Texture2D" uid="uid://dj7koe8lwc3k8" path="res://assets/bg/Mossy Tileset/Mossy - FloatingPlatforms-export.png" id="1_43s1u"]
+
+[resource]
+atlas = ExtResource("1_43s1u")
+region = Rect2(9.14417, 386.419, 493.78, 64.0287)

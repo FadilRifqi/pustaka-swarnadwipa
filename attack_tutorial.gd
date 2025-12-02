@@ -8,7 +8,7 @@ const TUTORIAL_LIBRARY = {
 	"jump_tutorial": "Jalan buntu? Tekan {jump} untuk Melompat.",
 	"inventory_tutorial": "Darah sekarat? Tekan {inventory} untuk buka Tas.",
 	"skill_tutorial": "Tekan {skill} untuk menggunakan Jurus (Butuh Stamina).",
-	"dash_tutorial": "Tekan {run} saat di udara untuk Dash.",
+	"dash_tutorial": "Tekan {dash} untuk Dash.",
 	"interact_tutorial": "Tekan {interact} untuk bicara atau membuka peti."
 }
 
@@ -56,7 +56,7 @@ func parse_message(raw_text: String) -> String:
 	
 	var actions_to_check = [
 		"left", "right", "up", "down", 
-		"jump", "run", "basic_hit", 
+		"jump", "run", "basic_hit",  "dash",
 		"skill", "inventory", "use_item", "interact",
 		"slot_1", "slot_2", "slot_3"
 	]

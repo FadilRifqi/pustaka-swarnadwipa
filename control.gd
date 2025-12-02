@@ -17,6 +17,9 @@ extends Control
 
 }
 
+@onready var volume_slider: HSlider = $"Panel/VBoxContainer/Volume Slider"
+
+
 # --- VARIABEL LOGIKA ---
 var action_to_remap: String = ""
 var is_remapping: bool = false
@@ -28,7 +31,7 @@ func _ready() -> void:
 		var btn = buttons[action]
 		if btn:
 			update_button_text(action, btn)
-
+	volume_slider.value = Global.master_volume
 # --- FUNGSI UPDATE TAMPILAN ---
 func update_button_text(action_name: String, btn_node: Button) -> void:
 	var events = InputMap.action_get_events(action_name)
@@ -76,8 +79,6 @@ func _input(event: InputEvent) -> void:
 			# Stop input agar tidak nembus
 			get_viewport().set_input_as_handled()
 
-# --- SINYAL TOMBOL (Connect satu per satu di Editor) ---
-
 func _on_btn_left_pressed() -> void:
 	start_remapping("left", buttons["left"])
 
@@ -120,3 +121,6 @@ func _on_back_pressed() -> void:
 		get_tree().change_scene_to_file(Global.previous_scene)
 	else:
 		get_tree().change_scene_to_file("res://scene/MainMenu.tscn")
+
+func _on_volume_slider_value_changed(value: float) -> void:
+	Global.master_volume = value

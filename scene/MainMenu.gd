@@ -2,10 +2,12 @@ extends Node2D
 
 # Path ke file save (Sama seperti di PauseMenu)
 const SAVE_PATH = "user://savegame.json"
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 func _ready():
 	# Pastikan kursor terlihat saat di menu
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	audio_stream_player.play(12)
 
 func _on_new_game_pressed() -> void:
 	# Pastikan flag load mati, agar game mulai dari awal (posisi default)

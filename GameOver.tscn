@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cfjnfjxkpcr7m"]
 
 [ext_resource type="Script" uid="uid://cyao2ola8vlo6" path="res://game_over.gd" id="1_40baj"]
-[ext_resource type="Texture2D" uid="uid://djael8fs1ek2g" path="res://assets/ui/pngtree-pixelate-game-over-word-text-effect-png-image_5982580-removebg-preview.png" id="2_jywu3"]
+[ext_resource type="FontFile" uid="uid://5diclu47gk1p" path="res://assets/game-over.ttf" id="2_jywu3"]
 [ext_resource type="FontFile" uid="uid://d3easpuo6ebkl" path="res://assets/TrajanPro-Regular.ttf" id="3_3y56u"]
 [ext_resource type="Script" uid="uid://rgsk8dsmect7" path="res://scene/button.gd" id="4_ua7od"]
 [ext_resource type="Texture2D" uid="uid://duquwbej1akbs" path="res://assets/samping.png" id="5_3fonj"]
@@ -102,8 +102,7 @@ script = ExtResource("1_40baj")
 [node name="TopBar" type="ColorRect" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = -204.12
-offset_bottom = 119.88
+offset_bottom = 324.0
 grow_horizontal = 2
 color = Color(0, 0, 0, 1)
 
@@ -112,8 +111,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -119.88
-offset_bottom = 204.12
+offset_top = -324.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0, 0, 0, 1)
@@ -133,16 +131,6 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="MenuContainer"]
-layout_mode = 2
-offset_left = -26.0
-offset_top = 4.0
-offset_right = 70.0
-offset_bottom = 4.0
-texture = ExtResource("2_jywu3")
-expand_mode = 1
-stretch_mode = 3
-
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuContainer"]
 layout_mode = 1
 anchors_preset = 8
@@ -150,12 +138,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = 89.0
-offset_right = 48.0
-offset_bottom = 182.0
+offset_left = -176.0
+offset_top = -122.5
+offset_right = 176.0
+offset_bottom = 122.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Label" type="Label" parent="MenuContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jywu3")
+theme_override_font_sizes/font_size = 64
+text = "GAME
+OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Restart" type="Button" parent="MenuContainer/VBoxContainer"]
 layout_mode = 2
@@ -168,12 +165,12 @@ flat = true
 script = ExtResource("4_ua7od")
 
 [node name="Sprite2D" type="Sprite2D" parent="MenuContainer/VBoxContainer/Restart"]
-position = Vector2(12.5, 21)
+position = Vector2(86, 19.5)
 scale = Vector2(0.11859, 0.119145)
 texture = ExtResource("5_3fonj")
 
 [node name="Sprite2D2" type="Sprite2D" parent="MenuContainer/VBoxContainer/Restart"]
-position = Vector2(195.5, 18)
+position = Vector2(269, 14.5)
 rotation = 3.14159
 scale = Vector2(0.11859, 0.119145)
 texture = ExtResource("5_3fonj")
@@ -189,12 +186,12 @@ flat = true
 script = ExtResource("4_ua7od")
 
 [node name="Sprite2D" type="Sprite2D" parent="MenuContainer/VBoxContainer/MainMenu"]
-position = Vector2(-17.5, 20)
+position = Vector2(52, 17.5)
 scale = Vector2(0.11859, 0.119145)
 texture = ExtResource("5_3fonj")
 
 [node name="Sprite2D2" type="Sprite2D" parent="MenuContainer/VBoxContainer/MainMenu"]
-position = Vector2(231.5, 19)
+position = Vector2(302, 15.5)
 rotation = 3.14159
 scale = Vector2(0.11859, 0.119145)
 texture = ExtResource("5_3fonj")
