@@ -1,17 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://db16skm158cs2"]
+[gd_scene load_steps=12 format=3 uid="uid://db16skm158cs2"]
 
 [ext_resource type="Script" uid="uid://w8lh4sgv5fls" path="res://scene/MainMenu.gd" id="1_85i58"]
-[ext_resource type="Texture2D" uid="uid://d1quhceu2mi7l" path="res://assets/lvl1-bg/bg/bg.png" id="2_581fk"]
-[ext_resource type="Texture2D" uid="uid://68fbpradrnng" path="res://assets/lvl1-bg/bg/Background_0.png" id="3_ee4am"]
 [ext_resource type="FontFile" uid="uid://d3easpuo6ebkl" path="res://assets/TrajanPro-Regular.ttf" id="4_581fk"]
 [ext_resource type="FontFile" uid="uid://c1v035gxx5dwl" path="res://assets/TrajanPro-Bold.otf" id="6_ee4am"]
 [ext_resource type="Script" uid="uid://rgsk8dsmect7" path="res://scene/button.gd" id="8_ee4am"]
-[ext_resource type="PackedScene" uid="uid://cknie8q5idtlq" path="res://skeleton.tscn" id="9_581fk"]
 [ext_resource type="Texture2D" uid="uid://duquwbej1akbs" path="res://assets/samping.png" id="9_f2och"]
 [ext_resource type="PackedScene" uid="uid://cpnkumnlhlm1b" path="res://leaf.tscn" id="10_581fk"]
-[ext_resource type="Script" uid="uid://drrci3532asp3" path="res://scene/skeleton.gd" id="10_ee4am"]
 [ext_resource type="AudioStream" uid="uid://iukp511pdrbf" path="res://assets/music/MainMenu.ogg" id="12_ca4gs"]
 [ext_resource type="Script" uid="uid://b8vtd3leqa3yc" path="res://scene/leaf_spawner.gd" id="12_f2och"]
+[ext_resource type="Texture2D" uid="uid://d1quhceu2mi7l" path="res://assets/lvl1-bg/bg/bg.png" id="12_qh5yu"]
+[ext_resource type="Texture2D" uid="uid://68fbpradrnng" path="res://assets/lvl1-bg/bg/Background_0.png" id="13_r2dmy"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ee4am"]
 
@@ -27,24 +25,6 @@ offset_right = 1156.0
 offset_bottom = 659.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="TextureRect"]
-follow_viewport_enabled = true
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="TextureRect/ParallaxBackground"]
-
-[node name="Sprite2D" type="Sprite2D" parent="TextureRect/ParallaxBackground/ParallaxLayer"]
-z_index = 1
-position = Vector2(577.625, 329.625)
-scale = Vector2(1.67113, 1.81371)
-texture = ExtResource("2_581fk")
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="TextureRect/ParallaxBackground"]
-
-[node name="Sprite2D" type="Sprite2D" parent="TextureRect/ParallaxBackground/ParallaxLayer2"]
-position = Vector2(587, 312.5)
-scale = Vector2(1.59115, 1.61779)
-texture = ExtResource("3_ee4am")
 
 [node name="GameTitle2" type="Label" parent="."]
 offset_top = 119.0
@@ -171,18 +151,39 @@ position = Vector2(576, 329)
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 
-[node name="Skeleton" parent="." instance=ExtResource("9_581fk")]
-position = Vector2(29, 462)
-script = ExtResource("10_ee4am")
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_ca4gs")
+autoplay = true
+parameters/looping = true
 
 [node name="LeafSpawner" type="Node2D" parent="."]
 script = ExtResource("12_f2och")
 leaf_scene = ExtResource("10_581fk")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_ca4gs")
-autoplay = true
-parameters/looping = true
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -5
+
+[node name="Rumah" type="TextureRect" parent="CanvasLayer"]
+z_index = -3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_qh5yu")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Langit" type="TextureRect" parent="CanvasLayer"]
+z_index = -4
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_r2dmy")
+expand_mode = 1
+stretch_mode = 6
 
 [connection signal="pressed" from="VBoxContainer/new_game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/continue" to="." method="_on_continue_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://tifin6apg3ri"]
+[gd_scene load_steps=64 format=3 uid="uid://tifin6apg3ri"]
 
 [ext_resource type="Script" uid="uid://kmdwa8mcf6j2" path="res://playground.gd" id="1_4s4xf"]
 [ext_resource type="PackedScene" uid="uid://c11o6et3g00y1" path="res://player.tscn" id="2_p7bnq"]
@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://d1j6fimtf2gxr" path="res://assets/Grassy_Mountains_Parallax_Background-vnitti/layers_fullcolor/far_mountains_fc.png" id="36_2vrm3"]
 [ext_resource type="Texture2D" uid="uid://bxlvlerohx1sr" path="res://assets/Grassy_Mountains_Parallax_Background-vnitti/layers_fullcolor/grassy_mountains_fc.png" id="37_newbq"]
 [ext_resource type="Texture2D" uid="uid://c41fponayfkbg" path="res://assets/bg/bush.tres" id="38_cypcg"]
+[ext_resource type="PackedScene" uid="uid://c153jtyiuo3m1" path="res://FinalBoss.tscn" id="39_2vrm3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_46faf"]
 size = Vector2(20, 711.5)
@@ -317,6 +318,15 @@ sources/1 = SubResource("TileSetAtlasSource_bwsuy")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bwsuy"]
 size = Vector2(70, 74)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cypcg"]
+size = Vector2(118.5, 82)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_newbq"]
+size = Vector2(83, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2vrm3"]
+size = Vector2(94.6666, 77.6667)
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_4s4xf")
@@ -1873,7 +1883,7 @@ position = Vector2(2315.5, 911)
 shape = SubResource("RectangleShape2D_ie7uf")
 
 [node name="BeguGanjang" parent="." instance=ExtResource("10_2wi7h")]
-position = Vector2(1519, -1346)
+position = Vector2(6693, 98)
 drop_weapon_id = "keris"
 
 [node name="Cindaku" parent="." instance=ExtResource("11_4s4xf")]
@@ -4354,6 +4364,7 @@ texture = ExtResource("20_8xl1m")
 position = Vector2(1911, 494)
 
 [node name="Background" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(5973, -820)
 scale = Vector2(2.79187, 2.96533)
 
@@ -4432,6 +4443,7 @@ position = Vector2(2504, 739)
 shape = SubResource("RectangleShape2D_bwsuy")
 
 [node name="background" type="Sprite2D" parent="."]
+visible = false
 show_behind_parent = true
 
 [node name="Pohon" type="Sprite2D" parent="background"]
@@ -4505,7 +4517,7 @@ texture = ExtResource("24_nvhjt")
 
 [node name="Player" parent="." instance=ExtResource("2_p7bnq")]
 z_index = 12
-position = Vector2(161, 434)
+position = Vector2(937, -1321)
 
 [node name="Pohon" type="Sprite2D" parent="."]
 show_behind_parent = true
@@ -4523,7 +4535,8 @@ scale = Vector2(0.360227, 0.308363)
 texture = ExtResource("30_c2csi")
 
 [node name="Batu" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(2150, -371)
+position = Vector2(2150, -414.613)
+scale = Vector2(1, 0.90803)
 texture = ExtResource("31_tysot")
 
 [node name="Batu2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
@@ -4592,3 +4605,29 @@ z_index = 3
 z_index = 9
 position = Vector2(416, -1199)
 texture = ExtResource("38_cypcg")
+
+[node name="Trap" type="Area2D" parent="."]
+position = Vector2(3576, -422)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trap"]
+position = Vector2(65, 119)
+shape = SubResource("RectangleShape2D_cypcg")
+
+[node name="ChangeSKinToBlack" type="Area2D" parent="."]
+position = Vector2(5186, 119)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChangeSKinToBlack"]
+position = Vector2(2, -1)
+scale = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_newbq")
+
+[node name="ChangeSkinToWhite" type="Area2D" parent="."]
+position = Vector2(4855, -152)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChangeSkinToWhite"]
+position = Vector2(-83, -86.5)
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_2vrm3")
+
+[node name="FinalBoss" parent="." instance=ExtResource("39_2vrm3")]
+position = Vector2(1835, -1309)

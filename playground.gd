@@ -4,6 +4,7 @@ extends Node2D
 @onready var bgm: AudioStreamPlayer = $bgm
 @export var fade_duration: float = 2.0
 @onready var bossmusic: AudioStreamPlayer = $bossmusic
+@onready var trap: Area2D = $Trap
 
 # --- REFERENSI PLAYER ---
 @onready var player: Player = $Player
@@ -28,6 +29,9 @@ func _ready() -> void:
 		# Hubungkan sinyal: Kalau ada body masuk -> Jalankan fungsi _on_void_body_entered
 		if not void_area.body_entered.is_connected(_on_void_body_entered):
 			void_area.body_entered.connect(_on_void_body_entered)
+	if trap:
+		if not trap.body_entered.is_connected(_on_void_body_entered):
+			trap.body_entered.connect(_on_void_body_entered)
 	else:
 		print("Error: Node Void tidak ditemukan!")
 
@@ -39,8 +43,7 @@ func _on_void_body_entered(body: Node2D) -> void:
 		
 		# CARA 1: Beri damage sangat besar (agar health bar update jadi 0)
 		# Gunakan 9999 agar mati seketika walau darah penuh
-		if body.has_method("take_damage"):
-			body.take_damage(9999) 
+		body.die()
 			
 		# CARA 2 (Alternatif): Langsung panggil die()
 		# body.die()	

@@ -14,6 +14,4 @@ position = Vector2(0, 11.5)
 shape = SubResource("RectangleShape2D_yt2a0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.641934, 0.641934, 0.641934, 1)
-self_modulate = Color(0.691357, 0.691357, 0.691357, 1)
 texture = ExtResource("1_ir6d7")

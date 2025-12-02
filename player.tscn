@@ -1052,7 +1052,6 @@ frame = 7
 frame_progress = 1.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-visible = false
 position = Vector2(0, 1)
 color = Color(0.983556, 0.922899, 0.816029, 1)
 energy = 4.0
@@ -1063,7 +1062,7 @@ shadow_filter = 2
 shadow_filter_smooth = 64.0
 shadow_item_cull_mask = 3
 texture = SubResource("GradientTexture2D_7ahtn")
-texture_scale = 8.0
+texture_scale = 16.0
 
 [node name="SkillArea" type="Area2D" parent="."]
 position = Vector2(-2, 0)

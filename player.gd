@@ -1,7 +1,16 @@
 class_name Player extends CharacterBody2D
 
 @onready var game_over_ui: CanvasLayer = $GameOver
+@onready var change_skin_to_black: Area2D = $"../ChangeSKinToBlack"
+@onready var change_skin_to_white: Area2D = $"../ChangeSkinToWhite"
+var is_dark_mode: bool = true
+# Warna Mode Terang (Normal)
+var color_light_modulate: Color = Color("ffffff") # Putih
+var color_light_self: Color = Color("ffffff")
 
+# Warna Mode Gelap
+var color_dark_modulate: Color = Color("a8a8a8")
+var color_dark_self: Color = Color("a3a3a3")
 # --- VARIABLES ---
 var heart_list : Array[AnimatedSprite2D] 
 var money: int = 0 # Uang (Gold)
@@ -19,6 +28,7 @@ var stamina_timer : float = 0.0
 @onready var stamina_bar: ProgressBar = $HealthLayer/Stamina
 var regen_rate : float = 1.0 / 1.8
 @onready var skill_area: Area2D = $SkillArea
+@onready var point_light_2d: PointLight2D = $PointLight2D
 
 # Movement
 var cardinal_direction : Vector2 = Vector2.RIGHT
@@ -97,6 +107,14 @@ func _ready() -> void:
 	var hearts_parent = $HealthLayer/HBoxContainer
 	scale = Vector2(character_scale, character_scale)
 	check_weapon_unlocks()
+	if change_skin_to_black:
+		if not change_skin_to_black.body_entered.is_connected(_on_black_skin_area_entered):
+			change_skin_to_black.body_entered.connect(_on_black_skin_area_entered)
+	
+	if change_skin_to_white:
+		if not change_skin_to_white.body_entered.is_connected(_on_white_skin_area_entered):
+			change_skin_to_white.body_entered.connect(_on_white_skin_area_entered)
+	update_skin_visuals()
 	gold.visible = false
 	rencong_selected.visible = false
 	keris_selected.visible = false
@@ -151,6 +169,31 @@ func _on_skill_area_body_entered(body: Node2D) -> void:
 			elif body is Cindaku: body.take_damage(final_damage, self)
 			elif body is BeguGanjang: body.take_damage(final_damage, self)
 			else: body.take_damage(final_damage)
+
+func _on_black_skin_area_entered(body: Node2D) -> void:
+	# Jika yang masuk area adalah Player (Diri sendiri)
+	if body == self:
+		print("Masuk Area Gelap -> Ganti Skin Hitam")
+		is_dark_mode = true
+		update_skin_visuals()
+
+func _on_white_skin_area_entered(body: Node2D) -> void:
+	if body == self:
+		print("Masuk Area Terang -> Ganti Skin Putih")
+		is_dark_mode = false
+		update_skin_visuals()
+
+func update_skin_visuals() -> void:
+	if is_dark_mode:
+		# MODE HITAM
+		if point_light_2d: point_light_2d.visible = true
+		animated_sprite.modulate = color_dark_modulate
+		animated_sprite.self_modulate = color_dark_self
+	else:
+		# MODE PUTIH
+		if point_light_2d: point_light_2d.visible = false
+		animated_sprite.modulate = color_light_modulate
+		animated_sprite.self_modulate = color_light_self
 
 func _process(delta: float) -> void:
 	direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -549,21 +592,17 @@ func start_invincibility() -> void:
 	modulate.a = 1.0; is_invincible = false
 
 func die() -> void:
-	if health <= 0:
-		print("Player Mati")
+	print("Player Mati")
 		
-		# Panggil fungsi cutscene
-		if game_over_ui:
-			game_over_ui.start_game_over_sequence()
+	# Panggil fungsi cutscene
+	if game_over_ui:
+		game_over_ui.start_game_over_sequence()
 			
 		# Opsi: Jangan queue_free() player, biarkan saja diam/animasi mati
 		# Karena kalau player dihapus, script GameOverUI di dalamnya ikut hilang.
 		# Cukup matikan proses physics atau collision.
-		set_physics_process(false)
-		$CollisionShape2D.set_deferred("disabled", true)
-		
-		# Mainkan animasi mati (jika ada)
-		# animated_sprite.play("die")
+	set_physics_process(false)
+	$CollisionShape2D.set_deferred("disabled", true)
 
 func _start_air_dash() -> void:
 	if current_stamina >= 3.0:
