@@ -471,3 +471,13 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_qre5n")
 max_value = 50.0
 value = 50.0
 show_percentage = false
+
+[node name="Detectors" type="Node2D" parent="."]
+
+[node name="WallCheck" type="RayCast2D" parent="Detectors"]
+target_position = Vector2(33, 1)
+collision_mask = 2
+
+[node name="GapCheck" type="RayCast2D" parent="Detectors"]
+target_position = Vector2(14, 21)
+collision_mask = 2

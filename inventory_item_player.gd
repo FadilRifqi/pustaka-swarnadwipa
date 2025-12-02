@@ -2,7 +2,7 @@ extends TextureRect
 
 # Referensi Node
 @onready var grid_container: GridContainer = $GridContainer
-@onready var item_slot_hud: Sprite2D = $"../HealthPotion"
+@onready var item_slot_hud: TextureRect = $"../HealthPotion"
 @onready var player = $"../.." 
 
 # Preload Scene Slot

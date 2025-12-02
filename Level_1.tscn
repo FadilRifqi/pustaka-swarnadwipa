@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://tifin6apg3ri"]
+[gd_scene load_steps=67 format=3 uid="uid://tifin6apg3ri"]
 
 [ext_resource type="Script" uid="uid://kmdwa8mcf6j2" path="res://playground.gd" id="1_4s4xf"]
 [ext_resource type="PackedScene" uid="uid://c11o6et3g00y1" path="res://player.tscn" id="2_p7bnq"]
@@ -24,13 +24,24 @@
 [ext_resource type="Texture2D" uid="uid://1e16g58vhhua" path="res://assets/skull0001.png" id="20_8xl1m"]
 [ext_resource type="PackedScene" uid="uid://db450e2ocgmui" path="res://Checkpoint.tscn" id="21_3fa85"]
 [ext_resource type="AudioStream" uid="uid://cljhu3wwjsqt4" path="res://assets/music/boss.ogg" id="23_bwsuy"]
-[ext_resource type="Texture2D" uid="uid://4esom1ou4qn2" path="res://assets/bg/dekor/tembok.tres" id="24_nvhjt"]
 [ext_resource type="Texture2D" uid="uid://ygu1ber4fqa3" path="res://assets/bg/pohon.tres" id="29_3uyy5"]
 [ext_resource type="Texture2D" uid="uid://dgimrl74nyt1h" path="res://assets/bg/Mossy Tileset/bglayer.tres" id="30_c2csi"]
 [ext_resource type="Texture2D" uid="uid://cm8txkjpapsc0" path="res://assets/bg/Mossy Tileset/batu.tres" id="31_tysot"]
 [ext_resource type="Texture2D" uid="uid://bmbp6cpyonbcs" path="res://assets/bg/Mossy Tileset/kayu.tres" id="32_c2csi"]
+[ext_resource type="Texture2D" uid="uid://puo70li50k06" path="res://assets/bg/dekor/dekor lt1.tres" id="32_tysot"]
 [ext_resource type="Texture2D" uid="uid://drvcmcmc2nynm" path="res://assets/bg/bggg.jpg" id="34_tlish"]
+[ext_resource type="Texture2D" uid="uid://boaw2gt1xnxq2" path="res://assets/bg/dekor/panjang.tres" id="35_4mmle"]
+[ext_resource type="Texture2D" uid="uid://1yuy62admpol" path="res://assets/bg/dekor/tiangl.tres" id="36_cypcg"]
+[ext_resource type="Texture2D" uid="uid://xqfl7ro44u2w" path="res://assets/bg/dekor/panjang banget.tres" id="37_2vrm3"]
+[ext_resource type="Texture2D" uid="uid://do73q36kvkig6" path="res://assets/bg/dekor/numpuk.tres" id="37_4mmle"]
+[ext_resource type="Texture2D" uid="uid://68fbpradrnng" path="res://assets/bg/Background_0.png" id="37_cypcg"]
+[ext_resource type="Texture2D" uid="uid://j0c2cmnbmxib" path="res://assets/Cartoon Fantasy Tree/piclumen-1746974690027.png" id="38_2vrm3"]
+[ext_resource type="PackedScene" uid="uid://dgerlcwssrwd8" path="res://CutScene.tscn" id="38_cypcg"]
 [ext_resource type="PackedScene" uid="uid://c153jtyiuo3m1" path="res://FinalBoss.tscn" id="39_2vrm3"]
+[ext_resource type="Texture2D" uid="uid://gdqey15gbhkf" path="res://assets/Cartoon Fantasy Tree/piclumen-17469746765011.png" id="40_newbq"]
+[ext_resource type="Texture2D" uid="uid://bjwabxclbkbtt" path="res://assets/Cartoon Fantasy Tree/piclumen-1746974663867.png" id="41_ptcaw"]
+[ext_resource type="Texture2D" uid="uid://cxebivr04xwid" path="res://assets/Cartoon Fantasy Tree/piclumen-17469746716411.png" id="42_r5q04"]
+[ext_resource type="Texture2D" uid="uid://boamkq0rwbor7" path="res://assets/Cartoon Fantasy Tree/piclumen-1746974638193.png" id="43_iocgj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_46faf"]
 size = Vector2(20, 711.5)
@@ -54,7 +65,7 @@ size = Vector2(174, 109)
 size = Vector2(86.5, 40.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1osm"]
-size = Vector2(247.5, 599.25)
+size = Vector2(242.75, 692.875)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fkbji"]
 size = Vector2(104, 437)
@@ -580,146 +591,16 @@ offset_right = 3912.0
 offset_bottom = -1166.0
 color = Color(0, 0, 0, 1)
 
+[node name="ColorRect2" type="ColorRect" parent="StaticBody2D/StaticBody2D47"]
+offset_left = 3901.0
+offset_top = -1424.0
+offset_right = 4675.0
+offset_bottom = -1157.0
+color = Color(0, 0, 0, 1)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D47"]
+visible = false
 position = Vector2(3524.75, -1299.88)
-shape = SubResource("RectangleShape2D_80c3a")
-
-[node name="StaticBody2D58" type="StaticBody2D" parent="StaticBody2D"]
-light_mask = 1023
-visibility_layer = 3
-position = Vector2(45, 4)
-collision_layer = 3
-collision_mask = 3
-
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D58"]
-offset_left = -441.0
-offset_top = -1802.0
-offset_right = 333.0
-offset_bottom = -1535.0
-color = Color(0, 0, 0, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D58"]
-position = Vector2(-54.25, -1668.88)
-shape = SubResource("RectangleShape2D_80c3a")
-
-[node name="StaticBody2D59" type="StaticBody2D" parent="StaticBody2D"]
-light_mask = 1023
-visibility_layer = 3
-position = Vector2(45, 4)
-collision_layer = 3
-collision_mask = 3
-
-[node name="StaticBody2D60" type="StaticBody2D" parent="StaticBody2D"]
-light_mask = 1023
-visibility_layer = 3
-position = Vector2(45, 4)
-collision_layer = 3
-collision_mask = 3
-
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D60"]
-offset_left = 292.0
-offset_top = -1802.0
-offset_right = 1066.0
-offset_bottom = -1535.0
-color = Color(0, 0, 0, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D60"]
-position = Vector2(678.75, -1668.88)
-shape = SubResource("RectangleShape2D_80c3a")
-
-[node name="StaticBody2D61" type="StaticBody2D" parent="StaticBody2D"]
-light_mask = 1023
-visibility_layer = 3
-position = Vector2(45, 4)
-collision_layer = 3
-collision_mask = 3
-
-[node name="StaticBody2D62" type="StaticBody2D" parent="StaticBody2D"]
-light_mask = 1023
-visibility_layer = 3
-position = Vector2(45, 4)
-collision_layer = 3
-collision_mask = 3
-
-[node name="StaticBody2D63" type="StaticBody2D" parent="StaticBody2D"]
-light_mask = 1023
-visibility_layer = 3
-position = Vector2(45, 4)
-collision_layer = 3
-collision_mask = 3
-
-[node name="StaticBody2D64" type="StaticBody2D" parent="StaticBody2D"]
-light_mask = 1023
-visibility_layer = 3
-position = Vector2(45, 4)
-collision_layer = 3
-collision_mask = 3
-
-[node name="StaticBody2D65" type="StaticBody2D" parent="StaticBody2D"]
-light_mask = 1023
-visibility_layer = 3
-position = Vector2(45, 4)
-collision_layer = 3
-collision_mask = 3
-
-[node name="StaticBody2D73" type="StaticBody2D" parent="StaticBody2D"]
-light_mask = 1023
-visibility_layer = 3
-position = Vector2(45, 4)
-collision_layer = 3
-collision_mask = 3
-
-[node name="StaticBody2D74" type="StaticBody2D" parent="StaticBody2D"]
-light_mask = 1023
-visibility_layer = 3
-position = Vector2(45, 4)
-collision_layer = 3
-collision_mask = 3
-
-[node name="StaticBody2D70" type="StaticBody2D" parent="StaticBody2D"]
-light_mask = 1023
-visibility_layer = 3
-position = Vector2(45, 4)
-collision_layer = 3
-collision_mask = 3
-
-[node name="StaticBody2D75" type="StaticBody2D" parent="StaticBody2D"]
-light_mask = 1023
-visibility_layer = 3
-position = Vector2(45, 4)
-collision_layer = 3
-collision_mask = 3
-
-[node name="StaticBody2D71" type="StaticBody2D" parent="StaticBody2D"]
-light_mask = 1023
-visibility_layer = 3
-position = Vector2(45, 4)
-collision_layer = 3
-collision_mask = 3
-
-[node name="StaticBody2D72" type="StaticBody2D" parent="StaticBody2D"]
-light_mask = 1023
-visibility_layer = 3
-position = Vector2(45, 4)
-collision_layer = 3
-collision_mask = 3
-
-[node name="StaticBody2D48" type="StaticBody2D" parent="StaticBody2D"]
-light_mask = 1023
-visibility_layer = 3
-position = Vector2(45, 4)
-collision_layer = 3
-collision_mask = 3
-
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D48"]
-offset_left = 3906.0
-offset_top = -1465.0
-offset_right = 4680.0
-offset_bottom = -1198.0
-color = Color(0, 0, 0, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D48"]
-position = Vector2(4292.75, -1331.88)
 shape = SubResource("RectangleShape2D_80c3a")
 
 [node name="StaticBody2D49" type="StaticBody2D" parent="StaticBody2D"]
@@ -1588,7 +1469,7 @@ offset_bottom = -597.0
 color = Color(0.00820202, 0.00820202, 0.00820202, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D40"]
-position = Vector2(412, -891.75)
+position = Vector2(412, -854.75)
 shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="StaticBody2D76" type="StaticBody2D" parent="StaticBody2D"]
@@ -1662,16 +1543,8 @@ visibility_layer = 3
 collision_layer = 3
 collision_mask = 3
 
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D66"]
-offset_left = 5457.0
-offset_top = -2068.0
-offset_right = 5718.0
-offset_bottom = -1472.0
-color = Color(0.00820202, 0.00820202, 0.00820202, 1)
-metadata/_edit_use_anchors_ = true
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D66"]
-position = Vector2(5588, -1766.75)
+position = Vector2(5590.38, -1813.56)
 shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="StaticBody2D67" type="StaticBody2D" parent="StaticBody2D"]
@@ -1679,14 +1552,6 @@ light_mask = 1023
 visibility_layer = 3
 collision_layer = 3
 collision_mask = 3
-
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D67"]
-offset_left = 5699.0
-offset_top = -2069.0
-offset_right = 5960.0
-offset_bottom = -1473.0
-color = Color(0.00820202, 0.00820202, 0.00820202, 1)
-metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D67"]
 position = Vector2(5830, -1767.75)
@@ -1719,7 +1584,7 @@ color = Color(0.00820202, 0.00820202, 0.00820202, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D54"]
-position = Vector2(-97, -903.25)
+position = Vector2(-83, -903.25)
 shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="StaticBody2D55" type="StaticBody2D" parent="StaticBody2D"]
@@ -1737,7 +1602,7 @@ color = Color(0.00820202, 0.00820202, 0.00820202, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D55"]
-position = Vector2(-97, -419.25)
+position = Vector2(-88, -419.25)
 shape = SubResource("RectangleShape2D_d1osm")
 
 [node name="StaticBody2D56" type="StaticBody2D" parent="StaticBody2D"]
@@ -1746,27 +1611,11 @@ visibility_layer = 3
 collision_layer = 3
 collision_mask = 3
 
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D56"]
-offset_left = -226.0
-offset_top = -2242.0
-offset_right = 35.0
-offset_bottom = -1646.0
-color = Color(0.00820202, 0.00820202, 0.00820202, 1)
-metadata/_edit_use_anchors_ = true
-
 [node name="StaticBody2D57" type="StaticBody2D" parent="StaticBody2D"]
 light_mask = 1023
 visibility_layer = 3
 collision_layer = 3
 collision_mask = 3
-
-[node name="ColorRect" type="ColorRect" parent="StaticBody2D/StaticBody2D57"]
-offset_left = -226.0
-offset_top = -1758.0
-offset_right = 35.0
-offset_bottom = -1162.0
-color = Color(0.00820202, 0.00820202, 0.00820202, 1)
-metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D57"]
 position = Vector2(-95, -1455.25)
@@ -1787,6 +1636,12 @@ offset_top = -349.0
 offset_right = 1499.0
 offset_bottom = 5.0
 color = Color(0.00184107, 0.00184107, 0.00184107, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D/Sprite2D"]
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 
@@ -1844,6 +1699,22 @@ offset_left = 64.0
 offset_top = 595.0
 offset_right = 253.0
 offset_bottom = 988.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="StaticBody2D4"]
+show_behind_parent = true
+offset_left = -73.0
+offset_top = 817.0
+offset_right = 6313.0
+offset_bottom = 1781.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="StaticBody2D4"]
+show_behind_parent = true
+offset_left = 5457.0
+offset_top = 434.0
+offset_right = 11843.0
+offset_bottom = 1398.0
 color = Color(0, 0, 0, 1)
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="."]
@@ -2082,51 +1953,6 @@ scale = Vector2(0.351051, 0.348958)
 skew = -0.518363
 texture = ExtResource("14_6fba8")
 
-[node name="Dekorasi326" type="Sprite2D" parent="dekor lantai"]
-modulate = Color(0.633757, 0.633757, 0.633757, 1)
-self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
-position = Vector2(5467.81, -1664.07)
-rotation = -1.5708
-scale = Vector2(0.351051, 0.348958)
-skew = -0.518363
-texture = ExtResource("14_6fba8")
-
-[node name="Dekorasi327" type="Sprite2D" parent="dekor lantai"]
-modulate = Color(0.633757, 0.633757, 0.633757, 1)
-self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
-position = Vector2(5468.81, -1756.07)
-rotation = -1.5708
-scale = Vector2(0.351051, 0.348958)
-skew = -0.518363
-texture = ExtResource("14_6fba8")
-
-[node name="Dekorasi328" type="Sprite2D" parent="dekor lantai"]
-modulate = Color(0.633757, 0.633757, 0.633757, 1)
-self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
-position = Vector2(5467.81, -1863.7)
-rotation = -1.5708
-scale = Vector2(0.351051, 0.348958)
-skew = -0.518363
-texture = ExtResource("14_6fba8")
-
-[node name="Dekorasi329" type="Sprite2D" parent="dekor lantai"]
-modulate = Color(0.633757, 0.633757, 0.633757, 1)
-self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
-position = Vector2(5467.81, -1975.7)
-rotation = -1.5708
-scale = Vector2(0.351051, 0.348958)
-skew = -0.518363
-texture = ExtResource("14_6fba8")
-
-[node name="Dekorasi330" type="Sprite2D" parent="dekor lantai"]
-modulate = Color(0.633757, 0.633757, 0.633757, 1)
-self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
-position = Vector2(5467.34, -2090.07)
-rotation = -1.5708
-scale = Vector2(0.351051, 0.348958)
-skew = -0.518363
-texture = ExtResource("14_6fba8")
-
 [node name="Dekorasi321" type="Sprite2D" parent="dekor lantai"]
 modulate = Color(0.633757, 0.633757, 0.633757, 1)
 self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
@@ -2141,60 +1967,6 @@ modulate = Color(0.633757, 0.633757, 0.633757, 1)
 self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
 position = Vector2(5319.34, -565.069)
 rotation = -1.5708
-scale = Vector2(0.351051, 0.348958)
-skew = -0.518363
-texture = ExtResource("14_6fba8")
-
-[node name="Dekorasi140" type="Sprite2D" parent="dekor lantai"]
-modulate = Color(0.633757, 0.633757, 0.633757, 1)
-self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
-position = Vector2(25.0578, -1251.37)
-rotation = 1.5865
-scale = Vector2(0.351051, 0.348958)
-skew = -0.518363
-texture = ExtResource("14_6fba8")
-
-[node name="Dekorasi141" type="Sprite2D" parent="dekor lantai"]
-modulate = Color(0.633757, 0.633757, 0.633757, 1)
-self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
-position = Vector2(26.0579, -1366.37)
-rotation = 1.5865
-scale = Vector2(0.351051, 0.348958)
-skew = -0.518363
-texture = ExtResource("14_6fba8")
-
-[node name="Dekorasi142" type="Sprite2D" parent="dekor lantai"]
-modulate = Color(0.633757, 0.633757, 0.633757, 1)
-self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
-position = Vector2(27.0578, -1481.37)
-rotation = 1.5865
-scale = Vector2(0.351051, 0.348958)
-skew = -0.518363
-texture = ExtResource("14_6fba8")
-
-[node name="Dekorasi270" type="Sprite2D" parent="dekor lantai"]
-modulate = Color(0.633757, 0.633757, 0.633757, 1)
-self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
-position = Vector2(1113, -1742)
-rotation = 1.5865
-scale = Vector2(0.351051, 0.348958)
-skew = -0.518363
-texture = ExtResource("14_6fba8")
-
-[node name="Dekorasi271" type="Sprite2D" parent="dekor lantai"]
-modulate = Color(0.633757, 0.633757, 0.633757, 1)
-self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
-position = Vector2(1106, -1638)
-rotation = 1.5865
-scale = Vector2(0.351051, 0.348958)
-skew = -0.518363
-texture = ExtResource("14_6fba8")
-
-[node name="Dekorasi278" type="Sprite2D" parent="dekor lantai"]
-modulate = Color(0.633757, 0.633757, 0.633757, 1)
-self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
-position = Vector2(1106, -1606)
-rotation = 1.5865
 scale = Vector2(0.351051, 0.348958)
 skew = -0.518363
 texture = ExtResource("14_6fba8")
@@ -3454,87 +3226,6 @@ scale = Vector2(0.45119, 0.335938)
 skew = -0.274017
 texture = ExtResource("14_6fba8")
 
-[node name="Dekorasi272" type="Sprite2D" parent="dekor lantai"]
-modulate = Color(0.633757, 0.633757, 0.633757, 1)
-self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
-position = Vector2(902.635, -1530.64)
-rotation = 3.11193
-scale = Vector2(0.45119, 0.335938)
-skew = -0.274017
-texture = ExtResource("14_6fba8")
-
-[node name="Dekorasi273" type="Sprite2D" parent="dekor lantai"]
-modulate = Color(0.633757, 0.633757, 0.633757, 1)
-self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
-position = Vector2(1037.64, -1538.64)
-rotation = 3.11193
-scale = Vector2(0.45119, 0.335938)
-skew = -0.274017
-texture = ExtResource("14_6fba8")
-
-[node name="Dekorasi274" type="Sprite2D" parent="dekor lantai"]
-modulate = Color(0.633757, 0.633757, 0.633757, 1)
-self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
-position = Vector2(397.188, -1530.11)
-rotation = 3.11193
-scale = Vector2(0.45119, 0.335938)
-skew = -0.274017
-texture = ExtResource("14_6fba8")
-
-[node name="Dekorasi275" type="Sprite2D" parent="dekor lantai"]
-modulate = Color(0.633757, 0.633757, 0.633757, 1)
-self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
-position = Vector2(521.188, -1531.11)
-rotation = 3.11193
-scale = Vector2(0.45119, 0.335938)
-skew = -0.274017
-texture = ExtResource("14_6fba8")
-
-[node name="Dekorasi276" type="Sprite2D" parent="dekor lantai"]
-modulate = Color(0.633757, 0.633757, 0.633757, 1)
-self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
-position = Vector2(665.188, -1531.11)
-rotation = 3.11193
-scale = Vector2(0.45119, 0.335938)
-skew = -0.274017
-texture = ExtResource("14_6fba8")
-
-[node name="Dekorasi279" type="Sprite2D" parent="dekor lantai"]
-modulate = Color(0.633757, 0.633757, 0.633757, 1)
-self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
-position = Vector2(101.188, -1530.11)
-rotation = 3.11193
-scale = Vector2(0.45119, 0.335938)
-skew = -0.274017
-texture = ExtResource("14_6fba8")
-
-[node name="Dekorasi280" type="Sprite2D" parent="dekor lantai"]
-modulate = Color(0.633757, 0.633757, 0.633757, 1)
-self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
-position = Vector2(225.188, -1531.11)
-rotation = 3.11193
-scale = Vector2(0.45119, 0.335938)
-skew = -0.274017
-texture = ExtResource("14_6fba8")
-
-[node name="Dekorasi281" type="Sprite2D" parent="dekor lantai"]
-modulate = Color(0.633757, 0.633757, 0.633757, 1)
-self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
-position = Vector2(369.188, -1531.11)
-rotation = 3.11193
-scale = Vector2(0.45119, 0.335938)
-skew = -0.274017
-texture = ExtResource("14_6fba8")
-
-[node name="Dekorasi277" type="Sprite2D" parent="dekor lantai"]
-modulate = Color(0.633757, 0.633757, 0.633757, 1)
-self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
-position = Vector2(800.188, -1533.11)
-rotation = 3.11193
-scale = Vector2(0.45119, 0.335938)
-skew = -0.274017
-texture = ExtResource("14_6fba8")
-
 [node name="Dekorasi109" type="Sprite2D" parent="dekor lantai"]
 modulate = Color(0.633757, 0.633757, 0.633757, 1)
 self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
@@ -4093,9 +3784,9 @@ position = Vector2(757, -249)
 texture = ExtResource("18_aryo2")
 
 [node name="Lt16" type="Sprite2D" parent="dekor lantai"]
-position = Vector2(525, -746)
+position = Vector2(525, -695.422)
 rotation = 1.5708
-scale = Vector2(0.700799, 1)
+scale = Vector2(0.495614, 1)
 texture = ExtResource("18_aryo2")
 
 [node name="Lt18" type="Sprite2D" parent="dekor lantai"]
@@ -4151,7 +3842,7 @@ scale = Vector2(0.366759, 0.59375)
 texture = ExtResource("18_aryo2")
 
 [node name="Lt4" type="Sprite2D" parent="dekor lantai"]
-position = Vector2(25, -601.45)
+position = Vector2(12, -652)
 rotation = 1.5708
 scale = Vector2(1.13611, 1)
 texture = ExtResource("18_aryo2")
@@ -4170,12 +3861,7 @@ scale = Vector2(0.301623, 1)
 texture = ExtResource("18_aryo2")
 
 [node name="Lt5" type="Sprite2D" parent="dekor lantai"]
-position = Vector2(31, -1109)
-rotation = 1.5708
-texture = ExtResource("18_aryo2")
-
-[node name="Lt6" type="Sprite2D" parent="dekor lantai"]
-position = Vector2(32, -1306)
+position = Vector2(19, -1046)
 rotation = 1.5708
 texture = ExtResource("18_aryo2")
 
@@ -4186,9 +3872,9 @@ scale = Vector2(0.379567, 0.405637)
 texture = ExtResource("16_hxgn6")
 
 [node name="AtapLt7" type="Sprite2D" parent="dekor lantai"]
-position = Vector2(1288, -840)
+position = Vector2(1257, -790.687)
 rotation = -1.5708
-scale = Vector2(0.379567, 0.405637)
+scale = Vector2(0.546308, 0.405637)
 texture = ExtResource("16_hxgn6")
 
 [node name="AtapLt3" type="Sprite2D" parent="dekor lantai"]
@@ -4372,14 +4058,9 @@ trigger_id = "dash_tutorial"
 position = Vector2(2504, 739)
 shape = SubResource("RectangleShape2D_bwsuy")
 
-[node name="Tembok" type="Sprite2D" parent="."]
-z_index = 1
-position = Vector2(1693, -177)
-texture = ExtResource("24_nvhjt")
-
 [node name="Player" parent="." instance=ExtResource("2_p7bnq")]
 z_index = 4
-position = Vector2(937, -1321)
+position = Vector2(818, -1368)
 
 [node name="Pohon" type="Sprite2D" parent="."]
 show_behind_parent = true
@@ -4410,7 +4091,7 @@ texture = ExtResource("31_tysot")
 z_index = -2
 
 [node name="Kayu" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
-position = Vector2(2362, -647)
+position = Vector2(2365, -629)
 texture = ExtResource("32_c2csi")
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -4420,8 +4101,8 @@ z_index = -1
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3/Parallax2D"]
 self_modulate = Color(1, 1, 1, 0.223529)
-position = Vector2(3060.5, -661.5)
-scale = Vector2(8.13503, 2.93611)
+position = Vector2(3108.75, -676)
+scale = Vector2(8.22126, 2.93611)
 texture = ExtResource("34_tlish")
 
 [node name="Trap" type="Area2D" parent="."]
@@ -4449,3 +4130,446 @@ shape = SubResource("RectangleShape2D_2vrm3")
 
 [node name="FinalBoss" parent="." instance=ExtResource("39_2vrm3")]
 position = Vector2(1835, -1309)
+
+[node name="Lantai1" type="Sprite2D" parent="."]
+light_mask = 0
+position = Vector2(-404, 208)
+
+[node name="PanjangBanget" type="Sprite2D" parent="Lantai1"]
+light_mask = 0
+z_index = -7
+position = Vector2(4089, 381)
+rotation = -0.1309
+texture = ExtResource("37_2vrm3")
+
+[node name="DekorLt1" type="Sprite2D" parent="Lantai1"]
+self_modulate = Color(0.625597, 0.625597, 0.625597, 1)
+light_mask = 0
+z_index = -7
+position = Vector2(847, 73)
+rotation = 3.24282
+scale = Vector2(2.16306, 1.37213)
+texture = ExtResource("32_tysot")
+
+[node name="DekorLt2" type="Sprite2D" parent="Lantai1"]
+modulate = Color(0.347817, 0.347817, 0.347817, 1)
+show_behind_parent = true
+light_mask = 0
+z_index = -7
+position = Vector2(4732, 325)
+scale = Vector2(2.66676, 2.38113)
+texture = ExtResource("32_tysot")
+
+[node name="DekorLt15" type="Sprite2D" parent="Lantai1"]
+modulate = Color(0.347817, 0.347817, 0.347817, 1)
+show_behind_parent = true
+light_mask = 0
+z_index = -7
+position = Vector2(7333, -322)
+rotation = -3.33358
+scale = Vector2(2.66676, 2.38113)
+texture = ExtResource("32_tysot")
+
+[node name="DekorLt3" type="Sprite2D" parent="Lantai1"]
+modulate = Color(0.347817, 0.347817, 0.347817, 1)
+show_behind_parent = true
+light_mask = 0
+z_index = -7
+position = Vector2(1723, 23.0001)
+rotation = 3.07702
+scale = Vector2(1.12258, 0.527248)
+texture = ExtResource("32_tysot")
+
+[node name="DekorLt4" type="Sprite2D" parent="Lantai1"]
+modulate = Color(0.347817, 0.347817, 0.347817, 1)
+show_behind_parent = true
+light_mask = 0
+z_index = -7
+position = Vector2(1662, 339)
+scale = Vector2(0.928885, 1.1112)
+texture = ExtResource("32_tysot")
+
+[node name="DekorLt5" type="Sprite2D" parent="Lantai1"]
+modulate = Color(0.347817, 0.347817, 0.347817, 1)
+show_behind_parent = true
+light_mask = 0
+z_index = -7
+position = Vector2(2152.67, -2.15341)
+rotation = 3.07702
+scale = Vector2(1.12258, 0.527248)
+texture = ExtResource("32_tysot")
+
+[node name="DekorLt16" type="Sprite2D" parent="Lantai1"]
+modulate = Color(0.347817, 0.347817, 0.347817, 1)
+show_behind_parent = true
+light_mask = 0
+z_index = -7
+position = Vector2(3675, -75)
+rotation = 3.07702
+scale = Vector2(1.12258, 0.527248)
+texture = ExtResource("32_tysot")
+
+[node name="DekorLt17" type="Sprite2D" parent="Lantai1"]
+modulate = Color(0.347817, 0.347817, 0.347817, 1)
+show_behind_parent = true
+light_mask = 0
+z_index = -7
+position = Vector2(3956, -34)
+rotation = 3.07702
+scale = Vector2(0.94128, 0.898562)
+texture = ExtResource("32_tysot")
+
+[node name="DekorLt6" type="Sprite2D" parent="Lantai1"]
+modulate = Color(0.347817, 0.347817, 0.347817, 1)
+show_behind_parent = true
+light_mask = 0
+z_index = -7
+position = Vector2(2091.67, 313.847)
+scale = Vector2(0.928885, 1.1112)
+texture = ExtResource("32_tysot")
+
+[node name="DekorLt7" type="Sprite2D" parent="Lantai1"]
+modulate = Color(0.347817, 0.347817, 0.347817, 1)
+show_behind_parent = true
+light_mask = 0
+z_index = -7
+position = Vector2(2637.67, -53.1534)
+rotation = 3.07702
+scale = Vector2(1.12258, 0.527248)
+texture = ExtResource("32_tysot")
+
+[node name="DekorLt8" type="Sprite2D" parent="Lantai1"]
+modulate = Color(0.347817, 0.347817, 0.347817, 1)
+show_behind_parent = true
+light_mask = 0
+z_index = -7
+position = Vector2(2576.67, 262.847)
+scale = Vector2(0.928885, 1.1112)
+texture = ExtResource("32_tysot")
+
+[node name="DekorLt9" type="Sprite2D" parent="Lantai1"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+light_mask = 0
+z_index = 6
+position = Vector2(3213, 748.173)
+scale = Vector2(0.408694, 2.48299)
+texture = ExtResource("32_tysot")
+
+[node name="DekorLt11" type="Sprite2D" parent="Lantai1"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+light_mask = 0
+z_index = 6
+position = Vector2(6160, 463)
+scale = Vector2(0.408694, 2.48299)
+texture = ExtResource("32_tysot")
+
+[node name="DekorLt12" type="Sprite2D" parent="Lantai1"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+light_mask = 0
+z_index = 6
+position = Vector2(6315, 585)
+scale = Vector2(0.408694, 2.48299)
+texture = ExtResource("32_tysot")
+
+[node name="DekorLt13" type="Sprite2D" parent="Lantai1"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+light_mask = 0
+z_index = 6
+position = Vector2(6559.29, 438.173)
+scale = Vector2(0.408694, 2.48299)
+texture = ExtResource("32_tysot")
+
+[node name="DekorLt14" type="Sprite2D" parent="Lantai1"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+light_mask = 0
+z_index = 6
+position = Vector2(6714.29, 560.173)
+scale = Vector2(0.408694, 2.48299)
+texture = ExtResource("32_tysot")
+
+[node name="DekorLt10" type="Sprite2D" parent="Lantai1"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+light_mask = 0
+z_index = 6
+position = Vector2(1889, 780)
+scale = Vector2(0.408694, 2.48299)
+texture = ExtResource("32_tysot")
+
+[node name="Panjang" type="Sprite2D" parent="Lantai1"]
+light_mask = 0
+z_index = -7
+position = Vector2(3756, 512)
+texture = ExtResource("35_4mmle")
+
+[node name="Tiangl" type="Sprite2D" parent="Lantai1"]
+light_mask = 0
+z_index = -7
+position = Vector2(4642, 523)
+scale = Vector2(1.79167, 3.75275)
+texture = ExtResource("36_cypcg")
+
+[node name="PanjangBanget2" type="Sprite2D" parent="Lantai1"]
+light_mask = 0
+z_index = -7
+position = Vector2(7321, 292)
+rotation = 0.226893
+scale = Vector2(1.18049, 1.74162)
+texture = ExtResource("37_2vrm3")
+
+[node name="Panjang3" type="Sprite2D" parent="Lantai1"]
+light_mask = 0
+z_index = -7
+position = Vector2(6506.43, 338.021)
+texture = ExtResource("35_4mmle")
+
+[node name="Panjang4" type="Sprite2D" parent="Lantai1"]
+light_mask = 0
+z_index = -7
+position = Vector2(5631.43, 430.021)
+rotation = -0.459022
+scale = Vector2(0.85929, 2.33471)
+texture = ExtResource("35_4mmle")
+
+[node name="Tiangl2" type="Sprite2D" parent="Lantai1"]
+light_mask = 0
+z_index = -7
+position = Vector2(7392.43, 349.021)
+scale = Vector2(1.79167, 3.75275)
+texture = ExtResource("36_cypcg")
+
+[node name="Numpuk" type="Sprite2D" parent="Lantai1"]
+show_behind_parent = true
+light_mask = 0
+z_index = -7
+position = Vector2(2843.81, 373.133)
+rotation = 0.261799
+scale = Vector2(1.2583, 1.22868)
+texture = ExtResource("37_4mmle")
+
+[node name="Sprite2D" type="Sprite2D" parent="Lantai1"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+light_mask = 0
+z_index = -9
+position = Vector2(1451.5, 436)
+scale = Vector2(3.02214, 2.20673)
+texture = ExtResource("37_cypcg")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Lantai1"]
+modulate = Color(0.404511, 0.404511, 0.404511, 1)
+light_mask = 0
+z_index = -9
+position = Vector2(5099, 243)
+scale = Vector2(6.92904, 2.78125)
+texture = ExtResource("37_cypcg")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Lantai1"]
+modulate = Color(0.233925, 0.233925, 0.233925, 1)
+self_modulate = Color(0.537011, 0.537011, 0.537011, 1)
+light_mask = 0
+z_index = -5
+position = Vector2(5328.38, -41)
+scale = Vector2(1.68397, 1.875)
+texture = ExtResource("38_2vrm3")
+
+[node name="CutScene" parent="." instance=ExtResource("38_cypcg")]
+
+[node name="lt3" type="Sprite2D" parent="."]
+z_index = -3
+
+[node name="Sprite2D" type="Sprite2D" parent="lt3"]
+modulate = Color(0.288518, 0.288518, 0.288518, 1)
+self_modulate = Color(0.552956, 0.552956, 0.552956, 1)
+position = Vector2(117, -1359)
+rotation = 0.727802
+scale = Vector2(0.694173, 1.29781)
+texture = ExtResource("40_newbq")
+
+[node name="Sprite2D6" type="Sprite2D" parent="lt3"]
+modulate = Color(0.288518, 0.288518, 0.288518, 1)
+self_modulate = Color(0.552956, 0.552956, 0.552956, 1)
+z_index = 10
+position = Vector2(-180, -1313)
+rotation = -4.36507
+scale = Vector2(0.41866, 0.857519)
+texture = ExtResource("40_newbq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="lt3"]
+modulate = Color(0.288518, 0.288518, 0.288518, 1)
+self_modulate = Color(0.552956, 0.552956, 0.552956, 1)
+position = Vector2(509, -1533)
+rotation = 0.0122173
+scale = Vector2(0.694173, 1.29781)
+texture = ExtResource("40_newbq")
+
+[node name="Sprite2D10" type="Sprite2D" parent="lt3"]
+modulate = Color(0.288518, 0.288518, 0.288518, 1)
+self_modulate = Color(0.552956, 0.552956, 0.552956, 1)
+z_index = -3
+z_as_relative = false
+position = Vector2(40, -1418)
+rotation = -4.21846
+scale = Vector2(0.735113, 1.29781)
+texture = ExtResource("40_newbq")
+
+[node name="Sprite2D3" type="Sprite2D" parent="lt3"]
+modulate = Color(0.288518, 0.288518, 0.288518, 1)
+self_modulate = Color(0.552956, 0.552956, 0.552956, 1)
+position = Vector2(1116, -1391)
+rotation = 0.0122173
+scale = Vector2(0.694173, 1.29781)
+texture = ExtResource("40_newbq")
+
+[node name="Sprite2D4" type="Sprite2D" parent="lt3"]
+modulate = Color(0.288518, 0.288518, 0.288518, 1)
+self_modulate = Color(0.552956, 0.552956, 0.552956, 1)
+position = Vector2(1633, -1539)
+rotation = 0.0122173
+scale = Vector2(0.574312, 1.29781)
+texture = ExtResource("40_newbq")
+
+[node name="Sprite2D5" type="Sprite2D" parent="lt3"]
+modulate = Color(0.288518, 0.288518, 0.288518, 1)
+self_modulate = Color(0.552956, 0.552956, 0.552956, 1)
+position = Vector2(2355, -1443)
+rotation = 0.268781
+scale = Vector2(0.574312, 1.29781)
+texture = ExtResource("40_newbq")
+
+[node name="Sprite2D7" type="Sprite2D" parent="lt3"]
+modulate = Color(0.288518, 0.288518, 0.288518, 1)
+self_modulate = Color(0.552956, 0.552956, 0.552956, 1)
+position = Vector2(2751.54, -1814.96)
+rotation = 0.0122173
+scale = Vector2(0.694173, 1.29781)
+texture = ExtResource("40_newbq")
+
+[node name="Sprite2D8" type="Sprite2D" parent="lt3"]
+modulate = Color(0.288518, 0.288518, 0.288518, 1)
+self_modulate = Color(0.552956, 0.552956, 0.552956, 1)
+position = Vector2(3875.54, -1820.96)
+rotation = 0.0122173
+scale = Vector2(0.574312, 1.29781)
+texture = ExtResource("40_newbq")
+
+[node name="Sprite2D9" type="Sprite2D" parent="lt3"]
+modulate = Color(0.288518, 0.288518, 0.288518, 1)
+self_modulate = Color(0.552956, 0.552956, 0.552956, 1)
+position = Vector2(5344, -1897)
+rotation = -0.244346
+scale = Vector2(0.961987, 2.12854)
+texture = ExtResource("40_newbq")
+
+[node name="lt3,2" type="Sprite2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="lt3,2"]
+modulate = Color(0.233925, 0.233925, 0.233925, 1)
+self_modulate = Color(0.666569, 0.666569, 0.666569, 1)
+z_index = -7
+position = Vector2(159, -661)
+texture = ExtResource("41_ptcaw")
+
+[node name="Sprite2D2" type="Sprite2D" parent="lt3,2"]
+modulate = Color(0.233925, 0.233925, 0.233925, 1)
+self_modulate = Color(0.666569, 0.666569, 0.666569, 1)
+z_index = -7
+position = Vector2(775, -1512)
+texture = ExtResource("42_r5q04")
+
+[node name="Sprite2D3" type="Sprite2D" parent="lt3,2"]
+modulate = Color(0.233925, 0.233925, 0.233925, 1)
+self_modulate = Color(0.666569, 0.666569, 0.666569, 1)
+z_index = -7
+position = Vector2(1409, -1479)
+texture = ExtResource("42_r5q04")
+
+[node name="Sprite2D4" type="Sprite2D" parent="lt3,2"]
+modulate = Color(0.233925, 0.233925, 0.233925, 1)
+self_modulate = Color(0.666569, 0.666569, 0.666569, 1)
+z_index = -7
+position = Vector2(1988, -1507)
+texture = ExtResource("42_r5q04")
+
+[node name="Sprite2D5" type="Sprite2D" parent="lt3,2"]
+modulate = Color(0.233925, 0.233925, 0.233925, 1)
+self_modulate = Color(0.666569, 0.666569, 0.666569, 1)
+z_index = -7
+position = Vector2(3238, -1787)
+texture = ExtResource("42_r5q04")
+
+[node name="Sprite2D6" type="Sprite2D" parent="lt3,2"]
+modulate = Color(0.233925, 0.233925, 0.233925, 1)
+self_modulate = Color(0.666569, 0.666569, 0.666569, 1)
+z_index = -7
+position = Vector2(4661.5, -1982)
+scale = Vector2(1.12426, 1)
+texture = ExtResource("42_r5q04")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(0.187176, 0.187176, 0.187176, 1)
+self_modulate = Color(0.678944, 0.678944, 0.678944, 1)
+z_index = -8
+position = Vector2(2010, -1209)
+scale = Vector2(1, 0.820312)
+texture = ExtResource("43_iocgj")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(0.396889, 0.396889, 0.396889, 1)
+self_modulate = Color(0.581033, 0.581033, 0.581033, 1)
+z_index = -8
+position = Vector2(2832, -1559)
+scale = Vector2(1.07292, 0.947917)
+texture = ExtResource("43_iocgj")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(0.396889, 0.396889, 0.396889, 1)
+self_modulate = Color(0.581033, 0.581033, 0.581033, 1)
+z_index = -8
+position = Vector2(4948, -1649)
+scale = Vector2(1.07292, 0.947917)
+texture = ExtResource("43_iocgj")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(0.396889, 0.396889, 0.396889, 1)
+self_modulate = Color(0.581033, 0.581033, 0.581033, 1)
+z_index = -8
+position = Vector2(3654, -1542)
+scale = Vector2(1.35119, 1.18099)
+texture = ExtResource("43_iocgj")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(0.396889, 0.396889, 0.396889, 1)
+self_modulate = Color(0.581033, 0.581033, 0.581033, 1)
+z_index = -8
+position = Vector2(4354, -1677)
+scale = Vector2(1.35119, 1.08529)
+texture = ExtResource("43_iocgj")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(0.446777, 0.446777, 0.446777, 1)
+self_modulate = Color(0.544974, 0.544974, 0.544974, 1)
+z_index = -8
+position = Vector2(1286, -1225)
+scale = Vector2(1, 0.820312)
+texture = ExtResource("43_iocgj")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(0.237539, 0.237539, 0.237539, 1)
+z_index = -8
+position = Vector2(774, -1297)
+rotation = -0.383972
+scale = Vector2(1, 0.820312)
+texture = ExtResource("43_iocgj")

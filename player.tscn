@@ -162,6 +162,10 @@ animations = [{
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_urp6f"]
 bg_color = Color(0.972549, 0.968627, 0.952941, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
 border_blend = true
 corner_radius_top_left = 4
@@ -171,6 +175,11 @@ corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bwjto"]
 bg_color = Color(0.564706, 0.878431, 0.937255, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -874,6 +883,7 @@ shape = SubResource("CapsuleShape2D_bwjto")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1, -1)
 offset = Vector2(0, -100)
+zoom = Vector2(1.3, 1.3)
 limit_left = -120
 limit_smoothed = true
 position_smoothing_enabled = true
@@ -907,56 +917,137 @@ sprite_frames = SubResource("SpriteFrames_2wuci")
 animation = &"frame"
 
 [node name="Stamina" type="ProgressBar" parent="HealthLayer"]
-offset_left = 317.0
-offset_top = 49.0
-offset_right = 610.0
-offset_bottom = 76.0
+anchors_preset = -1
+anchor_left = 0.395
+anchor_top = 0.068
+anchor_right = 0.649
+anchor_bottom = 0.11
+offset_left = -0.0400085
+offset_top = -0.064003
+offset_right = 0.351929
+offset_bottom = -0.280006
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_urp6f")
 theme_override_styles/fill = SubResource("StyleBoxFlat_bwjto")
 max_value = 10.0
 value = 6.1
 show_percentage = false
 
-[node name="Inventory" type="Sprite2D" parent="HealthLayer"]
-position = Vector2(1012, 61)
+[node name="Inventory" type="TextureRect" parent="HealthLayer"]
+anchors_preset = -1
+anchor_left = 0.811
+anchor_top = 0.062
+anchor_right = 0.946
+anchor_bottom = 0.129
+offset_left = -8.27203
+offset_top = -12.176
+offset_right = -47.792
+offset_bottom = -11.592
+grow_horizontal = 0
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_bwjto")
 
-[node name="Keris" type="Sprite2D" parent="HealthLayer"]
-position = Vector2(1066, 57)
+[node name="Keris" type="TextureRect" parent="HealthLayer"]
+anchors_preset = -1
+anchor_left = 0.908
+anchor_top = 0.058
+anchor_right = 0.945
+anchor_bottom = 0.129
+offset_left = 24.9839
+offset_top = 55.416
+offset_right = 69.36
+offset_bottom = 144.408
+grow_horizontal = 0
 rotation = -2.40855
 scale = Vector2(0.62326, 0.357939)
 texture = ExtResource("5_u1c27")
 
-[node name="Rencong" type="Sprite2D" parent="HealthLayer"]
-position = Vector2(1014, 57.9999)
+[node name="Rencong" type="TextureRect" parent="HealthLayer"]
+anchors_preset = -1
+anchor_left = 0.862
+anchor_top = 0.056
+anchor_right = 0.898
+anchor_bottom = 0.129
+offset_left = 28.976
+offset_top = 62.712
+offset_right = 99.5039
+offset_bottom = 127.408
+grow_horizontal = 0
 rotation = -2.49757
 scale = Vector2(0.575245, 0.477033)
 texture = ExtResource("6_op7ga")
 
-[node name="Pedang" type="Sprite2D" parent="HealthLayer"]
-position = Vector2(959, 61)
+[node name="Pedang" type="TextureRect" parent="HealthLayer"]
+anchors_preset = -1
+anchor_left = 0.812
+anchor_top = 0.051
+anchor_right = 0.852
+anchor_bottom = 0.131
+offset_left = -7.42407
+offset_top = -0.0480003
+offset_right = -5.50409
+offset_bottom = -3.88801
+grow_horizontal = 0
 scale = Vector2(1.27083, 1.15625)
 texture = ExtResource("7_op7ga")
 
-[node name="LockedRencong" type="Sprite2D" parent="HealthLayer"]
-position = Vector2(1012, 60)
+[node name="LockedRencong" type="TextureRect" parent="HealthLayer"]
+anchors_preset = -1
+anchor_left = 0.861
+anchor_top = 0.054
+anchor_right = 0.898
+anchor_bottom = 0.132
+offset_left = -2.87207
+offset_top = 3.008
+offset_right = -13.4961
+offset_bottom = -15.536
+grow_horizontal = 0
 scale = Vector2(1.453, 1.453)
 texture = ExtResource("8_q13i1")
 
-[node name="LockedKeris" type="Sprite2D" parent="HealthLayer"]
-position = Vector2(1068, 60)
+[node name="LockedKeris" type="TextureRect" parent="HealthLayer"]
+anchors_preset = -1
+anchor_left = 0.906
+anchor_top = 0.055
+anchor_right = 0.948
+anchor_bottom = 0.131
+offset_left = 1.28796
+offset_top = 1.35999
+offset_right = -15.0961
+offset_bottom = -15.888
+grow_horizontal = 0
 scale = Vector2(1.453, 1.453)
 texture = ExtResource("8_q13i1")
 
-[node name="ItemSlot" type="Sprite2D" parent="HealthLayer"]
-position = Vector2(883, 63)
+[node name="ItemSlot" type="TextureRect" parent="HealthLayer"]
+anchors_preset = -1
+anchor_left = 0.751
+anchor_top = 0.058
+anchor_right = 0.787
+anchor_bottom = 0.129
+offset_left = -18.152
+offset_top = -11.584
+offset_right = -11.6241
+offset_bottom = -9.592
+grow_horizontal = 0
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("9_pylmc")
 
-[node name="HealthPotion" type="Sprite2D" parent="HealthLayer"]
-position = Vector2(883, 61)
+[node name="HealthPotion" type="TextureRect" parent="HealthLayer"]
+anchors_preset = -1
+anchor_left = 0.747
+anchor_top = 0.055
+anchor_right = 0.788
+anchor_bottom = 0.129
+offset_left = -2.54407
+offset_top = -4.64
+offset_right = -23.7761
+offset_bottom = -25.592
+grow_horizontal = 0
 scale = Vector2(2, 2)
+expand_mode = 1
+stretch_mode = 5
 
 [node name="InventoryItem" type="TextureRect" parent="HealthLayer"]
 anchors_preset = 8
@@ -990,33 +1081,77 @@ theme_override_constants/h_separation = 42
 theme_override_constants/v_separation = 42
 columns = 4
 
-[node name="Gold" type="Sprite2D" parent="HealthLayer"]
-position = Vector2(419, 108)
+[node name="Gold" type="TextureRect" parent="HealthLayer"]
+anchors_preset = -1
+anchor_left = 0.224
+anchor_top = 0.049
+anchor_right = 0.27
+anchor_bottom = 0.099
+offset_left = -5.048
+offset_top = -11.752
+offset_right = -26.04
+offset_bottom = -12.152
+grow_horizontal = 0
 scale = Vector2(2, 2)
 texture = ExtResource("12_dx0e4")
 
 [node name="Label" type="Label" parent="HealthLayer"]
-offset_left = 437.0
-offset_top = 95.0
-offset_right = 477.0
-offset_bottom = 118.0
+anchors_preset = -1
+anchor_left = 0.28
+anchor_top = 0.063
+anchor_right = 0.315
+anchor_bottom = 0.099
+offset_left = 0.440002
+offset_top = 0.175999
+offset_right = 0.119965
+offset_bottom = -0.152008
+grow_horizontal = 0
 text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SwordSelected" type="Sprite2D" parent="HealthLayer"]
+[node name="SwordSelected" type="TextureRect" parent="HealthLayer"]
 z_index = 4
-position = Vector2(958, 62)
+anchors_preset = -1
+anchor_left = 0.808
+anchor_top = 0.057
+anchor_right = 0.858
+anchor_bottom = 0.141
+offset_left = -7.81604
+offset_top = -9.936
+offset_right = -17.416
+offset_bottom = -16.368
+grow_horizontal = 0
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("13_jm5j8")
 
-[node name="RencongSelected" type="Sprite2D" parent="HealthLayer"]
-position = Vector2(1012, 63)
+[node name="RencongSelected" type="TextureRect" parent="HealthLayer"]
+anchors_preset = -1
+anchor_left = 0.86
+anchor_top = 0.042
+anchor_right = 0.921
+anchor_bottom = 0.153
+offset_left = -13.72
+offset_top = -0.216002
+offset_right = -35.9921
+offset_bottom = -24.144
+grow_horizontal = 0
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("13_jm5j8")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="KerisSelected" type="Sprite2D" parent="HealthLayer"]
-position = Vector2(1067, 63)
+[node name="KerisSelected" type="TextureRect" parent="HealthLayer"]
+anchors_preset = -1
+anchor_left = 0.906
+anchor_top = 0.056
+anchor_right = 0.946
+anchor_bottom = 0.134
+offset_left = -12.712
+offset_top = -9.288
+offset_right = -10.792
+offset_bottom = -11.832
+grow_horizontal = 0
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("13_jm5j8")
 

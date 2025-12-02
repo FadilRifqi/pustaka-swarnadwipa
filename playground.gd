@@ -5,10 +5,39 @@ extends Node2D
 @export var fade_duration: float = 2.0
 @onready var bossmusic: AudioStreamPlayer = $bossmusic
 @onready var trap: Area2D = $Trap
+@onready var cutscene_ui: CanvasLayer = $CutScene
 
 # --- REFERENSI PLAYER ---
 @onready var player: Player = $Player
 @onready var void_area: Area2D = $Void
+
+
+var intro_dialogue = [
+	{
+		"name": "Hero", 
+		"text": "Dimana aku? Tempat ini terasa aneh...", 
+		"side": "left", 
+		"pic": preload("res://assets/Main Character/MC.png") # Ganti gambar hero
+	},
+	{
+		"name": "Tetua Desa", 
+		"text": "Anak muda! Kau akhirnya sadar.", 
+		"side": "right", 
+		"pic": preload("res://assets/Main Character/NPC.png") # Ganti gambar NPC
+	},
+	{
+		"name": "Hero", 
+		"text": "Apa yang terjadi? Kenapa desa ini hancur?", 
+		"side": "left", 
+		"pic": preload("res://assets/Main Character/MC.png")
+	},
+	{
+		"name": "Tetua Desa", 
+		"text": "Para monster mencuri pusaka kami. Kau harus merebutnya kembali!", 
+		"side": "right", 
+		"pic": preload("res://assets/Main Character/NPC.png")
+	}
+]
 
 func _ready() -> void:
 	# Cek apakah kita sedang Load Game atau Balik dari Setting?
@@ -34,7 +63,6 @@ func _ready() -> void:
 			trap.body_entered.connect(_on_void_body_entered)
 	else:
 		print("Error: Node Void tidak ditemukan!")
-
 
 func _on_void_body_entered(body: Node2D) -> void:
 	# Cek apakah yang jatuh adalah Player
@@ -73,6 +101,43 @@ func fade_in_music(music : AudioStreamPlayer) -> void:
 	music.play()
 	var tween = create_tween()
 	tween.tween_property(music, "volume_db", Global.master_volume, fade_duration)
+
+
+# ... (Naskah ending_dialogue yang tadi kamu buat biarkan di sini) ...
+
+# --- FUNGSI INI DIPANGGIL OLEH BOSS SAAT MATI ---
+func start_ending_sequence() -> void:
+	print("BOSS MATI -> MULAI CUTSCENE")
+	
+	# 1. Matikan Musik Boss
+	if bossmusic.playing:
+		bossmusic.stop()
+	
+	# 2. Matikan Gerak Player
+	if player:
+		player.set_physics_process(false)
+		player.set_process_unhandled_input(false)
+		player.velocity = Vector2.ZERO
+		# Sembunyikan UI Player biar bersih
+		if player.has_node("HealthLayer"):
+			player.get_node("HealthLayer").visible = false
+	
+	# 3. Jalankan Cutscene
+	if cutscene_ui:
+		# Munculkan UI Cutscene (jaga-jaga kalau hidden)
+		cutscene_ui.visible = true
+		
+		# Masukkan naskah ke cutscene
+		cutscene_ui.start_cutscene()
+		
+		# Tunggu sampai player selesai baca (klik sampai habis)
+		await cutscene_ui.cutscene_finished
+		
+		# 4. Pindah ke Main Menu setelah selesai
+		print("Tamat -> Pindah ke Menu")
+		get_tree().change_scene_to_file("res://scene/MainMenu.tscn")
+	else:
+		print("ERROR CRITICAL: Node Cutscene tidak ditemukan di Playground!")
 
 func fade_out_music(music: AudioStreamPlayer) -> void:
 	# Cek agar tidak fade out musik yang sudah mati

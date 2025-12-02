@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://xqfl7ro44u2w"]
+
+[ext_resource type="Texture2D" uid="uid://dygkemtr7aj1o" path="res://assets/bg/dekor/Cave - Floor.png" id="1_3sn7t"]
+
+[resource]
+atlas = ExtResource("1_3sn7t")
+region = Rect2(67, 1068, 1423, 258)

@@ -40,21 +40,21 @@ var direction : Vector2 = Vector2.ZERO
 @export var skill_dash_distance: float = 200.0 # JARAK GESER SKILL (200px)
 
 # Nodes
-@onready var sword_selected: Sprite2D = $HealthLayer/SwordSelected
-@onready var rencong_selected: Sprite2D = $HealthLayer/RencongSelected
-@onready var keris_selected: Sprite2D = $HealthLayer/KerisSelected
+@onready var sword_selected: TextureRect = $HealthLayer/SwordSelected
+@onready var rencong_selected: TextureRect = $HealthLayer/RencongSelected
+@onready var keris_selected: TextureRect = $HealthLayer/KerisSelected
 @onready var attack_area: Area2D = $AttackArea
 @onready var tutorial_bubble: PanelContainer = $TutorialBubble
 @onready var label: Label = $TutorialBubble/Label
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 # UI Nodes
-@onready var keris_ui: Sprite2D = $HealthLayer/Keris
-@onready var rencong_ui: Sprite2D = $HealthLayer/Rencong
-@onready var locked_rencong: Sprite2D = $HealthLayer/LockedRencong
-@onready var locked_keris: Sprite2D = $HealthLayer/LockedKeris
+@onready var keris_ui: TextureRect = $HealthLayer/Keris
+@onready var rencong_ui: TextureRect = $HealthLayer/Rencong
+@onready var locked_rencong: TextureRect = $HealthLayer/LockedRencong
+@onready var locked_keris: TextureRect = $HealthLayer/LockedKeris
 @onready var inventory_item: TextureRect = $HealthLayer/InventoryItem 
-@onready var item_slot_icon: Sprite2D = $HealthLayer/HealthPotion
+@onready var item_slot_icon: TextureRect = $HealthLayer/HealthPotion
 
 var selected_item = null
 var selected_item_index: int = -1
@@ -69,7 +69,7 @@ var is_using_skill : bool = false # Status Skill
 # Damage & Invincibility
 var is_invincible : bool = false
 var invincibility_duration : float = 1.0 
-@onready var gold: Sprite2D = $HealthLayer/Gold
+@onready var gold: TextureRect = $HealthLayer/Gold
 @onready var gold_label: Label = $HealthLayer/Label
 
 # Physics

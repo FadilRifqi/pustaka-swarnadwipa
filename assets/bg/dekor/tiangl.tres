@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://1yuy62admpol"]
+
+[ext_resource type="Texture2D" uid="uid://5yn265ytcj1k" path="res://assets/bg/dekor/Cave - Platforms-export.png" id="1_ev5n5"]
+
+[resource]
+atlas = ExtResource("1_ev5n5")
+region = Rect2(12, 161, 48, 91)

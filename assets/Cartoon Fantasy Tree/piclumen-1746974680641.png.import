@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgs84kbymo0mt"
-path="res://.godot/imported/Cave - RockCombinations1.png-f8a34138aee649f5539f1bc41cf60000.ctex"
+uid="uid://v0cpb3fpu5w3"
+path="res://.godot/imported/piclumen-1746974680641.png-363e248b53c369891abe73e815446235.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bg/dekor/Cave - RockCombinations1.png"
-dest_files=["res://.godot/imported/Cave - RockCombinations1.png-f8a34138aee649f5539f1bc41cf60000.ctex"]
+source_file="res://assets/Cartoon Fantasy Tree/piclumen-1746974680641.png"
+dest_files=["res://.godot/imported/piclumen-1746974680641.png-363e248b53c369891abe73e815446235.ctex"]
 
 [params]
 

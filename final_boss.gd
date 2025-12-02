@@ -2,7 +2,7 @@ class_name FinalBoss
 extends CharacterBody2D
 
 # --- STATS BOSS ---
-@export var max_health: int = 50
+@export var max_health: int = 1
 var health: int = max_health
 @export var damage_normal: int = 5
 @export var damage_enrage: int = 8 # Damage saat marah
@@ -190,7 +190,12 @@ func die() -> void:
 	
 	if get_parent().has_method("switch_to_level_music"):
 		get_parent().switch_to_level_music()
-		
+	
+	if get_parent().has_method("on_final_boss_defeated"):
+		get_parent().on_final_boss_defeated()
+	else:
+		print("ERROR: Fungsi 'on_final_boss_defeated' tidak ditemukan di Parent (Playground)!")
+	
 	# Drop Item Spesial atau Tamat Game
 	if player and player.has_method("add_money"):
 		player.add_money(100) # Hadiah besar
