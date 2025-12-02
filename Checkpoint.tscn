@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://db450e2ocgmui"]
 
-[ext_resource type="Texture2D" uid="uid://cbqeosemtyafo" path="res://assets/bg/Salt.png" id="1_ir6d7"]
+[ext_resource type="Texture2D" uid="uid://cbqeosemtyafo" path="res://assets/lvl1-bg/bg/Salt.png" id="1_ir6d7"]
 [ext_resource type="Script" uid="uid://bk00ui54x7rd5" path="res://checkpoint.gd" id="1_yt2a0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yt2a0"]

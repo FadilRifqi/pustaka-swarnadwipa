@@ -268,5 +268,5 @@ func _on_settings_pressed() -> void:
 	get_tree().change_scene_to_file("res://setting.tscn")
 func _on_quit_pressed() -> void:
 	get_tree().paused = false
-	
+	DialogManager.remove_all_dialogs()
 	get_tree().change_scene_to_file("res://scene/MainMenu.tscn")

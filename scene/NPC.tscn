@@ -69,6 +69,7 @@ frame_progress = 0.09538
 shape = SubResource("RectangleShape2D_ovfuw")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+light_mask = 0
 offset_left = -34.0
 offset_top = -43.0
 offset_right = 191.0
@@ -76,14 +77,17 @@ offset_bottom = -3.0
 scale = Vector2(0.3, 0.3)
 
 [node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
+light_mask = 0
 layout_mode = 2
 texture = ExtResource("3_em0ta")
 region_rect = Rect2(5, 7, 22, 16)
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+light_mask = 0
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/MarginContainer"]
+light_mask = 0
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_3u26s")

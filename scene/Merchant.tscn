@@ -25,6 +25,7 @@ scale = Vector2(3, 3.05)
 texture = ExtResource("2_dens0")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+light_mask = 0
 z_index = 2
 offset_left = 46.0
 offset_top = -34.0
@@ -32,14 +33,17 @@ offset_right = 271.0
 offset_bottom = 6.0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
+light_mask = 0
 layout_mode = 2
 texture = ExtResource("3_jjsgq")
 region_rect = Rect2(5, 7, 22, 16)
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+light_mask = 0
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/MarginContainer"]
+light_mask = 0
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_mquol")

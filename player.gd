@@ -1,5 +1,6 @@
 class_name Player extends CharacterBody2D
 
+@onready var game_over_ui: CanvasLayer = $GameOver
 
 # --- VARIABLES ---
 var heart_list : Array[AnimatedSprite2D] 
@@ -120,7 +121,9 @@ func _ready() -> void:
 	# Setup Animation Signal
 	if not animated_sprite.animation_finished.is_connected(_on_animated_sprite_animation_finished):
 		animated_sprite.animation_finished.connect(_on_animated_sprite_animation_finished)
-	
+		
+	if not animated_sprite.frame_changed.is_connected(_on_animated_sprite_frame_changed):
+		animated_sprite.frame_changed.connect(_on_animated_sprite_frame_changed)
 	UpdateAnimation()
 	update_hearts()
 	update_stamina_ui()
@@ -302,7 +305,7 @@ func SetState() -> bool:
 			update_stamina_ui()
 			new_state = weapon + "_attack"
 			is_attacking = true
-			attack_area.monitoring = true 
+			attack_area.monitoring = false 
 		else:
 			if not Global.tutorial_energy_shown:
 				show_notification("Energi Rendah! Tekan Inventory (Tab) untuk melihat Potion", 1.0)
@@ -335,6 +338,8 @@ func SetState() -> bool:
 
 	if new_state == state: return false
 	state = new_state; return true
+
+
 
 # --- LOGIKA TELEPORT SKILL ---
 func perform_skill_dash() -> void:
@@ -396,6 +401,25 @@ func UpdateAnimation() -> void:
 			print("Warning: Animasi tidak ditemukan -> ", state)
 			animated_sprite.play(weapon + "_idle")
 	
+
+func _on_animated_sprite_frame_changed() -> void:
+	# Hanya jalankan logika ini jika sedang menyerang
+	if is_attacking:
+		var frame = animated_sprite.frame
+		
+		# Logika Sword: Aktif Frame 1-3
+		if weapon == "sword":
+			if frame >= 1 and frame <= 3:
+				attack_area.monitoring = true
+			else:
+				attack_area.monitoring = false
+		
+		# Logika Keris & Rencong: Aktif Frame 1-4
+		elif weapon == "keris" or weapon == "rencong":
+			if frame >= 1 and frame <= 4:
+				attack_area.monitoring = true
+			else:
+				attack_area.monitoring = false
 
 # --- SINYAL ANIMASI SELESAI ---
 func _on_animated_sprite_animation_finished() -> void:
@@ -525,8 +549,21 @@ func start_invincibility() -> void:
 	modulate.a = 1.0; is_invincible = false
 
 func die() -> void:
-	print("Player Mati")
-	get_tree().reload_current_scene()
+	if health <= 0:
+		print("Player Mati")
+		
+		# Panggil fungsi cutscene
+		if game_over_ui:
+			game_over_ui.start_game_over_sequence()
+			
+		# Opsi: Jangan queue_free() player, biarkan saja diam/animasi mati
+		# Karena kalau player dihapus, script GameOverUI di dalamnya ikut hilang.
+		# Cukup matikan proses physics atau collision.
+		set_physics_process(false)
+		$CollisionShape2D.set_deferred("disabled", true)
+		
+		# Mainkan animasi mati (jika ada)
+		# animated_sprite.play("die")
 
 func _start_air_dash() -> void:
 	if current_stamina >= 3.0:

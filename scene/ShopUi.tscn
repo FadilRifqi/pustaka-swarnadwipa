@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dvapknguhf10b" path="res://assets/ui/gold.png" id="2_hhhny"]
 
 [node name="ShopUi" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_lec1b")
 
 [node name="Control" type="Control" parent="."]

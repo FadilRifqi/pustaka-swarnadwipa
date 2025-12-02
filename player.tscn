@@ -1,4 +1,4 @@
-[gd_scene load_steps=138 format=3 uid="uid://c11o6et3g00y1"]
+[gd_scene load_steps=139 format=3 uid="uid://c11o6et3g00y1"]
 
 [ext_resource type="Script" uid="uid://bw2o1rbms3w0r" path="res://player.gd" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://dmi0v00cgg3u0" path="res://assets/ui/horizontal_type_1.png" id="4_bwjto"]
@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://bhdxq8n346vw1" path="res://assets/sprite/heart-Sheet.png" id="13_urp6f"]
 [ext_resource type="Texture2D" uid="uid://52wpq5m77bnj" path="res://assets/Main Character/skill_keris.png" id="16_7lmhl"]
 [ext_resource type="Texture2D" uid="uid://7jprtqdh4bnm" path="res://assets/Main Character/skill_rencong.png" id="20_dx0e4"]
+[ext_resource type="PackedScene" uid="uid://cfjnfjxkpcr7m" path="res://GameOver.tscn" id="26_7hik5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bwjto"]
 radius = 6.0
@@ -176,7 +177,7 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivps1"]
-size = Vector2(19, 37)
+size = Vector2(28.5, 37)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ivps1"]
 bg_color = Color(0.996078, 0.996078, 0.996078, 1)
@@ -1020,7 +1021,7 @@ texture = ExtResource("13_jm5j8")
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="Attack_Range" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(14, -1)
+position = Vector2(18.75, -1)
 shape = SubResource("RectangleShape2D_ivps1")
 
 [node name="TutorialBubble" type="PanelContainer" parent="."]
@@ -1043,8 +1044,10 @@ modulate = Color(0.658339, 0.65834, 0.65834, 1)
 self_modulate = Color(0.637843, 0.637843, 0.637843, 1)
 position = Vector2(-2, -3)
 sprite_frames = SubResource("SpriteFrames_rpay4")
-animation = &"keris_jumping"
+animation = &"keris_attack"
 autoplay = "keris_idle"
+frame = 7
+frame_progress = 1.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0.862804, 0.681687, 0.330747, 1)
@@ -1063,3 +1066,6 @@ position = Vector2(-2, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SkillArea"]
 position = Vector2(49, 0)
 shape = SubResource("RectangleShape2D_7lmhl")
+
+[node name="GameOver" parent="." instance=ExtResource("26_7hik5")]
+visible = false
