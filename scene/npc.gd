@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Area2D
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 # Pastikan kamu sudah membuat Area2D di scene tree seperti instruksi di atas
@@ -40,12 +40,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	# 3. Buat diam saja (tambahkan gravitasi jika perlu agar menapak tanah)
-	if not is_on_floor():
-		velocity.y += 980.0 * delta # Gravitasi standar
-	else:
-		velocity = Vector2.ZERO # Pastikan diam
-	
-	move_and_slide()
+	pass
 
 # --- LOGIKA INPUT INTERAKSI ---
 func _input(event: InputEvent) -> void:

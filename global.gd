@@ -4,6 +4,8 @@ var load_saved_game: bool = false
 var previous_scene: String = ""
 var is_returning_from_settings: bool = false
 var visited_triggers: Array = []
+var tutorial_potion_shown: bool = false
+var tutorial_energy_shown: bool = false
 const KEYBIND_PATH = "user://keybinds.json"
 # DAFTAR AKSI YANG AKAN DISIMPAN KE JSON
 const INPUT_ACTIONS = [

@@ -1,4 +1,4 @@
-[gd_scene load_steps=134 format=3 uid="uid://c11o6et3g00y1"]
+[gd_scene load_steps=138 format=3 uid="uid://c11o6et3g00y1"]
 
 [ext_resource type="Script" uid="uid://bw2o1rbms3w0r" path="res://player.gd" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://dmi0v00cgg3u0" path="res://assets/ui/horizontal_type_1.png" id="4_bwjto"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://cqrlffr62wck1" path="res://inventory_item_player.gd" id="13_7lmhl"]
 [ext_resource type="FontFile" uid="uid://cjm7adbu2am7x" path="res://assets/font/TrajanPro-Regular.ttf" id="13_606se"]
 [ext_resource type="Script" uid="uid://y7m1k6gfkgsi" path="res://camera_2d.gd" id="13_bwjto"]
+[ext_resource type="Texture2D" uid="uid://cyri68ol84kov" path="res://assets/ui/Selected.png" id="13_jm5j8"]
 [ext_resource type="Texture2D" uid="uid://bhdxq8n346vw1" path="res://assets/sprite/heart-Sheet.png" id="13_urp6f"]
 [ext_resource type="Texture2D" uid="uid://52wpq5m77bnj" path="res://assets/Main Character/skill_keris.png" id="16_7lmhl"]
 [ext_resource type="Texture2D" uid="uid://7jprtqdh4bnm" path="res://assets/Main Character/skill_rencong.png" id="20_dx0e4"]
@@ -159,7 +160,7 @@ animations = [{
 }]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_urp6f"]
-bg_color = Color(0.792157, 0.941176, 0.972549, 1)
+bg_color = Color(0.972549, 0.968627, 0.952941, 1)
 border_color = Color(0, 0, 0, 1)
 border_blend = true
 corner_radius_top_left = 4
@@ -243,6 +244,10 @@ region = Rect2(576, 0, 96, 80)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ibah8"]
 atlas = ExtResource("5_b26j0")
 region = Rect2(672, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipvpa"]
+atlas = ExtResource("6_nvl01")
+region = Rect2(480, 0, 96, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3iwfv"]
 atlas = ExtResource("6_nvl01")
@@ -360,6 +365,10 @@ region = Rect2(576, 0, 96, 80)
 atlas = ExtResource("6_n7ghd")
 region = Rect2(672, 0, 96, 80)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_nevyh"]
+atlas = ExtResource("9_ivps1")
+region = Rect2(480, 0, 96, 80)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ax26h"]
 atlas = ExtResource("9_ivps1")
 region = Rect2(0, 0, 96, 80)
@@ -476,6 +485,10 @@ region = Rect2(576, 0, 96, 80)
 atlas = ExtResource("9_urp6f")
 region = Rect2(672, 0, 96, 80)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhr50"]
+atlas = ExtResource("10_n7ghd")
+region = Rect2(480, 0, 96, 80)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ro7of"]
 atlas = ExtResource("10_n7ghd")
 region = Rect2(0, 0, 96, 80)
@@ -567,6 +580,14 @@ animations = [{
 "loop": true,
 "name": &"keris_idle",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipvpa")
+}],
+"loop": true,
+"name": &"keris_jumping",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -677,6 +698,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_nevyh")
+}],
+"loop": true,
+"name": &"rencong_jumping",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ax26h")
 }, {
 "duration": 1.0,
@@ -784,6 +813,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_hhr50")
+}],
+"loop": true,
+"name": &"sword_jumping",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ro7of")
 }, {
 "duration": 1.0,
@@ -813,8 +850,8 @@ animations = [{
 }]
 
 [sub_resource type="Gradient" id="Gradient_5tmop"]
-offsets = PackedFloat32Array(0.136364, 0.805195)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.00649351, 0.519481, 0.603896, 0.616883, 0.993506, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.903846, 0.903846, 0.903846, 1, 0.0488565, 0.0488565, 0.0488565, 1, 0.0144064, 0.0144064, 0.0144064, 1, 0.00216096, 0.00216096, 0.00216096, 1, 0, 0, 0, 1, 0.00551606, 0.00551606, 0.00551606, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_7ahtn"]
 gradient = SubResource("Gradient_5tmop")
@@ -964,6 +1001,22 @@ text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="SwordSelected" type="Sprite2D" parent="HealthLayer"]
+z_index = 4
+position = Vector2(958, 62)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("13_jm5j8")
+
+[node name="RencongSelected" type="Sprite2D" parent="HealthLayer"]
+position = Vector2(1012, 63)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("13_jm5j8")
+
+[node name="KerisSelected" type="Sprite2D" parent="HealthLayer"]
+position = Vector2(1067, 63)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("13_jm5j8")
+
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="Attack_Range" type="CollisionShape2D" parent="AttackArea"]
@@ -986,21 +1039,23 @@ theme_override_font_sizes/font_size = 8
 vertical_alignment = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.843184, 0.843184, 0.843184, 1)
-self_modulate = Color(0.838897, 0.838897, 0.838897, 1)
+modulate = Color(0.658339, 0.65834, 0.65834, 1)
+self_modulate = Color(0.637843, 0.637843, 0.637843, 1)
 position = Vector2(-2, -3)
 sprite_frames = SubResource("SpriteFrames_rpay4")
-animation = &"keris_run"
+animation = &"keris_jumping"
 autoplay = "keris_idle"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(0.862804, 0.681687, 0.330747, 1)
+energy = 4.0
+blend_mode = 2
 range_item_cull_mask = 3
 shadow_enabled = true
 shadow_filter = 2
 shadow_item_cull_mask = 3
 texture = SubResource("GradientTexture2D_7ahtn")
-texture_scale = 2.22
+texture_scale = 8.0
 
 [node name="SkillArea" type="Area2D" parent="."]
 position = Vector2(-2, 0)

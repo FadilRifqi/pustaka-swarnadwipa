@@ -230,6 +230,8 @@ z_index = 1
 script = ExtResource("1_gvitc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.687215, 0.687215, 0.687215, 1)
+self_modulate = Color(0.683077, 0.683077, 0.683077, 1)
 position = Vector2(2.78125, -2.8125)
 scale = Vector2(0.738306, 0.854688)
 sprite_frames = SubResource("SpriteFrames_wtoh8")

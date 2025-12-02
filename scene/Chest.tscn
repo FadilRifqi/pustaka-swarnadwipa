@@ -94,7 +94,9 @@ animations = [{
 script = ExtResource("1_lex4w")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(10, -6)
+modulate = Color(0.695503, 0.695503, 0.695503, 1)
+self_modulate = Color(0.791999, 0.791999, 0.791999, 1)
+position = Vector2(10, -11)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_vj0eb")
 animation = &"opened"

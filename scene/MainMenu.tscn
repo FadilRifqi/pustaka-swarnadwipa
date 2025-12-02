@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://db16skm158cs2"]
 
 [ext_resource type="Script" uid="uid://w8lh4sgv5fls" path="res://scene/MainMenu.gd" id="1_85i58"]
-[ext_resource type="Texture2D" uid="uid://d1quhceu2mi7l" path="res://assets/lvl1-bg/bg/bg.png" id="2_581fk"]
-[ext_resource type="Texture2D" uid="uid://68fbpradrnng" path="res://assets/lvl1-bg/bg/Background_0.png" id="3_ee4am"]
+[ext_resource type="Texture2D" uid="uid://d1quhceu2mi7l" path="res://assets/bg/bg.png" id="2_581fk"]
+[ext_resource type="Texture2D" uid="uid://68fbpradrnng" path="res://assets/bg/Background_0.png" id="3_ee4am"]
 [ext_resource type="FontFile" uid="uid://d3easpuo6ebkl" path="res://assets/TrajanPro-Regular.ttf" id="4_581fk"]
 [ext_resource type="FontFile" uid="uid://c1v035gxx5dwl" path="res://assets/TrajanPro-Bold.otf" id="6_ee4am"]
 [ext_resource type="Script" uid="uid://rgsk8dsmect7" path="res://scene/button.gd" id="8_ee4am"]

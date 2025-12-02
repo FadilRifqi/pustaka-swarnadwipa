@@ -1,8 +1,11 @@
 class_name Player extends CharacterBody2D
 
+
 # --- VARIABLES ---
 var heart_list : Array[AnimatedSprite2D] 
 var money: int = 0 # Uang (Gold)
+var waiting_for_inventory_close: bool = false
+var waiting_for_inventory_close_energy : bool = false
 # Health Logic
 var health : float = 12.0
 var max_hp_per_heart : float = 4.0 
@@ -26,6 +29,9 @@ var direction : Vector2 = Vector2.ZERO
 @export var skill_dash_distance: float = 200.0 # JARAK GESER SKILL (200px)
 
 # Nodes
+@onready var sword_selected: Sprite2D = $HealthLayer/SwordSelected
+@onready var rencong_selected: Sprite2D = $HealthLayer/RencongSelected
+@onready var keris_selected: Sprite2D = $HealthLayer/KerisSelected
 @onready var attack_area: Area2D = $AttackArea
 @onready var tutorial_bubble: PanelContainer = $TutorialBubble
 @onready var label: Label = $TutorialBubble/Label
@@ -91,6 +97,8 @@ func _ready() -> void:
 	scale = Vector2(character_scale, character_scale)
 	check_weapon_unlocks()
 	gold.visible = false
+	rencong_selected.visible = false
+	keris_selected.visible = false
 	gold_label.visible = false
 	update_money_ui()
 	
@@ -160,8 +168,30 @@ func _process(delta: float) -> void:
 		inventory_item.visible = not inventory_item.visible
 		gold.visible = not gold.visible
 		gold_label.visible = not gold_label.visible
-		if inventory_item.visible: Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		else: Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		if inventory_item.visible: 
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else: 
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			if waiting_for_inventory_close:
+				show_notification("Tekan Use Item (F) pada Potion untuk menggunakannya", 4.0)
+				
+				# Tandai selesai selamanya
+				Global.tutorial_potion_shown = true
+				waiting_for_inventory_close = false
+				
+				# Auto save agar status tutorial tersimpan
+				var pause_menu = get_tree().root.find_child("PauseMenu", true, false)
+				if pause_menu: pause_menu.save_game()
+			if waiting_for_inventory_close_energy:
+				show_notification("Tekan Use Item (F) pada Potion untuk menggunakannya", 4.0)
+				
+				# Tandai selesai selamanya
+				Global.tutorial_energy_shown = true
+				waiting_for_inventory_close_energy = false
+				
+				# Auto save agar status tutorial tersimpan
+				var pause_menu = get_tree().root.find_child("PauseMenu", true, false)
+				if pause_menu: pause_menu.save_game()
 			
 	if Input.is_action_just_pressed("use_item"):
 		use_selected_item()
@@ -193,8 +223,11 @@ func start_dash() -> void:
 		
 		UpdateAnimation()
 	else:
-		show_notification("Need Stamina!", 1.0)
-		print("Stamina tidak cukup untuk Dash!")
+		if not Global.tutorial_energy_shown:
+			show_notification("Energi Rendah! Tekan Inventory (Tab) untuk melihat Potion", 1.0)
+			waiting_for_inventory_close_energy = true # Aktifkan mode menunggu tutup inventory
+		else:
+			show_notification("Butuh Stamina!", 1.0)
 
 # --- PHYSICS PROCESS ---
 func _physics_process(delta: float) -> void:
@@ -229,7 +262,7 @@ func _physics_process(delta: float) -> void:
 			if is_jumping:
 				is_jumping = false
 				if not is_attacking and not is_hurt and not is_using_skill:
-					state = weapon + ("_idle" if direction == Vector2.ZERO else "_run")
+					state = weapon + "_jumping"
 					is_dashing = false; can_air_dash = true; UpdateAnimation()
 		
 		# Movement Horizontal
@@ -260,7 +293,6 @@ func SetState() -> bool:
 		if Input.is_action_just_pressed("jump"):
 			new_state = weapon + "_jumping"; is_jumping = true; velocity.y = jump_force
 		elif direction == Vector2.ZERO: move_speed = 150; new_state = weapon + "_idle"
-		elif Input.is_action_pressed("run"): move_speed = 300; new_state = weapon + "_run"
 		else: move_speed = 300; new_state = weapon + "_run"
 	
 	# BASIC ATTACK
@@ -272,7 +304,11 @@ func SetState() -> bool:
 			is_attacking = true
 			attack_area.monitoring = true 
 		else:
-			show_notification("Need Stamina!", 1.0)
+			if not Global.tutorial_energy_shown:
+				show_notification("Energi Rendah! Tekan Inventory (Tab) untuk melihat Potion", 1.0)
+				waiting_for_inventory_close_energy = true # Aktifkan mode menunggu tutup inventory
+			else:
+				show_notification("Butuh Stamina!", 1.0)
 			return false
 	
 	# SKILL INPUT
@@ -316,12 +352,25 @@ func perform_skill_dash() -> void:
 
 func UpdateWeapon():
 	var old_weapon = weapon
-	if Input.is_action_just_pressed("slot_1"): weapon = "sword" 
+	if Input.is_action_just_pressed("slot_1"): 
+		weapon = "sword" 
+		rencong_selected.visible = false
+		sword_selected.visible = true
+		keris_selected.visible = false
 	elif Input.is_action_just_pressed("slot_2"):
-		if Global.unlocked_weapons["rencong"] == true: weapon = "rencong"
-		else: show_notification("Locked!", 0.5)
+		if Global.unlocked_weapons["rencong"] == true: 
+			weapon = "rencong"
+			rencong_selected.visible = true
+			sword_selected.visible = false
+			keris_selected.visible = false
+		else: 
+			show_notification("Locked!", 0.5)
 	elif Input.is_action_just_pressed("slot_3"): 
-		if Global.unlocked_weapons["keris"] == true: weapon = "keris"
+		if Global.unlocked_weapons["keris"] == true: 
+			weapon = "keris"
+			rencong_selected.visible = false
+			sword_selected.visible = false
+			keris_selected.visible = true
 		else: show_notification("Locked!", 0.5)
 	
 	if old_weapon != weapon and not is_attacking and not is_using_skill:
@@ -451,6 +500,11 @@ func take_damage(amount: float, source: Node2D = null) -> void:
 	health -= amount
 	print(health)
 	update_hearts()
+	
+	if health <= 6.0 and not Global.tutorial_potion_shown and not waiting_for_inventory_close:
+		show_notification("Darah Sekarat! Tekan Inventory (Tab) untuk melihat Potion", 1.0)
+		waiting_for_inventory_close = true 
+	
 	if health <= 0: die()
 	else:
 		apply_knockback(source)
@@ -483,7 +537,10 @@ func _start_air_dash() -> void:
 		velocity.y = 0.0
 		UpdateAnimation()
 	else:
-		print("Stamina tidak cukup untuk Dash!")
+		if not Global.tutorial_energy_shown:
+			show_notification("Energi Rendah! Tekan Inventory (Tab) untuk melihat Potion", 1.0)
+		else:
+			show_notification("Butuh Stamina!", 1.0)
 
 func update_hearts():
 	for i in range(heart_list.size()):

@@ -234,6 +234,8 @@ z_index = 1
 script = ExtResource("1_idgk3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.699653, 0.699654, 0.699653, 1)
+self_modulate = Color(0.666569, 0.666569, 0.666569, 1)
 position = Vector2(-4.76837e-07, -16)
 scale = Vector2(1.07, 1)
 sprite_frames = SubResource("SpriteFrames_jtmfd")

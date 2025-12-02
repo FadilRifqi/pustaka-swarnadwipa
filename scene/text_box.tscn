@@ -6,14 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://yhb5wdbhpkil" path="res://assets/ui/enter.png" id="4_2dq6x"]
 
 [node name="TextBox" type="MarginContainer"]
+light_mask = 0
 script = ExtResource("1_drdq7")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
+light_mask = 0
 layout_mode = 2
 texture = ExtResource("1_3n0le")
 region_rect = Rect2(5, 12, 22, 14)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+light_mask = 0
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 16
@@ -21,6 +24,7 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
 [node name="Label" type="Label" parent="MarginContainer"]
+light_mask = 0
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_b7gos")
@@ -31,6 +35,7 @@ vertical_alignment = 1
 one_shot = true
 
 [node name="NextIndicator" type="TextureRect" parent="."]
+light_mask = 0
 layout_mode = 2
 texture = ExtResource("4_2dq6x")
 stretch_mode = 2

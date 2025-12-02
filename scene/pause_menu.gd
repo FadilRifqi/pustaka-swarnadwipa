@@ -142,7 +142,9 @@ func save_game() -> void:
 		"scene": get_tree().current_scene.scene_file_path,
 		"visited_triggers": Global.visited_triggers,
 		"unlocked_weapons": Global.unlocked_weapons,
-		"inventory": inventory_list
+		"inventory": inventory_list,
+		"tutorial_potion_shown": Global.tutorial_potion_shown,
+		"tutorial_energy_shown": Global.tutorial_energy_shown
 	}
 	
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
@@ -226,7 +228,12 @@ func load_game() -> void:
 			if "trigger_id" in t:
 				if t.trigger_id in Global.visited_triggers:
 					t.queue_free()
+	if data.has("tutorial_potion_shown"):
+		Global.tutorial_potion_shown = data["tutorial_potion_shown"]
 	
+	if data.has("tutorial_energy_shown"):
+		Global.tutorial_energy_shown = data["tutorial_energy_shown"]
+		
 	if data.has("unlocked_weapons"):
 		Global.unlocked_weapons = data["unlocked_weapons"]
 		# Penting: Beritahu player untuk update visual slotnya setelah data di-load
@@ -261,4 +268,5 @@ func _on_settings_pressed() -> void:
 	get_tree().change_scene_to_file("res://setting.tscn")
 func _on_quit_pressed() -> void:
 	get_tree().paused = false
+	
 	get_tree().change_scene_to_file("res://scene/MainMenu.tscn")

@@ -7,6 +7,7 @@ extends Node2D
 
 # --- REFERENSI PLAYER ---
 @onready var player: Player = $Player
+@onready var void_area: Area2D = $Void
 
 func _ready() -> void:
 	# Cek apakah kita sedang Load Game atau Balik dari Setting?
@@ -23,13 +24,32 @@ func _ready() -> void:
 	else:
 		# JIKA TIDAK (Game Baru): Jalankan efek Fade In
 		fade_in_music()
-	
+	if void_area:
+		# Hubungkan sinyal: Kalau ada body masuk -> Jalankan fungsi _on_void_body_entered
+		if not void_area.body_entered.is_connected(_on_void_body_entered):
+			void_area.body_entered.connect(_on_void_body_entered)
+	else:
+		print("Error: Node Void tidak ditemukan!")
+
+
+func _on_void_body_entered(body: Node2D) -> void:
+	# Cek apakah yang jatuh adalah Player
+	if body is Player:
+		print("Player jatuh ke Void!")
+		
+		# CARA 1: Beri damage sangat besar (agar health bar update jadi 0)
+		# Gunakan 9999 agar mati seketika walau darah penuh
+		if body.has_method("take_damage"):
+			body.take_damage(9999) 
+			
+		# CARA 2 (Alternatif): Langsung panggil die()
+		# body.die()	
 	# KARENA MUSUH MANUAL:
 	# Kita tidak perlu memanggil fungsi spawn apapun di sini.
 	# Musuh yang kamu taruh di Editor akan otomatis jalan sendiri saat game mulai.
 
 func fade_in_music() -> void:
-	bgm.volume_db = -80.0
+	bgm.volume_linear = 1
 	bgm.play()
 	var tween = create_tween()
 	tween.tween_property(bgm, "volume_db", target_volume, fade_duration)

@@ -18,16 +18,18 @@ scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_jjsgq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-81.5, 75.25)
-scale = Vector2(1.7265625, 1.7561984)
+modulate = Color(0.617455, 0.617455, 0.617455, 1)
+self_modulate = Color(0.674815, 0.674815, 0.674815, 1)
+position = Vector2(7, 20)
+scale = Vector2(3, 3.05)
 texture = ExtResource("2_dens0")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 z_index = 2
-offset_left = -96.0
-offset_top = -29.0
-offset_right = 129.0
-offset_bottom = 11.0
+offset_left = 46.0
+offset_top = -34.0
+offset_right = 271.0
+offset_bottom = 6.0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
 layout_mode = 2

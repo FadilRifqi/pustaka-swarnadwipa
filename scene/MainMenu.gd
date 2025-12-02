@@ -12,6 +12,10 @@ func _on_new_game_pressed() -> void:
 	Global.load_saved_game = false 
 	Global.is_returning_from_settings = false
 	Global.visited_triggers = []
+	Global.unlocked_weapons = {
+	"rencong": false,
+	"keris": false
+}
 	get_tree().change_scene_to_file("res://Level_1.tscn")
 
 func _on_continue_pressed() -> void:
