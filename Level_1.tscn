@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://tifin6apg3ri"]
+[gd_scene load_steps=45 format=3 uid="uid://tifin6apg3ri"]
 
 [ext_resource type="Script" uid="uid://kmdwa8mcf6j2" path="res://playground.gd" id="1_4s4xf"]
 [ext_resource type="PackedScene" uid="uid://c11o6et3g00y1" path="res://player.tscn" id="2_p7bnq"]
@@ -7966,6 +7966,9 @@ sources/0 = SubResource("TileSetAtlasSource_fkbji")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gwx4l"]
 size = Vector2(20, 26.3333)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8xl1m"]
+polygon = PackedVector2Array(94.3091, -42.3704, -91.4512, -42.3704, -88.5933, 38.5185, 90.4985, 40.4444)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6eo5x"]
 size = Vector2(623.5, 83)
 
@@ -12633,96 +12636,132 @@ scale = Vector2(0.432, 0.313)
 texture = ExtResource("14_6fba8")
 
 [node name="BatuGede" type="Sprite2D" parent="."]
-modulate = Color(0.621524, 0.621524, 0.621524, 1)
-self_modulate = Color(0.597176, 0.597176, 0.597176, 1)
+modulate = Color(0.775063, 0.775063, 0.775064, 1)
+self_modulate = Color(0.808998, 0.808998, 0.808998, 1)
 position = Vector2(4933, -40)
 scale = Vector2(1.04974, 0.519231)
 texture = ExtResource("15_yaehp")
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="BatuGede"]
+occluder = SubResource("OccluderPolygon2D_8xl1m")
+
 [node name="BatuGede5" type="Sprite2D" parent="."]
-modulate = Color(0.621524, 0.621524, 0.621524, 1)
-self_modulate = Color(0.597176, 0.597176, 0.597176, 1)
+modulate = Color(0.775063, 0.775063, 0.775064, 1)
+self_modulate = Color(0.808998, 0.808998, 0.808998, 1)
 light_mask = 0
 position = Vector2(244, -502)
 scale = Vector2(0.534031, 0.519231)
 texture = ExtResource("15_yaehp")
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="BatuGede5"]
+occluder = SubResource("OccluderPolygon2D_8xl1m")
+
 [node name="BatuGede7" type="Sprite2D" parent="."]
-modulate = Color(0.621524, 0.621524, 0.621524, 1)
-self_modulate = Color(0.597176, 0.597176, 0.597176, 1)
+modulate = Color(0.775063, 0.775063, 0.775064, 1)
+self_modulate = Color(0.808998, 0.808998, 0.808998, 1)
 light_mask = 0
 position = Vector2(74, -603)
 scale = Vector2(0.484947, 0.519231)
 texture = ExtResource("15_yaehp")
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="BatuGede7"]
+occluder = SubResource("OccluderPolygon2D_8xl1m")
+
 [node name="BatuGede8" type="Sprite2D" parent="."]
-modulate = Color(0.621524, 0.621524, 0.621524, 1)
-self_modulate = Color(0.597176, 0.597176, 0.597176, 1)
+modulate = Color(0.775063, 0.775063, 0.775064, 1)
+self_modulate = Color(0.808998, 0.808998, 0.808998, 1)
 light_mask = 0
 position = Vector2(232, -700)
 scale = Vector2(0.484947, 0.519231)
 texture = ExtResource("15_yaehp")
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="BatuGede8"]
+occluder = SubResource("OccluderPolygon2D_8xl1m")
+
 [node name="BatuGede9" type="Sprite2D" parent="."]
-modulate = Color(0.621524, 0.621524, 0.621524, 1)
-self_modulate = Color(0.597176, 0.597176, 0.597176, 1)
+modulate = Color(0.775063, 0.775063, 0.775064, 1)
+self_modulate = Color(0.808998, 0.808998, 0.808998, 1)
 light_mask = 0
 position = Vector2(78, -819)
 scale = Vector2(0.629908, 0.519231)
 texture = ExtResource("15_yaehp")
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="BatuGede9"]
+occluder = SubResource("OccluderPolygon2D_8xl1m")
+
 [node name="BatuGede11" type="Sprite2D" parent="."]
-modulate = Color(0.621524, 0.621524, 0.621524, 1)
-self_modulate = Color(0.597176, 0.597176, 0.597176, 1)
+modulate = Color(0.775063, 0.775063, 0.775064, 1)
+self_modulate = Color(0.808998, 0.808998, 0.808998, 1)
 light_mask = 0
 position = Vector2(72, -1055)
 scale = Vector2(0.629908, 0.519231)
 texture = ExtResource("15_yaehp")
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="BatuGede11"]
+occluder = SubResource("OccluderPolygon2D_8xl1m")
+
 [node name="BatuGede10" type="Sprite2D" parent="."]
-modulate = Color(0.621524, 0.621524, 0.621524, 1)
-self_modulate = Color(0.597176, 0.597176, 0.597176, 1)
+modulate = Color(0.775063, 0.775063, 0.775064, 1)
+self_modulate = Color(0.808998, 0.808998, 0.808998, 1)
 light_mask = 0
 position = Vector2(248, -943)
 scale = Vector2(0.4982, 0.519231)
 texture = ExtResource("15_yaehp")
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="BatuGede10"]
+occluder = SubResource("OccluderPolygon2D_8xl1m")
+
 [node name="BatuGede12" type="Sprite2D" parent="."]
-modulate = Color(0.621524, 0.621524, 0.621524, 1)
-self_modulate = Color(0.597176, 0.597176, 0.597176, 1)
+modulate = Color(0.775063, 0.775063, 0.775064, 1)
+self_modulate = Color(0.808998, 0.808998, 0.808998, 1)
 light_mask = 0
 position = Vector2(247, -1143)
 scale = Vector2(0.4982, 0.519231)
 texture = ExtResource("15_yaehp")
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="BatuGede12"]
+occluder = SubResource("OccluderPolygon2D_8xl1m")
+
 [node name="BatuGede6" type="Sprite2D" parent="."]
-modulate = Color(0.621524, 0.621524, 0.621524, 1)
-self_modulate = Color(0.597176, 0.597176, 0.597176, 1)
+modulate = Color(0.775063, 0.775063, 0.775064, 1)
+self_modulate = Color(0.808998, 0.808998, 0.808998, 1)
 light_mask = 0
 position = Vector2(72.1875, -385)
 scale = Vector2(0.668193, 0.519231)
 texture = ExtResource("15_yaehp")
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="BatuGede6"]
+occluder = SubResource("OccluderPolygon2D_8xl1m")
+
 [node name="BatuGede4" type="Sprite2D" parent="."]
-modulate = Color(0.621524, 0.621524, 0.621524, 1)
-self_modulate = Color(0.597176, 0.597176, 0.597176, 1)
+modulate = Color(0.775063, 0.775063, 0.775064, 1)
+self_modulate = Color(0.808998, 0.808998, 0.808998, 1)
 position = Vector2(5069.12, 49)
 scale = Vector2(1.07984, 0.576923)
 texture = ExtResource("15_yaehp")
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="BatuGede4"]
+occluder = SubResource("OccluderPolygon2D_8xl1m")
+
 [node name="BatuGede2" type="Sprite2D" parent="."]
-modulate = Color(0.621524, 0.621524, 0.621524, 1)
-self_modulate = Color(0.597176, 0.597176, 0.597176, 1)
+modulate = Color(0.775063, 0.775063, 0.775064, 1)
+self_modulate = Color(0.808998, 0.808998, 0.808998, 1)
 position = Vector2(4822, -129)
 scale = Vector2(1.04974, 0.653846)
 texture = ExtResource("15_yaehp")
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="BatuGede2"]
+occluder = SubResource("OccluderPolygon2D_8xl1m")
+
 [node name="BatuGede3" type="Sprite2D" parent="."]
-modulate = Color(0.621524, 0.621524, 0.621524, 1)
-self_modulate = Color(0.597176, 0.597176, 0.597176, 1)
+modulate = Color(0.775063, 0.775063, 0.775064, 1)
+self_modulate = Color(0.808998, 0.808998, 0.808998, 1)
 position = Vector2(4704, -214)
 scale = Vector2(1.04974, 0.653846)
 texture = ExtResource("15_yaehp")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="BatuGede3"]
+occluder = SubResource("OccluderPolygon2D_8xl1m")
 
 [node name="Void" type="Area2D" parent="."]
 

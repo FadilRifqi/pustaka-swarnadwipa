@@ -76,7 +76,6 @@ func _physics_process(delta: float) -> void:
 					walking.scale.x = scale_x
 					# ... flip sprite lain ...
 					attack_area.scale.x = scale_x
-					
 					# Flip Detectors (BARU)
 					detectors.scale.x = scale_x
 					
@@ -183,7 +182,6 @@ func update_animation() -> void:
 	attack_sprite.scale.x = scale_x
 	die_sprite.scale.x = scale_x
 	hurt_sprite.scale.x = scale_x
-	
 	# Flip Hitbox
 	attack_area.scale.x = scale_x 
 	
