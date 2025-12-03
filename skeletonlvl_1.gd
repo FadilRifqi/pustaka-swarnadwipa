@@ -1,5 +1,6 @@
 class_name SkeletonLvl1 extends CharacterBody2D
-
+@onready var lt_3: Sprite2D = $"../lt3"
+@onready var lt_3_2: Sprite2D = $"../lt3,2"
 # --- VARIABLES ---
 @export var max_health: int = 5
 var health: int = max_health
@@ -87,8 +88,6 @@ func _physics_process(delta: float) -> void:
 					var gap_detected = not gap_check.is_colliding()
 					
 					if wall_detected or gap_detected:
-						print(wall_detected)
-						print(gap_detected)
 						print("Musuh Lompats!")
 						velocity.y = jump_force
 			# Diam
@@ -128,7 +127,6 @@ func start_attack() -> void:
 	attack_area.monitoring = false 
 
 func _on_attack_area_body_entered(body: Node2D) -> void:
-	print(body)
 	if body.has_method("take_damage") and body != self:
 		# Skeleton memberi damage 1 (atau ubah sesuai keinginan)
 		body.take_damage(0.25, self) 
@@ -138,7 +136,6 @@ func take_damage(amount: int, source: Node2D = null) -> void:
 	if is_dead or source.is_in_group("enemies"): return
 	
 	health -= amount
-	print("Skeleton HP: ", health)
 	
 	health_bar.value = health
 	health_bar.visible = true # Munculkan bar saat kena pukul

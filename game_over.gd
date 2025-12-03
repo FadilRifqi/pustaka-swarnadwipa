@@ -57,6 +57,8 @@ func _on_restart_pressed() -> void:
 	Global.load_saved_game = false 
 	Global.is_returning_from_settings = false
 	Global.visited_triggers = []
+	Global.skill_tutorial = false
+	Global.tutorial_move = false
 	Global.tutorial_energy_shown = false
 	Global.tutorial_potion_shown = false
 	Global.unlocked_weapons = {

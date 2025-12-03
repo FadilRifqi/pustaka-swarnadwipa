@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cnkk658onyb25"
+path="res://.godot/imported/whistling-sound-when-you-miss-with-a-sword-or-dagger.ogg-8f4cc6f89e53f4e7a52d3fc335923a7a.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/serang pedang, keris, rencong/whistling-sound-when-you-miss-with-a-sword-or-dagger.ogg"
+dest_files=["res://.godot/imported/whistling-sound-when-you-miss-with-a-sword-or-dagger.ogg-8f4cc6f89e53f4e7a52d3fc335923a7a.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

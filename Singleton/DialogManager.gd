@@ -2,7 +2,7 @@ extends Node
 
 @onready var text_box_scene : PackedScene = preload("res://scene/text_box.tscn")
 
-func start_dialog(position : Vector2, lines : Array[String], duration: float = 0.0):
+func start_dialog(position : Vector2, lines : Array[String], duration: float = 0.0, id : String = ""):
 	var new_text_box = text_box_scene.instantiate()
 	
 	# 1. Tambahkan ke Group agar mudah dilacak
@@ -11,7 +11,7 @@ func start_dialog(position : Vector2, lines : Array[String], duration: float = 0
 	# 2. Masukkan ke Root (tetap seperti kode kamu)
 	get_tree().root.add_child(new_text_box)
 	
-	new_text_box.setup(lines, position, duration)
+	new_text_box.setup(lines, position, duration, id)
 
 # --- FUNGSI PEMBERSIH (BARU) ---
 func remove_all_dialogs():

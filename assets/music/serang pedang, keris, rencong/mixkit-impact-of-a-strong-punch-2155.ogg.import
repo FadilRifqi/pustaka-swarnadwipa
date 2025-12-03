@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bkm7wncwjjs6a"
+path="res://.godot/imported/mixkit-impact-of-a-strong-punch-2155.ogg-1bc0ef8ed11f2e9ee6623d3d592f841c.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/serang pedang, keris, rencong/mixkit-impact-of-a-strong-punch-2155.ogg"
+dest_files=["res://.godot/imported/mixkit-impact-of-a-strong-punch-2155.ogg-1bc0ef8ed11f2e9ee6623d3d592f841c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

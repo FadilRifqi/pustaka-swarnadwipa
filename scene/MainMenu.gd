@@ -16,6 +16,8 @@ func _on_new_game_pressed() -> void:
 	Global.visited_triggers = []
 	Global.tutorial_energy_shown = false
 	Global.tutorial_potion_shown = false
+	Global.tutorial_move = false
+	Global.skill_tutorial = false
 	Global.unlocked_weapons = {
 	"rencong": false,
 	"keris": false

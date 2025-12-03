@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cmdc0orny6ulg"
+path="res://.godot/imported/mixkit-game-level-completed-2059.ogg-a426c8dbf055f2ac53dff8a9196ae92b.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/you win/mixkit-game-level-completed-2059.ogg"
+dest_files=["res://.godot/imported/mixkit-game-level-completed-2059.ogg-a426c8dbf055f2ac53dff8a9196ae92b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

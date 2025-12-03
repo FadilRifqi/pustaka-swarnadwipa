@@ -218,6 +218,8 @@ hframes = 10
 
 [node name="AttackArea" type="Area2D" parent="."]
 position = Vector2(-4, 9)
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(24, 1)
@@ -250,8 +252,8 @@ show_percentage = false
 
 [node name="WallCheck" type="RayCast2D" parent="Detectors"]
 target_position = Vector2(20, 2)
-collision_mask = 2
+collision_mask = 4
 
 [node name="GapCheck" type="RayCast2D" parent="Detectors"]
 target_position = Vector2(13, 40)
-collision_mask = 2
+collision_mask = 4

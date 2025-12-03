@@ -234,8 +234,6 @@ z_index = 1
 script = ExtResource("1_idgk3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.699653, 0.699654, 0.699653, 1)
-self_modulate = Color(0.666569, 0.666569, 0.666569, 1)
 position = Vector2(-4.76837e-07, -16)
 scale = Vector2(1.07, 1)
 sprite_frames = SubResource("SpriteFrames_jtmfd")
@@ -246,6 +244,7 @@ shape = SubResource("CapsuleShape2D_olh8g")
 
 [node name="AttackArea" type="Area2D" parent="."]
 collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(22, 0)
@@ -267,8 +266,8 @@ show_percentage = false
 
 [node name="WallCheck" type="RayCast2D" parent="Detectors"]
 target_position = Vector2(20, 0)
-collision_mask = 2
+collision_mask = 4
 
 [node name="GapCheck" type="RayCast2D" parent="Detectors"]
 target_position = Vector2(11, 24)
-collision_mask = 2
+collision_mask = 4

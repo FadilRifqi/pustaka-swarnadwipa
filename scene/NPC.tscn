@@ -50,6 +50,7 @@ size = Vector2(61, 72)
 
 [node name="Npc" type="Area2D"]
 position = Vector2(-1, 0)
+collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_ovfuw")
 
@@ -64,6 +65,8 @@ sprite_frames = SubResource("SpriteFrames_fecil")
 frame_progress = 0.09538
 
 [node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("RectangleShape2D_ovfuw")

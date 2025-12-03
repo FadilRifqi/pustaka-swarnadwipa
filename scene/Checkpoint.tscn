@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://db450e2ocgmui"]
+
+[ext_resource type="Script" uid="uid://bk00ui54x7rd5" path="res://checkpoint.gd" id="1_bgvl8"]
+[ext_resource type="Texture2D" uid="uid://cbqeosemtyafo" path="res://assets/lvl1-bg/bg/Salt.png" id="2_3tatj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yt2a0"]
+size = Vector2(100, 199)
+
+[node name="Checkpoint" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_bgvl8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 11.5)
+shape = SubResource("RectangleShape2D_yt2a0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_3tatj")

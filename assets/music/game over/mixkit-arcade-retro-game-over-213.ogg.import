@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://q87mm31yyp5i"
+path="res://.godot/imported/mixkit-arcade-retro-game-over-213.ogg-553a39c2344eb3d75507bea1a2989b34.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/game over/mixkit-arcade-retro-game-over-213.ogg"
+dest_files=["res://.godot/imported/mixkit-arcade-retro-game-over-213.ogg-553a39c2344eb3d75507bea1a2989b34.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

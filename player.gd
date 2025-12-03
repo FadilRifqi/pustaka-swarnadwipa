@@ -8,6 +8,13 @@ var is_dark_mode: bool = true
 var color_light_modulate: Color = Color("ffffff") # Putih
 var color_light_self: Color = Color("ffffff")
 
+@onready var sfx_jump: AudioStreamPlayer = $SFX/JumpSFX
+@onready var sfx_attack: AudioStreamPlayer = $SFX/AttackSFX
+@onready var sfx_hit_enemy: AudioStreamPlayer = $SFX/HitEnemySFX
+@onready var sfx_hurt: AudioStreamPlayer = $SFX/HurtSFX
+@onready var sfx_gameover: AudioStreamPlayer = $SFX/GameOverSFX
+@onready var sfx_switch: AudioStreamPlayer = $SFX/SwitchWeaponSFX
+@onready var sfx_run: AudioStreamPlayer = $SFX/RunSFX
 # Warna Mode Gelap
 var color_dark_modulate: Color = Color("a8a8a8")
 var color_dark_self: Color = Color("a3a3a3")
@@ -18,7 +25,7 @@ var waiting_for_inventory_close: bool = false
 var waiting_for_inventory_close_energy : bool = false
 # Health Logic
 var health : float = 12.0
-var max_hp_per_heart : float = 4.0 
+var max_hp_per_heart : float = 4.0
 var is_inventory_opened = false
 @export var skill_sprite_offset: Vector2 = Vector2(70, 0)
 # Stamina
@@ -26,7 +33,7 @@ var max_stamina : float = 10.0
 var current_stamina : float = 10.0
 var stamina_timer : float = 0.0
 @onready var stamina_bar: ProgressBar = $HealthLayer/Stamina
-var regen_rate : float = 1.0 / 1.8
+var regen_rate : float = 2.0 / 1.8
 @onready var skill_area: Area2D = $SkillArea
 @onready var point_light_2d: PointLight2D = $PointLight2D
 
@@ -115,11 +122,12 @@ func _ready() -> void:
 		if not change_skin_to_white.body_entered.is_connected(_on_white_skin_area_entered):
 			change_skin_to_white.body_entered.connect(_on_white_skin_area_entered)
 	update_skin_visuals()
-	gold.visible = false
 	rencong_selected.visible = false
 	keris_selected.visible = false
-	gold_label.visible = false
+	gold_label.visible = true
 	update_money_ui()
+	inventory_item.request_close_inventory.connect(_on_inventory_request_close)
+
 	
 	if hearts_parent:
 		for child in hearts_parent.get_children():
@@ -145,6 +153,28 @@ func _ready() -> void:
 	UpdateAnimation()
 	update_hearts()
 	update_stamina_ui()
+
+func _on_inventory_request_close():
+	if is_inventory_opened:
+		# Force tutup
+		is_inventory_opened = false
+		inventory_item.visible = false
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+		# Jalankan logic tutorial
+		if waiting_for_inventory_close:
+			show_notification("Tekan (F) Untuk Menggunakan Potion", 1.0,"item")
+			Global.tutorial_potion_shown = true
+			waiting_for_inventory_close = false
+			var pause_menu = get_tree().root.find_child("PauseMenu", true, false)
+			if pause_menu: pause_menu.save_game()
+
+		if waiting_for_inventory_close_energy:
+			show_notification("Tekan (F) Untuk Menggunakan Potion", 1.0,"item")
+			Global.tutorial_energy_shown = true
+			waiting_for_inventory_close_energy = false
+			var pause_menu = get_tree().root.find_child("PauseMenu", true, false)
+			if pause_menu: pause_menu.save_game()
 
 func _on_skill_area_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage"):
@@ -196,30 +226,37 @@ func update_skin_visuals() -> void:
 		animated_sprite.self_modulate = color_light_self
 
 func _process(delta: float) -> void:
+	if is_inventory_opened:
+		direction = Vector2.ZERO # Stop gerak
+		# Input inventory sudah dihandle script inventory_item_player.gd
+		
+		# Tombol tutup inventory tetap perlu dicek
+		if Input.is_action_just_pressed("inventory"):
+			close_inventory()
+		return # STOP FUNGSI _PROCESS DI SINI
 	direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	if not is_attacking and not is_using_skill:
 		if direction.x != 0:
 			cardinal_direction = Vector2.RIGHT if direction.x > 0 else Vector2.LEFT
 	
 	if Input.is_action_just_pressed("jump"):
+		sfx_jump.play()
 		if is_on_floor(): 
 			jump_buffer_timer = jump_buffer_time
 	
 	if Input.is_action_just_pressed("dash"):
 		if not is_attacking and not is_using_skill and not is_dashing:
+			
 			start_dash()
 	
 	if Input.is_action_just_pressed("inventory"):
 		is_inventory_opened = not is_inventory_opened
 		inventory_item.visible = not inventory_item.visible
-		gold.visible = not gold.visible
-		gold_label.visible = not gold_label.visible
 		if inventory_item.visible: 
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else: 
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			if waiting_for_inventory_close:
-				show_notification("Tekan Use Item (F) pada Potion untuk menggunakannya", 4.0)
+				show_notification("Tekan (F) Untuk Menggunakan Potion", 1.0,"item")
 				
 				# Tandai selesai selamanya
 				Global.tutorial_potion_shown = true
@@ -229,7 +266,7 @@ func _process(delta: float) -> void:
 				var pause_menu = get_tree().root.find_child("PauseMenu", true, false)
 				if pause_menu: pause_menu.save_game()
 			if waiting_for_inventory_close_energy:
-				show_notification("Tekan Use Item (F) pada Potion untuk menggunakannya", 4.0)
+				show_notification("Tekan (F) Untuk Menggunakan Potion", 1.0,"item")
 				
 				# Tandai selesai selamanya
 				Global.tutorial_energy_shown = true
@@ -242,15 +279,23 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("use_item"):
 		use_selected_item()
 	
+	
+	
 	SetState()
 	UpdateWeapon()
 	UpdateAnimation()
 	_process_stamina(delta)
 
+func close_inventory():
+	is_inventory_opened = false
+	inventory_item.visible = false
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 func start_dash() -> void:
 	# 1. Cek Stamina
-	if current_stamina >= 3.0:
-		current_stamina -= 3.0
+	if current_stamina >= 3:
+		sfx_jump.play()
+		current_stamina -= 3
 		update_stamina_ui()
 		
 		# 2. Set Status Dash
@@ -270,10 +315,10 @@ func start_dash() -> void:
 		UpdateAnimation()
 	else:
 		if not Global.tutorial_energy_shown:
-			show_notification("Energi Rendah! Tekan Inventory (Tab) untuk melihat Potion", 1.0)
+			show_notification("Energi Rendah! Tab untuk menggunakan potion", 1.0,"energi")
 			waiting_for_inventory_close_energy = true # Aktifkan mode menunggu tutup inventory
 		else:
-			show_notification("Butuh Stamina!", 1.0)
+			show_notification("Butuh Stamina!", 1.0,"stamina")
 
 # --- PHYSICS PROCESS ---
 func _physics_process(delta: float) -> void:
@@ -343,7 +388,9 @@ func SetState() -> bool:
 	
 	# BASIC ATTACK
 	if Input.is_action_just_pressed("basic_hit") and not is_attacking and not is_inventory_opened:
+		
 		if current_stamina >= 1.0:
+			sfx_attack.play()
 			current_stamina -= 1.0
 			update_stamina_ui()
 			new_state = weapon + "_attack"
@@ -351,19 +398,21 @@ func SetState() -> bool:
 			attack_area.monitoring = false 
 		else:
 			if not Global.tutorial_energy_shown:
-				show_notification("Energi Rendah! Tekan Inventory (Tab) untuk melihat Potion", 1.0)
+				show_notification("Energi Rendah! Tab untuk menggunakan potion", 1.0,"energi")
 				waiting_for_inventory_close_energy = true # Aktifkan mode menunggu tutup inventory
 			else:
-				show_notification("Butuh Stamina!", 1.0)
+				show_notification("Butuh Stamina!", 1.0,"stamina")
 			return false
 	
 	# SKILL INPUT
 	if Input.is_action_just_pressed("skill") and not is_attacking and not is_inventory_opened:
+		
 		if weapon == "sword":
-			show_notification("Sword has no skill!", 1.0)
+			show_notification("Sword has no skill!", 1.0,"skill")
 			return false
 			
 		if current_stamina >= 3.0:
+			sfx_attack.play()
 			current_stamina -= 3.0
 			update_stamina_ui()
 			
@@ -376,7 +425,7 @@ func SetState() -> bool:
 			perform_skill_dash()
 			
 		else:
-			show_notification("Need Stamina!", 1.0)
+			show_notification("Need Stamina!", 1.0,"stamina")
 			return false
 
 	if new_state == state: return false
@@ -412,14 +461,14 @@ func UpdateWeapon():
 			sword_selected.visible = false
 			keris_selected.visible = false
 		else: 
-			show_notification("Locked!", 0.5)
+			show_notification("Locked!", 0.5,"locked")
 	elif Input.is_action_just_pressed("slot_3"): 
 		if Global.unlocked_weapons["keris"] == true: 
 			weapon = "keris"
 			rencong_selected.visible = false
 			sword_selected.visible = false
 			keris_selected.visible = true
-		else: show_notification("Locked!", 0.5)
+		else: show_notification("Locked!", 0.5,"locked")
 	
 	if old_weapon != weapon and not is_attacking and not is_using_skill:
 		if "idle" in state: state = weapon + "_idle"
@@ -443,7 +492,7 @@ func UpdateAnimation() -> void:
 		else:
 			print("Warning: Animasi tidak ditemukan -> ", state)
 			animated_sprite.play(weapon + "_idle")
-	
+	play_sfx_for_state()
 
 func _on_animated_sprite_frame_changed() -> void:
 	# Hanya jalankan logika ini jika sedang menyerang
@@ -492,12 +541,10 @@ func select_consumable(item_data, index):
 func use_selected_item():
 	if selected_item != null:
 		if selected_item["name"] == "Health Potion":
-			health += selected_item["value"]
-			if health > 12.0: health = 12.0
+			health = 12
 			update_hearts()
 		elif selected_item["name"] == "Stamina Potion":
-			current_stamina += selected_item["value"]
-			if current_stamina > max_stamina: current_stamina = max_stamina
+			current_stamina = 10
 			update_stamina_ui()
 			
 		if inventory_item.has_method("remove_item_at_index"):
@@ -519,20 +566,49 @@ func update_stamina_ui() -> void:
 		stamina_bar.max_value = max_stamina
 		stamina_bar.value = current_stamina
 
+func play_sfx_for_state():
+	# --- SFX GERAK ---
+	if state.ends_with("_run"):
+		if not sfx_run.playing:
+			sfx_run.play()
+
+	elif state.ends_with("_idle") or state.ends_with("_jumping"):
+		# Hentikan suara lari kalau player berhenti
+		if sfx_run.playing:
+			sfx_run.stop()
+
+	# --- SFX LONCAT ---
+		
+
+	# --- SFX SERANG ---
+		
+
+	# --- SFX SKILL ---
+	if state.ends_with("_skill"):
+		sfx_switch.play()  # Gunakan SFX yang kamu inginkan
+
+	# --- SFX HURT (terkena damage) ---
+	if is_hurt:
+		sfx_hurt.play()
+
+	# --- SFX GAME OVER --		
+
+
 func check_weapon_unlocks():
 	rencong_ui.visible = Global.unlocked_weapons["rencong"]
 	locked_rencong.visible = not Global.unlocked_weapons["rencong"]
 	keris_ui.visible = Global.unlocked_weapons["keris"]
 	locked_keris.visible = not Global.unlocked_weapons["keris"]
 
-func show_notification(text_content: String, duration: float = 3.0) -> void:
+func show_notification(text_content: String, duration: float = 3.0, id:String="") -> void:
 	# Kita ubah teks tunggal menjadi Array[String] karena DialogManager butuh Array
 	var lines: Array[String] = [text_content]
 	var dialog_pos = global_position + Vector2(0, -100)
-	DialogManager.start_dialog(dialog_pos, lines, duration)
+	DialogManager.start_dialog(dialog_pos, lines, duration,id)
 
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage"):
+		sfx_hit_enemy.play()
 		if body != self:
 			# 1. Tentukan Damage Berdasarkan Senjata
 			var final_damage = 1 # Default (Sword)
@@ -550,7 +626,7 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 			# (Menggunakan 'self' agar musuh tahu arah knockback dari player)
 			if body is Demon: body.take_damage(final_damage, self)
 			elif body is SkeletonLvl1: body.take_damage(final_damage, self)
-			elif body is Kronco: body.take_damage(final_damage, self)
+			elif body is Kronco: body.take_damage(final_damage)
 			elif body is Cindaku: body.take_damage(final_damage, self)
 			elif body is BeguGanjang: body.take_damage(final_damage, self)
 			else: body.take_damage(final_damage) # Default untuk musuh lain
@@ -562,6 +638,7 @@ func _check_player_collision() -> void:
 		if collider is Kronco: take_damage(1)
 
 func take_damage(amount: float, source: Node2D = null) -> void:
+	sfx_hurt.play()
 	print("is invisible", is_invincible)
 	if is_invincible: return
 	health -= amount
@@ -569,13 +646,14 @@ func take_damage(amount: float, source: Node2D = null) -> void:
 	update_hearts()
 	
 	if health <= 6.0 and not Global.tutorial_potion_shown and not waiting_for_inventory_close:
-		show_notification("Darah Sekarat! Tekan Inventory (Tab) untuk melihat Potion", 1.0)
+		show_notification("Darah Sekarat! Tab untuk menggunakan potion", 1.0)
 		waiting_for_inventory_close = true 
 	
 	if health <= 0: die()
 	else:
 		apply_knockback(source)
 		start_invincibility()
+	sfx_hurt.play()
 
 func apply_knockback(source: Node2D):
 	if source:
@@ -602,6 +680,7 @@ func die() -> void:
 		# Karena kalau player dihapus, script GameOverUI di dalamnya ikut hilang.
 		# Cukup matikan proses physics atau collision.
 	set_physics_process(false)
+	sfx_gameover.play()
 	$CollisionShape2D.set_deferred("disabled", true)
 
 func _start_air_dash() -> void:
@@ -614,9 +693,9 @@ func _start_air_dash() -> void:
 		UpdateAnimation()
 	else:
 		if not Global.tutorial_energy_shown:
-			show_notification("Energi Rendah! Tekan Inventory (Tab) untuk melihat Potion", 1.0)
+			show_notification("Energi Rendah! Tab untuk menggunakan potion", 1.0,"stamina")
 		else:
-			show_notification("Butuh Stamina!", 1.0)
+			show_notification("Butuh Stamina!", 1.0,"stamina")
 
 func update_hearts():
 	for i in range(heart_list.size()):

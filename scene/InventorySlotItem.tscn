@@ -11,3 +11,13 @@ script = ExtResource("1_g45ss")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Highlight" type="ReferenceRect" parent="."]
+z_index = 7
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+border_color = Color(0.879768, 0.824531, 0, 1)
+border_width = 3.0
+editor_only = false

@@ -1,27 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://dgerlcwssrwd8"]
+[gd_scene load_steps=12 format=3 uid="uid://dgerlcwssrwd8"]
 
 [ext_resource type="Script" uid="uid://dq1ca4qxj06r7" path="res://cut_scene.gd" id="1_mi1d5"]
-[ext_resource type="Texture2D" uid="uid://68fbpradrnng" path="res://assets/bg/Background_0.png" id="2_mq35x"]
-[ext_resource type="Texture2D" uid="uid://d1quhceu2mi7l" path="res://assets/bg/bg.png" id="3_hbf5k"]
+[ext_resource type="Texture2D" uid="uid://w6ohcw088lnu" path="res://assets/bg/bglangir_terang.png" id="2_tt5al"]
+[ext_resource type="Texture2D" uid="uid://cabpsfkp337ta" path="res://assets/bg/bg_terang-removebg-preview.png" id="3_yue76"]
 [ext_resource type="Texture2D" uid="uid://fr8susri5bke" path="res://assets/Main Character/NPC.png" id="5_8dw7b"]
 [ext_resource type="Texture2D" uid="uid://cduhgacyps0wx" path="res://assets/Main Character/MC.png" id="5_iyghu"]
 [ext_resource type="Script" uid="uid://dks6mx6hlm88c" path="res://margin_container.gd" id="6_tt5al"]
 [ext_resource type="Texture2D" uid="uid://cs8bjey3l1mtr" path="res://assets/ui/bubble-chat1.png" id="7_yue76"]
 [ext_resource type="FontFile" uid="uid://d3easpuo6ebkl" path="res://assets/TrajanPro-Regular.ttf" id="8_24831"]
 [ext_resource type="Texture2D" uid="uid://yhb5wdbhpkil" path="res://assets/ui/enter.png" id="9_fokry"]
-
-[sub_resource type="Animation" id="Animation_5kaf1"]
-resource_name = "cutscene"
-length = 10.0
-
-[sub_resource type="Animation" id="Animation_7w8im"]
-length = 0.001
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_tt5al"]
-_data = {
-&"RESET": SubResource("Animation_7w8im"),
-&"cutscene": SubResource("Animation_5kaf1")
-}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yue76"]
 bg_color = Color(0.972549, 0.968627, 0.952941, 1)
@@ -30,13 +17,8 @@ bg_color = Color(0.972549, 0.968627, 0.952941, 1)
 bg_color = Color(0.972549, 0.968627, 0.952941, 1)
 corner_detail = 20
 
-[node name="CutScene" type="CanvasLayer"]
+[node name="CutSceneNode" type="CanvasLayer"]
 script = ExtResource("1_mi1d5")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_tt5al")
-}
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -44,7 +26,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_mq35x")
+texture = ExtResource("2_tt5al")
+expand_mode = 1
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -52,7 +35,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_hbf5k")
+texture = ExtResource("3_yue76")
 
 [node name="TextureRect4" type="TextureRect" parent="."]
 anchors_preset = -1
@@ -85,17 +68,6 @@ texture = ExtResource("5_8dw7b")
 expand_mode = 1
 stretch_mode = 5
 flip_h = true
-
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-anchors_preset = -1
-anchor_left = 0.028
-anchor_top = 0.085
-anchor_right = 0.061
-anchor_bottom = 0.128
-offset_left = -32.256
-offset_top = -55.08
-offset_right = -30.272
-offset_bottom = -42.944
 
 [node name="Panel" type="Panel" parent="."]
 visible = false

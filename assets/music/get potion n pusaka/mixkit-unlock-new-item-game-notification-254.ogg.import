@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bvponsx3sr64o"
+path="res://.godot/imported/mixkit-unlock-new-item-game-notification-254.ogg-b9d3141bf26f388c67e8d8613b75fcd7.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/get potion n pusaka/mixkit-unlock-new-item-game-notification-254.ogg"
+dest_files=["res://.godot/imported/mixkit-unlock-new-item-game-notification-254.ogg-b9d3141bf26f388c67e8d8613b75fcd7.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

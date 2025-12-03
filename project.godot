@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*res://global.gd"
 DialogManager="*res://Singleton/DialogManager.gd"
+TextBox="*res://scene/text_box.gd"
 
 [editor]
 

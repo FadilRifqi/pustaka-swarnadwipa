@@ -1,4 +1,4 @@
-[gd_scene load_steps=139 format=3 uid="uid://c11o6et3g00y1"]
+[gd_scene load_steps=146 format=3 uid="uid://c11o6et3g00y1"]
 
 [ext_resource type="Script" uid="uid://bw2o1rbms3w0r" path="res://player.gd" id="1_hqtel"]
 [ext_resource type="Texture2D" uid="uid://dmi0v00cgg3u0" path="res://assets/ui/horizontal_type_1.png" id="4_bwjto"]
@@ -26,6 +26,13 @@
 [ext_resource type="Texture2D" uid="uid://52wpq5m77bnj" path="res://assets/Main Character/skill_keris.png" id="16_7lmhl"]
 [ext_resource type="Texture2D" uid="uid://7jprtqdh4bnm" path="res://assets/Main Character/skill_rencong.png" id="20_dx0e4"]
 [ext_resource type="PackedScene" uid="uid://cfjnfjxkpcr7m" path="res://GameOver.tscn" id="26_7hik5"]
+[ext_resource type="AudioStream" uid="uid://c7m0jjysr4qf2" path="res://assets/music/hit/mixkit-air-in-a-hit-2161.ogg" id="27_634y6"]
+[ext_resource type="AudioStream" uid="uid://cu01rkon5ecpl" path="res://assets/music/serang pedang, keris, rencong/mixkit-dagger-woosh-1487.ogg" id="28_efrwb"]
+[ext_resource type="AudioStream" uid="uid://deyikaxfyb1tv" path="res://assets/music/hit/mixkit-quick-knife-slice-cutting-2152.ogg" id="29_hiqhm"]
+[ext_resource type="AudioStream" uid="uid://b0bt3iv3iseo1" path="res://assets/music/game over/quotgame-overquot-sound.ogg" id="30_efrwb"]
+[ext_resource type="AudioStream" uid="uid://dtu7by13verfw" path="res://assets/music/hit/retro-hurt-2-236675.ogg" id="30_hiqhm"]
+[ext_resource type="AudioStream" uid="uid://dmtw1rm5rdre1" path="res://assets/music/run/gravel-running.ogg" id="30_tkwlq"]
+[ext_resource type="AudioStream" uid="uid://bvponsx3sr64o" path="res://assets/music/get potion n pusaka/mixkit-unlock-new-item-game-notification-254.ogg" id="31_hl5qd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bwjto"]
 radius = 6.0
@@ -167,7 +174,6 @@ border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0, 0, 0, 1)
-border_blend = true
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -861,8 +867,8 @@ animations = [{
 
 [sub_resource type="Gradient" id="Gradient_5tmop"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.0409836, 0.0512295, 0.147541, 0.413934, 0.520492, 0.76, 0.98, 0.99, 1)
-colors = PackedColorArray(1.00716, 1.00716, 1.00716, 1, 0.903846, 0.903846, 0.903846, 1, 1, 1, 1, 1, 0.68174, 0.68174, 0.68174, 1, 0.0133924, 0.0133924, 0.0133924, 1, 0.0488565, 0.0488565, 0.0488565, 1, 0.00551606, 0.00551606, 0.00551606, 1, 0, 0, 0, 1, 0.00216096, 0.00216096, 0.00216096, 1, 0.0144064, 0.0144064, 0.0144064, 1)
+offsets = PackedFloat32Array(0, 0.00297619, 0.0833333, 0.110119, 0.413934, 0.520492, 0.76, 0.98, 0.99, 1)
+colors = PackedColorArray(1.00716, 1.00716, 1.00716, 1, 1, 1, 1, 1, 0.903846, 0.903846, 0.903846, 1, 0.68174, 0.68174, 0.68174, 1, 0.0133924, 0.0133924, 0.0133924, 1, 0.0488565, 0.0488565, 0.0488565, 1, 0.00551606, 0.00551606, 0.00551606, 1, 0, 0, 0, 1, 0.00216096, 0.00216096, 0.00216096, 1, 0.0144064, 0.0144064, 0.0144064, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_7ahtn"]
 gradient = SubResource("Gradient_5tmop")
@@ -874,6 +880,8 @@ fill_from = Vector2(0.512195, 0.567073)
 size = Vector2(95, 20)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_hqtel")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -950,57 +958,59 @@ texture = ExtResource("4_bwjto")
 
 [node name="Keris" type="TextureRect" parent="HealthLayer"]
 anchors_preset = -1
-anchor_left = 0.908
-anchor_top = 0.058
-anchor_right = 0.945
-anchor_bottom = 0.129
-offset_left = 24.9839
-offset_top = 55.416
-offset_right = 69.36
-offset_bottom = 144.408
+anchor_left = 0.982
+anchor_top = 0.136
+anchor_right = 1.021
+anchor_bottom = 0.196
+offset_left = -60.2642
+offset_top = 4.87199
+offset_right = -18.192
+offset_bottom = 100.992
 grow_horizontal = 0
 rotation = -2.40855
 scale = Vector2(0.62326, 0.357939)
 texture = ExtResource("5_u1c27")
+expand_mode = 1
 
 [node name="Rencong" type="TextureRect" parent="HealthLayer"]
 anchors_preset = -1
-anchor_left = 0.862
-anchor_top = 0.056
-anchor_right = 0.898
-anchor_bottom = 0.129
-offset_left = 28.976
-offset_top = 62.712
-offset_right = 99.5039
-offset_bottom = 127.408
+anchor_left = 0.916
+anchor_top = 0.149
+anchor_right = 0.973
+anchor_bottom = 0.215
+offset_left = -33.2321
+offset_top = 2.448
+offset_right = 13.1039
+offset_bottom = 71.68
 grow_horizontal = 0
 rotation = -2.49757
 scale = Vector2(0.575245, 0.477033)
 texture = ExtResource("6_op7ga")
+expand_mode = 1
 
 [node name="Pedang" type="TextureRect" parent="HealthLayer"]
 anchors_preset = -1
-anchor_left = 0.812
-anchor_top = 0.051
-anchor_right = 0.852
-anchor_bottom = 0.131
-offset_left = -7.42407
-offset_top = -0.0480003
-offset_right = -5.50409
-offset_bottom = -3.88801
+anchor_left = 0.824
+anchor_top = 0.07
+anchor_right = 0.863
+anchor_bottom = 0.144
+offset_left = -21.2482
+offset_top = -12.36
+offset_right = -18.1761
+offset_bottom = -12.312
 grow_horizontal = 0
 scale = Vector2(1.27083, 1.15625)
 texture = ExtResource("7_op7ga")
 
 [node name="LockedRencong" type="TextureRect" parent="HealthLayer"]
 anchors_preset = -1
-anchor_left = 0.861
-anchor_top = 0.054
-anchor_right = 0.898
+anchor_left = 0.885
+anchor_top = 0.051
+anchor_right = 0.926
 anchor_bottom = 0.132
-offset_left = -2.87207
-offset_top = 3.008
-offset_right = -13.4961
+offset_left = -30.5201
+offset_top = 4.952
+offset_right = -45.7522
 offset_bottom = -15.536
 grow_horizontal = 0
 scale = Vector2(1.453, 1.453)
@@ -1008,13 +1018,13 @@ texture = ExtResource("8_q13i1")
 
 [node name="LockedKeris" type="TextureRect" parent="HealthLayer"]
 anchors_preset = -1
-anchor_left = 0.906
-anchor_top = 0.055
-anchor_right = 0.948
+anchor_left = 0.944
+anchor_top = 0.057
+anchor_right = 0.983
 anchor_bottom = 0.131
-offset_left = 1.28796
-offset_top = 1.35999
-offset_right = -15.0961
+offset_left = -42.488
+offset_top = 0.0639877
+offset_right = -55.416
 offset_bottom = -15.888
 grow_horizontal = 0
 scale = Vector2(1.453, 1.453)
@@ -1127,29 +1137,28 @@ texture = ExtResource("13_jm5j8")
 
 [node name="RencongSelected" type="TextureRect" parent="HealthLayer"]
 anchors_preset = -1
-anchor_left = 0.86
-anchor_top = 0.042
-anchor_right = 0.921
-anchor_bottom = 0.153
-offset_left = -13.72
-offset_top = -0.216002
-offset_right = -35.9921
-offset_bottom = -24.144
+anchor_left = 0.87
+anchor_top = 0.056
+anchor_right = 0.926
+anchor_bottom = 0.134
+offset_left = -24.2402
+offset_top = -9.28801
+offset_right = -40.7523
+offset_bottom = -11.832
 grow_horizontal = 0
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("13_jm5j8")
 expand_mode = 1
-stretch_mode = 5
 
 [node name="KerisSelected" type="TextureRect" parent="HealthLayer"]
 anchors_preset = -1
-anchor_left = 0.906
-anchor_top = 0.056
-anchor_right = 0.946
+anchor_left = 0.941
+anchor_top = 0.059
+anchor_right = 0.992
 anchor_bottom = 0.134
-offset_left = -12.712
-offset_top = -9.288
-offset_right = -10.792
+offset_left = -53.0321
+offset_top = -11.232
+offset_right = -63.7841
 offset_bottom = -11.832
 grow_horizontal = 0
 scale = Vector2(1.5, 1.5)
@@ -1188,7 +1197,7 @@ frame_progress = 1.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, 1)
-color = Color(0.983556, 0.922899, 0.816029, 1)
+color = Color(0.807348, 0.548831, 0.467467, 1)
 energy = 4.0
 blend_mode = 2
 range_item_cull_mask = 3
@@ -1208,3 +1217,28 @@ shape = SubResource("RectangleShape2D_7lmhl")
 
 [node name="GameOver" parent="." instance=ExtResource("26_7hik5")]
 visible = false
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="JumpSFX" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("27_634y6")
+
+[node name="AttackSFX" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("28_efrwb")
+
+[node name="HitEnemySFX" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("29_hiqhm")
+
+[node name="HurtSFX" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("30_hiqhm")
+
+[node name="GameOverSFX" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("30_efrwb")
+
+[node name="SwitchWeaponSFX" type="AudioStreamPlayer" parent="SFX"]
+
+[node name="RunSFX" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("30_tkwlq")
+
+[node name="GetWeapon" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("31_hl5qd")

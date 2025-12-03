@@ -4,12 +4,13 @@ extends Area2D
 # Masukkan SEMUA teks tutorial kamu di sini.
 # Format: "trigger_id": "Isi Pesan"
 const TUTORIAL_LIBRARY = {
-	"attack_tutorial": "Musuh menghadang! Tekan {basic_hit} untuk Serang.",
-	"jump_tutorial": "Jalan buntu? Tekan {jump} untuk Melompat.",
+	"attack_tutorial": "Tekan {basic_hit} untuk Serang.",
+	"jump_tutorial": "Tekan {jump} untuk Melompat.",
 	"inventory_tutorial": "Darah sekarat? Tekan {inventory} untuk buka Tas.",
 	"skill_tutorial": "Tekan {skill} untuk menggunakan Jurus (Butuh Stamina).",
 	"dash_tutorial": "Tekan {dash} untuk Dash.",
-	"interact_tutorial": "Tekan {interact} untuk bicara atau membuka peti."
+	"interact_tutorial": "Tekan {interact} untuk bicara atau membuka peti.",
+	"move_tutorial": "Tekan Panah Kiri untuk Bergerak ke Kiri dan Panah Kanan Untuk Bergerak ke Kanan"
 }
 
 @export var show_duration: float = 1

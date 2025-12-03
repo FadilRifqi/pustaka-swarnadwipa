@@ -1,4 +1,7 @@
 extends Node2D
+@onready var lt_3: Sprite2D = $lt3
+@onready var lt_3_2: Sprite2D = $"lt3,2"
+@onready var boss_cant_escape: Area2D = $BossCantEscape
 
 # --- AUDIO SETUP ---
 @onready var bgm: AudioStreamPlayer = $bgm
@@ -54,6 +57,7 @@ func _ready() -> void:
 	else:
 		# JIKA TIDAK (Game Baru): Jalankan efek Fade In
 		fade_in_music(bgm)
+		
 	if void_area:
 		# Hubungkan sinyal: Kalau ada body masuk -> Jalankan fungsi _on_void_body_entered
 		if not void_area.body_entered.is_connected(_on_void_body_entered):
@@ -63,6 +67,11 @@ func _ready() -> void:
 			trap.body_entered.connect(_on_void_body_entered)
 	else:
 		print("Error: Node Void tidak ditemukan!")
+
+func _on_boss_cant_escaped(body: Node2D) -> void:
+	if body is BeguGanjang:
+		print("boss")
+	
 
 func _on_void_body_entered(body: Node2D) -> void:
 	# Cek apakah yang jatuh adalah Player
@@ -121,7 +130,11 @@ func start_ending_sequence() -> void:
 		# Sembunyikan UI Player biar bersih
 		if player.has_node("HealthLayer"):
 			player.get_node("HealthLayer").visible = false
-	
+		var light_tween = create_tween()
+		light_tween.set_parallel(true) # Jalankan animasi barengan untuk semua sprite
+				# Ubah warna dari Gelap ke Putih dalam 3 detik
+		light_tween.tween_property(lt_3, "modulate", Color.WHITE, 3.0)
+		light_tween.tween_property(lt_3_2, "modulate", Color.WHITE, 3.0)
 	# 3. Jalankan Cutscene
 	if cutscene_ui:
 		# Munculkan UI Cutscene (jaga-jaga kalau hidden)

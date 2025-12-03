@@ -479,5 +479,5 @@ target_position = Vector2(33, 1)
 collision_mask = 2
 
 [node name="GapCheck" type="RayCast2D" parent="Detectors"]
-target_position = Vector2(14, 21)
+target_position = Vector2(14, 26)
 collision_mask = 2

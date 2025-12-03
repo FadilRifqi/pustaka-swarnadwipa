@@ -2,7 +2,7 @@ class_name Cindaku
 extends CharacterBody2D
 
 # --- STATS BOSS ---
-@export var max_health: int = 12 # Nyawa Maksimal
+@export var max_health: int = 35 # Nyawa Maksimal
 var music_triggered: bool = false
 var health: int = max_health     # Nyawa Saat Ini
 @onready var detectors: Node2D = $Detectors
@@ -11,6 +11,7 @@ var health: int = max_health     # Nyawa Saat Ini
 @export var jump_force = -500
 @export_enum("None", "rencong", "keris") var drop_weapon_id: String = "None"
 @export var chest_scene: PackedScene = preload("res://scene/Chest.tscn")
+var start_position : Vector2  
 
 # Damage Values
 @export var damage_normal: float = 1.0
@@ -20,7 +21,7 @@ var health: int = max_health     # Nyawa Saat Ini
 # Movement & AI
 @export var move_speed: float = 85.0
 @export var gravity: float = 980.0
-@export var chase_distance: float = 900.0
+@export var chase_distance: float = 400.0
 @export var attack_range: float = 90.0
 @export var boss_scale: float = 3.5
 
@@ -46,6 +47,7 @@ var hurt_tween: Tween # Variabel untuk timer stun (Anti-Freeze)
 
 func _ready() -> void:
 	# 1. Reset Stats
+	start_position = get_position_delta()
 	health = max_health
 	add_to_group("enemies")
 	scale = Vector2(boss_scale, boss_scale)
@@ -108,11 +110,12 @@ func _physics_process(delta: float) -> void:
 					if wall or gap:
 						velocity.y = jump_force
 			else:
-				music_triggered = false
+				go_back_to_start_position()
+				health = max_health
 				if music_triggered:
+					music_triggered = false
 					if get_parent().has_method("switch_to_level_music"):
 						get_parent().switch_to_level_music()
-				velocity.x = move_toward(velocity.x, 0, move_speed)
 	else:
 		velocity.x = 0
 
@@ -182,6 +185,30 @@ func _on_skill_area_entered(body: Node2D) -> void:
 	if body.has_method("take_damage") and body != self and body is Player:
 		body.take_damage(damage_skill_1, self)
 		skill_area.call_deferred("set_monitoring", false)
+
+func go_back_to_start_position():
+	#var direction_x = sign(get_position_delta() - start_position)
+	var direction_x = sign(start_position.x - global_position.x)
+	print(global_position)
+	velocity.x = direction_x * move_speed
+	print(direction_x)
+	if velocity.x != 0:
+		var is_moving_left = velocity.x < 0
+		animated_sprite.flip_h = is_moving_left
+		if is_moving_left:
+			attack_area.scale.x = -1
+			detectors.scale.x = -1 # Balik arah detektor
+		else:
+			attack_area.scale.x = 1
+			detectors.scale.x = 1
+		if is_on_floor():
+			var wall_detected = wall_check.is_colliding() if wall_check else false
+			var gap_detected = not gap_check.is_colliding() if gap_check else false
+					
+			# Jika ada tembok atau ada jurang, LOMPAT
+			if wall_detected or gap_detected:
+				velocity.y = jump_force
+	
 
 # --- DAMAGE SYSTEM (ANTI FREEZE) ---
 func take_damage(amount: int, source: Node2D = null) -> void:

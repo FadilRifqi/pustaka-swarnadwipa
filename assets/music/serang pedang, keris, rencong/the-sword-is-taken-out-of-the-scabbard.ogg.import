@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://hax40srhye2f"
+path="res://.godot/imported/the-sword-is-taken-out-of-the-scabbard.ogg-b26dc0bf09c078d3632cdd7e7cd45aa7.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/serang pedang, keris, rencong/the-sword-is-taken-out-of-the-scabbard.ogg"
+dest_files=["res://.godot/imported/the-sword-is-taken-out-of-the-scabbard.ogg-b26dc0bf09c078d3632cdd7e7cd45aa7.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

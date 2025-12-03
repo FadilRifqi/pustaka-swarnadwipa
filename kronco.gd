@@ -2,7 +2,7 @@ class_name Kronco
 extends CharacterBody2D
 
 # --- VARIABLES ---
-@export var max_health: int = 3
+@export var max_health: int = 8
 var health: int = max_health
 
 @export var move_speed: float = 100.0

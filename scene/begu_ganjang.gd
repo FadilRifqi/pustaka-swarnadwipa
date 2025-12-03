@@ -11,9 +11,10 @@ var health: int = max_health
 @export_enum("None", "rencong", "keris") var drop_weapon_id: String = "None"
 @export var chest_scene: PackedScene = preload("res://scene/Chest.tscn")
 # AI Settings
-@export var chase_distance: float = 800.0 
+@export var chase_distance: float = 400.0 
 @export var attack_range: float = 140.0   
-@export var boss_scale: float = 4.0      
+@export var boss_scale: float = 4.0     
+var start_position : Vector2  
 
 # >>> TAMBAHAN: JUMP FORCE <<<
 @export var jump_force: float = -400.0 
@@ -35,6 +36,7 @@ var is_attacking: bool = false
 var is_hurt: bool = false
 
 func _ready() -> void:
+	start_position = get_position_delta()
 	health = max_health
 	add_to_group("enemies")
 	scale = Vector2(boss_scale, boss_scale)
@@ -71,8 +73,6 @@ func _physics_process(delta: float) -> void:
 				
 			# B. KEJAR
 			elif distance <= chase_distance:
-				print(distance)
-				print(chase_distance)
 				velocity.x = direction_x * move_speed
 				if not music_triggered:
 					music_triggered = true
@@ -103,14 +103,12 @@ func _physics_process(delta: float) -> void:
 			
 			# C. DIAM
 			else:
-				velocity.x = move_toward(velocity.x, 0, move_speed)
-				
-				# >>> PERBAIKAN DI SINI: MATIKAN MUSIK JIKA JAUH <<<
+				go_back_to_start_position()
+				health = max_health
 				if music_triggered:
 					music_triggered = false
 					if get_parent().has_method("switch_to_level_music"):
 						get_parent().switch_to_level_music()
-				velocity.x = move_toward(velocity.x, 0, move_speed)
 		
 		# Stop gerak
 		if is_attacking:
@@ -122,6 +120,30 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	update_animation()
+
+func go_back_to_start_position():
+	#var direction_x = sign(get_position_delta() - start_position)
+	var direction_x = sign(start_position.x - global_position.x)
+	print(global_position)
+	velocity.x = direction_x * move_speed
+	print(direction_x)
+	if velocity.x != 0:
+		var is_moving_left = velocity.x < 0
+		animated_sprite.flip_h = is_moving_left
+		if is_moving_left:
+			attack_area.scale.x = -1
+			detectors.scale.x = -1 # Balik arah detektor
+		else:
+			attack_area.scale.x = 1
+			detectors.scale.x = 1
+		if is_on_floor():
+			var wall_detected = wall_check.is_colliding() if wall_check else false
+			var gap_detected = not gap_check.is_colliding() if gap_check else false
+					
+			# Jika ada tembok atau ada jurang, LOMPAT
+			if wall_detected or gap_detected:
+				velocity.y = jump_force
+	
 
 # ... (Sisa fungsi start_attack, damage, die, animation TETAP SAMA) ...
 # (Tidak ada perubahan di bawah sini, copy-paste dari kodemu sebelumnya)

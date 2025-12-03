@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bej45ufk18ufi"
+path="res://.godot/imported/mixkit-video-game-win-2016.ogg-ff6d6dc929dbc2f2c2bd0776ed6226bd.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/you win/mixkit-video-game-win-2016.ogg"
+dest_files=["res://.godot/imported/mixkit-video-game-win-2016.ogg-ff6d6dc929dbc2f2c2bd0776ed6226bd.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

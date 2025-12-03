@@ -1,5 +1,7 @@
 extends MarginContainer
 
+static var active_ids: Dictionary = {}
+var unique_id: String = ""
 @onready var label: Label = $MarginContainer/Label
 @onready var timer: Timer = $LetterDisplayTimer
 
@@ -19,15 +21,25 @@ var origin_position: Vector2 = Vector2.ZERO
 func _ready() -> void:
 	set_process_unhandled_input(true)
 
-func setup(lines: Array[String], position: Vector2, duration: float = 0.0):
+func setup(lines: Array[String], position: Vector2, duration: float = 0.0, id: String = ""):
+	# Jika ada ID
+	if id != "":
+		# Cek apakah textbox dengan ID sama masih aktif
+		if active_ids.has(id):
+			queue_free() # jangan tampilkan dialog baru
+			return
+		
+		# Jika belum ada → daftarkan
+		active_ids[id] = true
+		unique_id = id
+
 	dialog_lines = lines
 	auto_advance_duration = duration
 	current_line_index = 0
-	
-	# --- SIMPAN POSISI AWAL ---
-	origin_position = position 
-	
+	origin_position = position
+
 	display_current_line()
+
 
 func display_current_line():
 	if current_line_index >= dialog_lines.size():
@@ -106,3 +118,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif auto_advance_duration == 0:
 			next_line()
 			get_viewport().set_input_as_handled()
+
+func _exit_tree() -> void:
+	if unique_id != "" and active_ids.has(unique_id):
+		active_ids.erase(unique_id)

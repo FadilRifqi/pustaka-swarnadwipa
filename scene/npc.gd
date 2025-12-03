@@ -54,7 +54,7 @@ func start_dialog() -> void:
 	position_text = global_position
 	position_text.x += 30
 	position_text.y -= 60
-	DialogManager.start_dialog(position_text, lines)
+	DialogManager.start_dialog(position_text, lines,0,"npc")
 
 # --- SINYAL DETEKSI PLAYER ---
 func _on_interaction_area_body_entered(body: Node2D) -> void:

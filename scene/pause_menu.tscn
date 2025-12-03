@@ -18,7 +18,8 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qbwph"]
 
 [node name="PauseMenu" type="CanvasLayer"]
-process_mode = 2
+process_mode = 3
+layer = 12
 script = ExtResource("1_grdc7")
 skeleton_scene = ExtResource("2_4q2vw")
 demon_scene = ExtResource("3_et5lo")

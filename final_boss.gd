@@ -2,16 +2,17 @@ class_name FinalBoss
 extends CharacterBody2D
 
 # --- STATS BOSS ---
-@export var max_health: int = 1
+@export var max_health: int = 50
 var health: int = max_health
 @export var damage_normal: int = 5
 @export var damage_enrage: int = 8 # Damage saat marah
+var start_position : Vector2  
 
 # Movement AI
 @export var move_speed: float = 100.0
 @export var run_speed: float = 160.0 # Kecepatan saat fase 2
 @export var gravity: float = 980.0
-@export var chase_distance: float = 1000.0
+@export var chase_distance: float = 400.0
 @export var attack_range: float = 120.0
 @export var boss_scale: float = 5.0
 
@@ -34,7 +35,10 @@ var is_hurt: bool = false
 var is_enraged: bool = false # Fase 2
 var hurt_tween: Tween
 
+signal boss_defeated
+
 func _ready() -> void:
+	start_position = get_position_delta()
 	health = max_health
 	add_to_group("enemies")
 	scale = Vector2(boss_scale, boss_scale)
@@ -96,10 +100,8 @@ func _physics_process(delta: float) -> void:
 			
 			# C. DIAM
 			else:
-				velocity.x = move_toward(velocity.x, 0, move_speed)
-				# Matikan musik jika player jauh
-				if get_parent().has_method("switch_to_level_music"):
-					get_parent().switch_to_level_music()
+				go_back_to_start_position()
+				health = max_health
 
 			# Trigger Musik Boss saat mengejar
 			if distance <= chase_distance and velocity.x != 0:
@@ -122,6 +124,29 @@ func handle_flip(vel_x: float) -> void:
 		else:
 			attack_area.scale.x = 1
 			if detectors: detectors.scale.x = 1
+
+func go_back_to_start_position():
+	#var direction_x = sign(get_position_delta() - start_position)
+	var direction_x = sign(start_position.x - global_position.x)
+	print(global_position)
+	velocity.x = direction_x * move_speed
+	print(direction_x)
+	if velocity.x != 0:
+		var is_moving_left = velocity.x < 0
+		animated_sprite.flip_h = is_moving_left
+		if is_moving_left:
+			attack_area.scale.x = -1
+			detectors.scale.x = -1 # Balik arah detektor
+		else:
+			attack_area.scale.x = 1
+			detectors.scale.x = 1
+		if is_on_floor():
+			var wall_detected = wall_check.is_colliding() if wall_check else false
+			var gap_detected = not gap_check.is_colliding() if gap_check else false
+					
+			# Jika ada tembok atau ada jurang, LOMPAT
+			if wall_detected or gap_detected:
+				velocity.y = jump_force
 
 func enter_enrage_mode():
 	is_enraged = true
@@ -187,12 +212,13 @@ func die() -> void:
 	if health_bar: health_bar.visible = false
 	attack_area.monitoring = false
 	velocity = Vector2.ZERO
+
 	
 	if get_parent().has_method("switch_to_level_music"):
 		get_parent().switch_to_level_music()
 	
-	if get_parent().has_method("on_final_boss_defeated"):
-		get_parent().on_final_boss_defeated()
+	if get_parent().has_method("start_ending_sequence"):
+		get_parent().start_ending_sequence()
 	else:
 		print("ERROR: Fungsi 'on_final_boss_defeated' tidak ditemukan di Parent (Playground)!")
 	
