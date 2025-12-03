@@ -22,7 +22,7 @@ func _on_new_game_pressed() -> void:
 	"rencong": false,
 	"keris": false
 }
-	get_tree().change_scene_to_file("res://Level_1.tscn")
+	get_tree().change_scene_to_file("res://CutSceneAwal.tscn")
 
 func _on_continue_pressed() -> void:
 	# 1. Cek apakah ada file save

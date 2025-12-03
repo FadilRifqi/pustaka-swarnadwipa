@@ -3938,7 +3938,7 @@ shape = SubResource("RectangleShape2D_bwsuy")
 
 [node name="Player" parent="." instance=ExtResource("2_p7bnq")]
 z_index = 4
-position = Vector2(121, 521)
+position = Vector2(92, 518)
 
 [node name="Pohon" type="Sprite2D" parent="."]
 show_behind_parent = true

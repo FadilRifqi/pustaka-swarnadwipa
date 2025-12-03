@@ -1,0 +1,113 @@
+[gd_scene load_steps=8 format=3 uid="uid://b6v6872tbwb8m"]
+
+[ext_resource type="Script" uid="uid://iu3shu82sntq" path="res://cut_scene_akhir.gd" id="1_fh5m7"]
+[ext_resource type="Texture2D" uid="uid://w6ohcw088lnu" path="res://assets/bg/bglangir_terang.png" id="2_fh5m7"]
+[ext_resource type="Texture2D" uid="uid://cabpsfkp337ta" path="res://assets/bg/bg_terang-removebg-preview.png" id="3_718l0"]
+[ext_resource type="Texture2D" uid="uid://cduhgacyps0wx" path="res://assets/Main Character/MC.png" id="3_fh5m7"]
+[ext_resource type="Texture2D" uid="uid://fr8susri5bke" path="res://assets/Main Character/NPC.png" id="4_k1b52"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fh5m7"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_718l0"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="CutSceneAkhir" type="CanvasLayer"]
+script = ExtResource("1_fh5m7")
+
+[node name="BGLeft" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_fh5m7")
+expand_mode = 1
+
+[node name="BGRight" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_718l0")
+
+[node name="CharLeft" type="TextureRect" parent="."]
+anchors_preset = -1
+anchor_left = 0.042
+anchor_top = 0.554
+anchor_right = 0.223
+anchor_bottom = 1.0
+offset_left = -321.384
+offset_top = -70.992
+offset_right = 275.104
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_fh5m7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CharRight" type="TextureRect" parent="."]
+anchors_preset = -1
+anchor_left = 0.76
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -52.5201
+offset_top = 32.0
+offset_right = 111.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_k1b52")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+
+[node name="BlackTop" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 355.0
+grow_horizontal = 2
+color = Color(0.152941, 0.152941, 0.152941, 1)
+
+[node name="BlackBottom" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -293.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.152941, 0.152941, 0.152941, 1)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.032
+anchor_top = 0.478
+anchor_right = 0.224
+anchor_bottom = 0.535
+offset_left = 0.135998
+offset_top = 0.255981
+offset_right = -0.0480042
+offset_bottom = 0.319977
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_fh5m7")
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.782
+anchor_top = 0.495
+anchor_right = 1.0
+anchor_bottom = 0.548
+offset_left = 0.135925
+offset_top = 0.23999
+offset_right = -9.0
+offset_bottom = -0.104034
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_718l0")
+autowrap_mode = 3

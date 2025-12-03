@@ -2,7 +2,7 @@ class_name FinalBoss
 extends CharacterBody2D
 
 # --- STATS BOSS ---
-@export var max_health: int = 50
+@export var max_health: int = 1
 var health: int = max_health
 @export var damage_normal: int = 5
 @export var damage_enrage: int = 8 # Damage saat marah
@@ -227,6 +227,7 @@ func die() -> void:
 		player.add_money(100) # Hadiah besar
 		
 	update_animation()
+	
 
 # --- ANIMATION ---
 func update_animation() -> void:
@@ -256,3 +257,5 @@ func _on_animation_finished() -> void:
 		await tween.finished
 		Engine.time_scale = 1.0 # Balikin normal
 		queue_free()
+		await get_tree().create_timer(4.0)
+		get_tree().change_scene_to_file("res://CutSceneAkhir.tscn")
